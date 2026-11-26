@@ -1,0 +1,15 @@
+{
+  "name": "Default",
+  "text": "#FFFFFF",
+  "dim": "#808080",
+  "accent": "#FFFF00",
+  "border": "#808080",
+  "border_focused": "#FFFF00",
+  "field_idle": "#808080",
+  "field_selected": "#FFFFFF",
+  "editing_fg": "#000000",
+  "editing_bg": "#FFFF00",
+  "off_note": "#585858",
+  "spectrum": "#00FFFF",
+  "waterfall": ["#000000", "#005078", "#00C8C8", "#FFFF00", "#FF0000"]
+}

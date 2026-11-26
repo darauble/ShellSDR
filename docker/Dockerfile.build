@@ -1,0 +1,40 @@
+# Build-only image for shellsdr (compiles, does not run the result). One image per target,
+# used by tools/dev:
+#   ARCH=x64    BASE=ubuntu:24.04   native x86_64 build; runs on Ubuntu 24.04+ / Debian 13+
+#   ARCH=arm64  BASE=debian:trixie  cross build to aarch64; runs on Debian 13 (Trixie) /
+#                                   Raspberry Pi OS 13 64-bit and newer
+# The base is the oldest supported distribution, so the binary links against the oldest
+# glibc / libSoapySDR / libasound it has to run with.
+ARG BASE=ubuntu:24.04
+FROM ${BASE}
+ARG ARCH=x64
+ARG RUST_VERSION=1.99.0
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN set -eux; \
+    case ${ARCH} in \
+        x64)   PKGS="build-essential libsoapysdr-dev libasound2-dev zlib1g-dev" ;; \
+        arm64) dpkg --add-architecture arm64; \
+               PKGS="build-essential crossbuild-essential-arm64 libsoapysdr-dev:arm64 libasound2-dev:arm64 zlib1g-dev:arm64" ;; \
+        *) echo "unknown ARCH ${ARCH}"; exit 1 ;; \
+    esac; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends $PKGS pkg-config ca-certificates file binutils rustup cmake; \
+    rm -rf /var/lib/apt/lists/*
+
+ENV RUSTUP_HOME=/opt/rustup \
+    RUSTUP_TOOLCHAIN=${RUST_VERSION}
+RUN set -eux; \
+    case ${ARCH} in \
+        x64)   T=x86_64-unknown-linux-gnu ;; \
+        arm64) T=aarch64-unknown-linux-gnu ;; \
+    esac; \
+    rustup toolchain install ${RUST_VERSION} --profile minimal --no-self-update --target $T; \
+    chmod -R a+rwX /opt/rustup
+
+# Cross linker and pkg-config pointed at the arm64 multiarch libraries (ignored for x64)
+ENV CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=aarch64-linux-gnu-gcc \
+    PKG_CONFIG_ALLOW_CROSS=1 \
+    PKG_CONFIG_LIBDIR_aarch64_unknown_linux_gnu=/usr/lib/aarch64-linux-gnu/pkgconfig:/usr/share/pkgconfig
+
+WORKDIR /work/shellsdr

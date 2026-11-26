@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=ShellSDR
+GenericName=SDR receiver
+Comment=SDR receiver and recorder in a window
+Exec=shellsdr --gui
+Icon=shellsdr
+Terminal=false
+Categories=AudioVideo;Audio;HamRadio;
+Keywords=SDR;radio;receiver;waterfall;
+StartupWMClass=shellsdr

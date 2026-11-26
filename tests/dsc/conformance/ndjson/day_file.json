@@ -1,0 +1,94 @@
+{
+  "suite": "day-file",
+  "description": "Which per-day file a message belongs to: the LOCAL date at reception (utc_epoch + utc_offset), named YYYY-MM-DD.ndjson.",
+  "normative": true,
+  "compare": {
+    "method": "Exact."
+  },
+  "cases": [
+    {
+      "id": "utc-midday",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1792498971,
+        "utc_offset": 0
+      },
+      "expected": {
+        "local_date": "2026-10-20",
+        "file_name": "2026-10-20.ndjson"
+      },
+      "req": ["STO-02"]
+    },
+    {
+      "id": "plus3-after-local-midnight",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1792530000,
+        "utc_offset": 10800
+      },
+      "expected": {
+        "local_date": "2026-10-21",
+        "file_name": "2026-10-21.ndjson"
+      },
+      "req": ["STO-02"]
+    },
+    {
+      "id": "minus5-before-local-midnight",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1792558800,
+        "utc_offset": -18000
+      },
+      "expected": {
+        "local_date": "2026-10-21",
+        "file_name": "2026-10-21.ndjson"
+      },
+      "req": ["STO-02"]
+    },
+    {
+      "id": "plus0530",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1792530000,
+        "utc_offset": 19800
+      },
+      "expected": {
+        "local_date": "2026-10-21",
+        "file_name": "2026-10-21.ndjson"
+      },
+      "req": ["STO-02"]
+    },
+    {
+      "id": "new-year-local",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1798750800,
+        "utc_offset": 10800
+      },
+      "expected": {
+        "local_date": "2027-01-01",
+        "file_name": "2027-01-01.ndjson"
+      },
+      "req": ["STO-02"]
+    },
+    {
+      "id": "leap-day",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1835481600,
+        "utc_offset": 0
+      },
+      "expected": {
+        "local_date": "2028-03-01",
+        "file_name": "2028-03-01.ndjson"
+      },
+      "req": ["STO-02"]
+    }
+  ]
+}

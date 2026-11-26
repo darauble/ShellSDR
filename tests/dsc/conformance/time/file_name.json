@@ -1,0 +1,282 @@
+{
+  "suite": "file-name-time",
+  "description": "Recording start time from a WAV file name: the first YYYYMMDD (optionally delimited) followed within a few separator characters by HHMMSS, read as LOCAL time in the given IANA time zone.",
+  "normative": true,
+  "compare": {
+    "method": "Exact. Run with the case's time_zone as the local zone."
+  },
+  "cases": [
+    {
+      "id": "sample-recording",
+      "source": "synthetic",
+      "description": "Compact YYYYMMDDTHHMMSS; summer time (+03:00).",
+      "input": {
+        "file_name": "20261020T152248_audio_8414.5kHz.wav",
+        "time_zone": "Europe/Vilnius"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1792498968,
+        "utc_offset": 10800,
+        "utc_iso": "2026-10-20T12:22:48Z",
+        "local_iso": "2026-10-20T15:22:48+03:00"
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "dashed",
+      "source": "synthetic",
+      "description": "Delimited date and time; winter time (+02:00).",
+      "input": {
+        "file_name": "audio_2023-01-28_10-21-59_8413000Hz_KELI.wav",
+        "time_zone": "Europe/Vilnius"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1674894119,
+        "utc_offset": 7200,
+        "utc_iso": "2023-01-28T08:21:59Z",
+        "local_iso": "2023-01-28T10:21:59+02:00"
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "with-directory",
+      "source": "synthetic",
+      "description": "Digits in the directory part do not form a valid date+time first.",
+      "input": {
+        "file_name": "/data/2026/20261020T152248_x.wav",
+        "time_zone": "Europe/Vilnius"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1792498968,
+        "utc_offset": 10800,
+        "utc_iso": "2026-10-20T12:22:48Z",
+        "local_iso": "2026-10-20T15:22:48+03:00"
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "colons",
+      "source": "synthetic",
+      "description": "Space and colon delimiters, UTC zone.",
+      "input": {
+        "file_name": "rec 2026-10-20 15:22:48.wav",
+        "time_zone": "UTC"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1792509768,
+        "utc_offset": 0,
+        "utc_iso": "2026-10-20T15:22:48Z",
+        "local_iso": "2026-10-20T15:22:48+00:00"
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "new-york",
+      "source": "synthetic",
+      "description": "Another zone, summer (-04:00).",
+      "input": {
+        "file_name": "20260704_120000.wav",
+        "time_zone": "America/New_York"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1783180800,
+        "utc_offset": -14400,
+        "utc_iso": "2026-07-04T16:00:00Z",
+        "local_iso": "2026-07-04T12:00:00-04:00"
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "kolkata",
+      "source": "synthetic",
+      "description": "Half-hour offset (+05:30).",
+      "input": {
+        "file_name": "20260704-120000.wav",
+        "time_zone": "Asia/Kolkata"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1783146600,
+        "utc_offset": 19800,
+        "utc_iso": "2026-07-04T06:30:00Z",
+        "local_iso": "2026-07-04T12:00:00+05:30"
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "no-date",
+      "source": "synthetic",
+      "description": "No date -> not found.",
+      "input": {
+        "file_name": "recording.wav",
+        "time_zone": "UTC"
+      },
+      "expected": {
+        "found": false,
+        "utc_epoch": null,
+        "utc_offset": null,
+        "utc_iso": null,
+        "local_iso": null
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "bad-month",
+      "source": "synthetic",
+      "description": "Month 13 -> not found.",
+      "input": {
+        "file_name": "20261340T120000.wav",
+        "time_zone": "UTC"
+      },
+      "expected": {
+        "found": false,
+        "utc_epoch": null,
+        "utc_offset": null,
+        "utc_iso": null,
+        "local_iso": null
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "bad-hour",
+      "source": "synthetic",
+      "description": "Hour 25 -> not found.",
+      "input": {
+        "file_name": "20261020T250000.wav",
+        "time_zone": "UTC"
+      },
+      "expected": {
+        "found": false,
+        "utc_epoch": null,
+        "utc_offset": null,
+        "utc_iso": null,
+        "local_iso": null
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "before-1970",
+      "source": "synthetic",
+      "description": "Years before 1970 are rejected.",
+      "input": {
+        "file_name": "19691231T235959.wav",
+        "time_zone": "UTC"
+      },
+      "expected": {
+        "found": false,
+        "utc_epoch": null,
+        "utc_offset": null,
+        "utc_iso": null,
+        "local_iso": null
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "date-only",
+      "source": "synthetic",
+      "description": "Date without a time -> not found.",
+      "input": {
+        "file_name": "20261020.wav",
+        "time_zone": "UTC"
+      },
+      "expected": {
+        "found": false,
+        "utc_epoch": null,
+        "utc_offset": null,
+        "utc_iso": null,
+        "local_iso": null
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "three-separators",
+      "source": "synthetic",
+      "description": "Up to three separator characters between date and time.",
+      "input": {
+        "file_name": "20261020___152248.wav",
+        "time_zone": "UTC"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1792509768,
+        "utc_offset": 0,
+        "utc_iso": "2026-10-20T15:22:48Z",
+        "local_iso": "2026-10-20T15:22:48+00:00"
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "four-separators",
+      "source": "synthetic",
+      "description": "Four separators: date and time are not one timestamp -> not found.",
+      "input": {
+        "file_name": "20261020____152248.wav",
+        "time_zone": "UTC"
+      },
+      "expected": {
+        "found": false,
+        "utc_epoch": null,
+        "utc_offset": null,
+        "utc_iso": null,
+        "local_iso": null
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "dst-gap",
+      "source": "synthetic",
+      "description": "Local time inside the spring-forward gap (03:00 -> 04:00) does not exist: shifted forward by the gap (04:30+03:00).",
+      "input": {
+        "file_name": "20260329T033000.wav",
+        "time_zone": "Europe/Vilnius"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1774747800,
+        "utc_offset": 10800,
+        "utc_iso": "2026-03-29T01:30:00Z",
+        "local_iso": "2026-03-29T04:30:00+03:00"
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "dst-overlap",
+      "source": "synthetic",
+      "description": "Local time inside the autumn overlap occurs twice: the earlier instant (summer time, +03:00).",
+      "input": {
+        "file_name": "20261025T033000.wav",
+        "time_zone": "Europe/Vilnius"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1792888200,
+        "utc_offset": 10800,
+        "utc_iso": "2026-10-25T00:30:00Z",
+        "local_iso": "2026-10-25T03:30:00+03:00"
+      },
+      "req": ["TIM-02"]
+    },
+    {
+      "id": "dst-after-overlap",
+      "source": "synthetic",
+      "description": "Just after the overlap: winter time (+02:00).",
+      "input": {
+        "file_name": "20261025T043000.wav",
+        "time_zone": "Europe/Vilnius"
+      },
+      "expected": {
+        "found": true,
+        "utc_epoch": 1792895400,
+        "utc_offset": 7200,
+        "utc_iso": "2026-10-25T02:30:00Z",
+        "local_iso": "2026-10-25T04:30:00+02:00"
+      },
+      "req": ["TIM-02"]
+    }
+  ]
+}

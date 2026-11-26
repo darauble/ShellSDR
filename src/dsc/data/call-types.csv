@@ -1,0 +1,107 @@
+table,band,type,format,address,category,first_telecommand,second_telecommand,distress_id,nature_of_distress,message_2,message_3,subsequent_communications,eos,expansion,edition,notes
+A1-4.1,VHF,Distress alert (RT),112,-,-,-,-,-,100-110,Pos1,UTC,100 (126 for MOB device class M),127,expan1,both,
+A1-4.1,VHF,Distress alert (EPIRB),112,-,-,-,-,-,112,Pos1,UTC,126,127,expan1,legacy,Not in M.493-16
+A1-4.1,MF/HF,Distress alert (RT),112,-,-,-,-,-,100-110,Pos1,UTC,109,127,expan1,both,
+A1-4.1,MF/HF,Distress alert (FEC),112,-,-,-,-,-,100-110,Pos1,UTC,113,127,expan1,legacy,Not in M.493-16
+A1-4.2,VHF,Distress acknowledgement (RT),116,-,112,110,-,Distress ID,100-110,Pos1,UTC,100 (126 for MOB device class M),127,expan1,both,
+A1-4.2,VHF,Distress acknowledgement (EPIRB),116,-,112,110,-,Distress ID,112,Pos1,UTC,126,127,expan1,both,Nature 112 is no longer defined in M.493-16 Table A1-3 (F-21)
+A1-4.2,VHF,Distress self-cancel,116,-,112,110,-,Self-ID,100-110,Pos1,UTC,100 (126 for MOB device class M),127,expan1,both,
+A1-4.2,MF/HF,Distress acknowledgement (RT),116,-,112,110,-,Distress ID,100-110,Pos1,UTC,109,127,expan1,both,
+A1-4.2,MF/HF,Distress acknowledgement (FEC),116,-,112,110,-,Distress ID,100-110,Pos1,UTC,113,127,expan1,legacy,Not in M.493-16
+A1-4.2,MF/HF,Distress self-cancel,116,-,112,110,-,Self-ID,100-110,Pos1,UTC,109,127,expan1,both,
+A1-4.3,VHF,Distress alert relay individual (RT),120,ID,112,112,-,Distress ID,100-110,Pos1,UTC,100,117,expan2,both,
+A1-4.3,VHF,Distress alert relay individual (EPIRB),120,ID,112,112,-,Distress ID,112,Pos1,UTC,126,117,expan2,legacy,Not in M.493-16
+A1-4.3,VHF,Distress alert relay individual (man overboard beacon),120,ID,112,112,-,Distress ID,110,Pos1,UTC,126,117,expan2,both,
+A1-4.3,VHF,Distress alert relay group (man overboard beacon),114,ID,112,112,-,Distress ID,110,Pos1,UTC,126,127,expan1,both,
+A1-4.3,VHF,Distress alert relay geographic area (RT),102,Area,112,112,-,Distress ID,100-110,Pos1,UTC,100,127,expan1,both,
+A1-4.3,VHF,Distress alert relay geographic area (EPIRB),102,Area,112,112,-,Distress ID,112,Pos1,UTC,126,127,expan1,legacy,Not in M.493-16
+A1-4.3,VHF,Distress alert relay all ships (RT),116,-,112,112,-,Distress ID,100-110,Pos1,UTC,100,127,expan1,both,
+A1-4.3,VHF,Distress alert relay all ships (EPIRB),116,-,112,112,-,Distress ID,112,Pos1,UTC,126,127,expan1,legacy,Not in M.493-16
+A1-4.3,MF/HF,Distress alert relay individual (RT),120,MMSI,112,112,-,Distress ID,100-110,Pos1,UTC,109,117,expan2,both,
+A1-4.3,MF/HF,Distress alert relay individual (FEC),120,MMSI,112,112,-,Distress ID,100-110,Pos1,UTC,113,117,expan2,legacy,Not in M.493-16
+A1-4.3,MF/HF,Distress alert relay geographic area (RT),102,Area,112,112,-,Distress ID,100-110,Pos1,UTC,109,127,expan1,both,
+A1-4.3,MF/HF,Distress alert relay geographic area (FEC),102,Area,112,112,-,Distress ID,100-110,Pos1,UTC,113,127,expan1,legacy,Not in M.493-16
+A1-4.3,MF/HF,Distress alert relay all ships (RT),116,-,112,112,-,Distress ID,100-110,Pos1,UTC,109,127,expan1,both,
+A1-4.3,MF/HF,Distress alert relay all ships (FEC),116,-,112,112,-,Distress ID,100-110,Pos1,UTC,113,127,expan1,legacy,Not in M.493-16
+A1-4.4,VHF,Distress alert relay acknowledgement individual (RT),120,ID,112,112,-,Distress ID,100-110,Pos1,UTC,100,122,expan3,both,
+A1-4.4,VHF,Distress alert relay acknowledgement to a group (RT),114,ID,112,112,-,Distress ID,110,Pos1,UTC,126,122,expan3,both,
+A1-4.4,VHF,Distress alert relay acknowledgement individual (EPIRB),120,ID,112,112,-,Distress ID,112,Pos1,UTC,126,122,expan3,legacy,Not in M.493-16
+A1-4.4,VHF,Distress alert relay acknowledgement individual (man overboard),120,ID,112,112,-,Distress ID,110,Pos1,UTC,126,122,expan3,both,
+A1-4.4,VHF,Distress alert relay acknowledgement all ships (RT),116,-,112,112,-,Distress ID,100-110,Pos1,UTC,100,122,expan3,both,
+A1-4.4,VHF,Distress alert relay acknowledgement all ships (EPIRB),116,-,112,112,-,Distress ID,112,Pos1,UTC,126,122,expan3,legacy,Not in M.493-16
+A1-4.4,MF/HF,Distress alert relay acknowledgement individual (RT),120,ID,112,112,-,Distress ID,100-110,Pos1,UTC,109,122,expan3,both,
+A1-4.4,MF/HF,Distress alert relay acknowledgement individual (FEC),120,ID,112,112,-,Distress ID,100-110,Pos1,UTC,113,122,expan3,legacy,Not in M.493-16
+A1-4.4,MF/HF,Distress alert relay acknowledgement all ships (RT),116,-,112,112,-,Distress ID,100-110,Pos1,UTC,109,122,expan3,both,
+A1-4.4,MF/HF,Distress alert relay acknowledgement all ships (FEC),116,-,112,112,-,Distress ID,100-110,Pos1,UTC,113,122,expan3,legacy,Not in M.493-16
+A1-4.5,VHF,All ships urgency/safety all modes RT,116,-,108 or 110,100,126,-,-,Frequency,-,-,127,-,both,
+A1-4.5,VHF,All ships urgency/safety duplex RT,116,-,108 or 110,101,126,-,-,Frequency,-,-,127,-,both,
+A1-4.5,VHF,All ships medical transports,116,-,110,100,111,-,-,Frequency,-,-,127,-,both,
+A1-4.5,VHF,All ships ships and aircraft (Res. 18),116,-,110,100,110,-,-,Frequency,-,-,127,-,both,
+A1-4.5,MF/HF,All ships urgency/safety J3E RT,116,-,108 or 110,109,126,-,-,Frequency,-,-,127,-,both,
+A1-4.5,MF/HF,All ships urgency/safety F1B FEC,116,-,108 or 110,113,126,-,-,Frequency,-,-,127,-,legacy,Not in M.493-16
+A1-4.6,MF/HF,Geographic area urgency/safety J3E RT,102,Area,108 or 110,109,126,-,-,Frequency,-,-,127,-,both,
+A1-4.6,MF/HF,Geographic area urgency/safety F1B FEC,102,Area,108 or 110,113,126,-,-,Frequency,-,-,127,-,both,
+A1-4.6,MF/HF,Geographic area medical transports,102,Area,110,109,111,-,-,Frequency,-,-,127,-,both,M.493-15: first telecommand 109 or 113
+A1-4.6,MF/HF,Geographic area ships and aircraft (Res. 18),102,Area,110,109,110,-,-,Frequency,-,-,127,-,both,M.493-15: first telecommand 109 or 113
+A1-4.7,VHF,Individual urgency/safety all modes RT,120,ID,108 or 110,100,126,-,-,Frequency,-,-,117,-,both,
+A1-4.7,VHF,Individual urgency/safety duplex RT,120,ID,108 or 110,101,126,-,-,Frequency,-,-,117,-,both,
+A1-4.7,VHF,Individual urgency/safety RT acknowledgement,120,ID,108 or 110,100,126,-,-,Frequency,-,-,122,-,both,
+A1-4.7,VHF,Individual urgency/safety unable to comply acknowledgement,120,ID,108 or 110,104,100-109,-,-,Frequency,-,-,122,-,both,
+A1-4.7,VHF,Position request,120,ID,108,121,126,-,-,Pos3,-,-,117,-,both,
+A1-4.7,VHF,Position acknowledgement,120,ID,108,121,126,-,-,Pos4,UTC,-,122,expan3,both,
+A1-4.7,VHF,Test,120,ID,108,118,126,-,-,None,-,-,117,-,both,
+A1-4.7,VHF,Test acknowledgement,120,ID,108,118,126,-,-,None,-,-,122,-,both,
+A1-4.7,MF/HF,Individual urgency/safety J3E RT,120,ID,108 or 110,109,126,-,-,Frequency,-,-,117,-,both,
+A1-4.7,MF/HF,Individual urgency/safety J3E RT with position,120,ID,108 or 110,109,126,-,-,Pos2,-,-,117,-,both,
+A1-4.7,MF/HF,Individual urgency/safety J3E RT acknowledgement,120,ID,108 or 110,109,126,-,-,Frequency,-,-,122,-,both,
+A1-4.7,MF/HF,Individual urgency/safety F1B FEC or ARQ,120,ID,108 or 110,113 or 115,126,-,-,Frequency,-,-,117,-,legacy,Not in M.493-16
+A1-4.7,MF/HF,Individual urgency/safety F1B FEC or ARQ with position,120,ID,108 or 110,113 or 115,126,-,-,Pos2,-,-,117,-,legacy,Not in M.493-16
+A1-4.7,MF/HF,Individual urgency/safety F1B FEC or ARQ acknowledgement,120,ID,108 or 110,113 or 115,126,-,-,Frequency,-,-,122,-,legacy,Not in M.493-16
+A1-4.7,MF/HF,Individual urgency/safety unable to comply acknowledgement,120,ID,108 or 110,104,100-109,-,-,Frequency,-,-,122,-,both,
+A1-4.7,MF/HF,Position request,120,ID,108,121,126,-,-,Pos3,-,-,117,-,both,
+A1-4.7,MF/HF,Position acknowledgement,120,ID,108,121,126,-,-,Pos4,UTC,-,122,expan3,both,
+A1-4.7,MF/HF,Test,120,ID,108,118,126,-,-,None,-,-,117,-,both,
+A1-4.7,MF/HF,Test acknowledgement,120,ID,108,118,126,-,-,None,-,-,122,-,both,
+A1-4.8,VHF,Routine group all mode RT,114,MMSI,100,100,126,-,-,Frequency,-,-,127,-,both,
+A1-4.8,VHF,Routine group duplex RT,114,MMSI,100,101,126,-,-,Frequency,-,-,127,-,both,
+A1-4.8,MF/HF,Routine group J3E RT,114,MMSI,100,109,126,-,-,Frequency,-,-,127,-,both,
+A1-4.8,MF/HF,Routine group F1B FEC,114,MMSI,100,113,126,-,-,Frequency,-,-,127,-,both,
+A1-4.9.1,VHF,Routine individual all mode RT,120,ID,100,100,126,-,-,Frequency,-,-,117,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,VHF,Routine individual duplex RT,120,ID,100,101,126,-,-,Frequency,-,-,117,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,VHF,Routine individual RT acknowledgement,120,ID,100,100,126,-,-,Frequency,-,-,122,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,VHF,Routine individual data,120,ID,100,106,126,-,-,Frequency,-,-,117,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,VHF,Routine individual data acknowledgement,120,ID,100,106,126,-,-,Frequency,-,-,122,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,VHF,Routine individual unable to comply acknowledgement,120,ID,100,104,100-109,-,-,Frequency,-,-,122,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,VHF,Polling,120,ID,100,103,126,-,-,None,-,-,117,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,VHF,Polling acknowledgement,120,ID,100,103,126,-,-,None,-,-,122,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,MF/HF,Routine individual J3E RT,120,ID,100,109,126,-,-,Frequency,-,-,117,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,MF/HF,Routine individual J3E RT with position,120,ID,100,109,126,-,-,Pos2,-,-,117,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,MF/HF,Routine individual J3E RT acknowledgement,120,ID,100,109,126,-,-,Frequency,-,-,122,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,MF/HF,"Routine individual F1B FEC, ARQ or data",120,ID,100,"113, 115 or 106",126,-,-,Frequency,-,-,117,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,MF/HF,"Routine individual FEC, ARQ or data with position",120,ID,100,"113, 115 or 106",126,-,-,Pos2,-,-,117,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,MF/HF,"Routine individual F1B FEC, ARQ or data acknowledgement",120,ID,100,"113, 115 or 106",126,-,-,Frequency,-,-,122,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,MF/HF,Routine individual unable to comply acknowledgement,120,ID,100,104,100-109,-,-,Frequency,-,-,122,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,MF/HF,Polling,120,ID,100,103,126,-,-,None,-,-,117,-,both,Table A1-4.9 in M.493-15
+A1-4.9.1,MF/HF,Polling acknowledgement,120,ID,100,103,126,-,-,None,-,-,122,-,both,Table A1-4.9 in M.493-15
+A1-4.9.2,MF/HF,ACS individual J3E RT,120,ID,106,109,120-125,-,-,Frequency,-,-,117,-,new,"Category 106 is marked ""not to be used"" in Table A1-3 (F-22)"
+A1-4.9.2,MF/HF,ACS individual J3E RT with position,120,ID,106,109,120-125,-,-,Pos2,-,-,117,-,new,
+A1-4.9.2,MF/HF,ACS individual J3E RT acknowledgement,120,ID,106,109,126,-,-,Frequency,-,-,122,-,new,
+A1-4.9.2,MF/HF,"ACS individual F1B FEC, ARQ or data",120,ID,106,"113, 115 or 106",120-125,-,-,Frequency,-,-,117,-,new,
+A1-4.9.2,MF/HF,"ACS individual FEC, ARQ or data with position",120,ID,106,"113, 115 or 106",120-125,-,-,Pos2,-,-,117,-,new,
+A1-4.9.2,MF/HF,"ACS individual F1B FEC, ARQ or data acknowledgement",120,ID,106,"113, 115 or 106",126,-,-,Frequency,-,-,122,-,new,
+A1-4.9.2,MF/HF,ACS individual unable to comply acknowledgement,120,ID,106,104,100-109,-,-,Pos2 or None,-,-,122,-,new,
+A1-4.10.1,VHF,Automatic request,123,ID,100,"100, 101 or 106",126,-,-,Frequency,Number,-,117,-,both,
+A1-4.10.1,VHF,Automatic able to comply acknowledgement,123,ID,100,"100, 101 or 106",126,-,-,Frequency,Number,-,122,-,both,
+A1-4.10.1,VHF,Automatic start of call (on working channel),123,ID,100,"100, 101 or 106",126,-,-,Frequency,Number,-,127,-,both,
+A1-4.10.1,VHF,Automatic unable to comply acknowledgement,123,ID,100,104,100-109,-,-,Frequency,Number,-,122,-,both,
+A1-4.10.1,VHF,Automatic end of call request (on working channel),123,ID,100,105,126,-,-,Frequency,Number,-,117,-,both,
+A1-4.10.1,VHF,Automatic end of call acknowledgement (on working channel),123,ID,100,105,126,-,-,Duration,Number,-,122 (127 if unsolicited),-,both,
+A1-4.10.2,MF/HF,Automatic request coast station,123,ID,100,"109, 113 or 115",126,-,-,Frequency,Number,-,117,-,both,
+A1-4.10.2,MF/HF,Automatic request ship station,123,ID,100,"109, 113 or 115",126,-,-,None or Pos2,Number,-,117,-,both,
+A1-4.10.2,MF/HF,Automatic able to comply acknowledgement,123,ID,100,"109, 113 or 115",126,-,-,Frequency,Number,-,122,-,both,
+A1-4.10.2,MF/HF,Automatic signal strength test by ship (on working channel),123,ID,100,"109, 113 or 115",126,-,-,Frequency,Number,-,117,-,both,
+A1-4.10.2,MF/HF,Automatic coast station acknowledgement with new working frequency,123,ID,100,"109, 113 or 115",126,-,-,Frequency (new),Number,-,122,-,both,
+A1-4.10.2,MF/HF,Automatic call start (coast acknowledgement with same working frequency),123,ID,100,"109, 113 or 115",126,-,-,Frequency (same),Number,-,122,-,both,
+A1-4.10.2,MF/HF,Automatic unable to comply,123,ID,100,104,100-109,-,-,Frequency,Number,-,122,-,both,
+A1-4.10.2,MF/HF,Automatic end of call request (on working channel),123,ID,100,105,126,-,-,Frequency,Number,-,117,-,both,
+A1-4.10.2,MF/HF,Automatic end of call acknowledgement (on working channel),123,ID,100,105,126,-,-,Duration,Number,-,122 (127 if unsolicited),-,both,

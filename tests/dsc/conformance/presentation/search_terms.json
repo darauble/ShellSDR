@@ -1,0 +1,4984 @@
+{
+  "suite": "search-terms",
+  "description": "The searchable terms of a message (spec/07-ui/search-terms.md, F-11). Local date and time are those of the record's utc_epoch + utc_offset.",
+  "normative": true,
+  "compare": {
+    "method": "The same terms, compared exactly as strings; order is free, duplicates count once."
+  },
+  "cases": [
+    {
+      "id": "individual-safety",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 101,
+              "computed": 101,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "584c203a0db32c6b"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792498971,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:22:51", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "allships-safety",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [116, 116, 108, 0, 26, 18, 10, 20, 109, 126, 2, 71, 40, 2, 5, 40, 127, 32, 127, 127],
+          "parsed": {
+            "format": "allships",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002618102",
+              "kind": "coast",
+              "mid": 261
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 2714,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "freq",
+                "khz": 2054,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 32,
+              "computed": 32,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "2efd7ccc496c4f27"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499032,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:23:52", "8414.5 kHz", "ALL", "ALL SHIPS", "SAFETY", "002618102", "Poland (Republic of)", "J3E TP", "2714.0 kHz", "2054.0 kHz", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "individual-position",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 21, 91, 0, 0, 100, 22, 6, 12, 0, 0, 109, 126, 55, 5, 23, 50, 1, 43, 117, 21],
+          "parsed": {
+            "format": "individual",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "220612000",
+              "kind": "ship",
+              "mid": 220
+            },
+            "to": {
+              "digits": "002191000",
+              "kind": "coast",
+              "mid": 219
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": {
+              "lat": 52.583333333333336,
+              "lon": 1.7166666666666668,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 21,
+              "computed": 21,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "5f5b34546a8fb251"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499093,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:24:53", "8414.5 kHz", "INDV", "INDIVIDUAL", "ROUTINE", "220612000", "Denmark", "002191000", "J3E TP", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "individual-freq-rx-tx",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 27, 34, 20, 84, 0, 108, 27, 33, 42, 41, 0, 109, 126, 1, 92, 25, 1, 92, 25, 117, 50],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "273420840",
+              "kind": "ship",
+              "mid": 273
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 1922.5,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "freq",
+                "khz": 1922.5,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 50,
+              "computed": 50,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "1693ed914a9874b5"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499154,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:25:54", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "273342410", "Russian Federation", "273420840", "J3E TP", "1922.5 kHz", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "individual-freq-rx-only",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 27, 34, 27, 50, 0, 108, 27, 34, 37, 66, 0, 109, 126, 2, 72, 30, 126, 126, 126, 117, 22],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "273437660",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "273427500",
+              "kind": "ship",
+              "mid": 273
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 2723,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": null
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 22,
+              "computed": 22,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "f732150610107d3d"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499215,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:26:55", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "273437660", "Russian Federation", "273427500", "J3E TP", "2723.0 kHz", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "individual-hfmf-channel-a",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 30, 2, 66, 30, 2, 66, 117, 114],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "hfmf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 266,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "hfmf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 266,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 114,
+              "computed": 114,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "8b7a805f124c34a5"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499276,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:27:56", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "002570000", "Norway", "J3E TP", "HF/MF ch 266", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "individual-hfmf-channel-b",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 34, 42, 72, 34, 42, 73, 117, 115],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "hfmf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 44272,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "hfmf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 44273,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 115,
+              "computed": 115,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "5e0ed6db275e0b75"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499337,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:28:57", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "002570000", "Norway", "J3E TP", "HF/MF ch 44272", "HF/MF ch 44273", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "distress-alert",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 107,
+            "distress_telecommand": null,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 63,
+              "computed": 63,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "358bf156812f2867"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499398,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:29:58", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "undesignated", "undesignated distress", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "allships-distress-relay",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [116, 116, 112, 0, 25, 70, 0, 0, 112, 25, 73, 88, 0, 0, 110, 7, 60, 30, 32, 50, 18, 17, 109, 127, 107],
+          "parsed": {
+            "format": "allships",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "to": null,
+            "distress_mmsi": {
+              "digits": "257388000",
+              "kind": "ship",
+              "mid": 257
+            },
+            "distress_nature": 110,
+            "distress_telecommand": 112,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 76.05,
+              "lon": 32.833333333333336,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "18:17",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 107,
+              "computed": 107,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "3c83d7a1beb6aee9"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499459,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:30:59", "8414.5 kHz", "ALL", "ALL SHIPS", "DISTRESS", "002570000", "Norway", "257388000", "distress relay", "man overboard", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "garbled-short",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 23, 71, 0, 0, 108, 53, 80, 4, 9, 0, 255, 255, 127, 255, 127, 127],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "538004090",
+              "kind": "ship",
+              "mid": 538
+            },
+            "to": {
+              "digits": "002371000",
+              "kind": "coast",
+              "mid": 237
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": null,
+              "computed": null,
+              "ok": false
+            },
+            "garbled_count": 3,
+            "content_id": "0ca959a75f6377fb"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499520,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:32:00", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "538004090", "Marshall Islands (Republic of the)", "002371000", "Greece", "!!"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "area-call",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [102, 102, 6, 0, 3, 8, 14, 108, 0, 21, 91, 0, 0, 109, 126, 1, 75, 80, 2, 10, 20, 127, 45],
+          "parsed": {
+            "format": "area",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002191000",
+              "kind": "coast",
+              "mid": 219
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": {
+              "corner_lat": 60,
+              "corner_lon": 3,
+              "lat_quad": "N",
+              "lon_quad": "E",
+              "d_lat": 8,
+              "d_lon": 14
+            },
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 1758,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "freq",
+                "khz": 2102,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 45,
+              "computed": 45,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "affe57559e5bd78b"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499581,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:33:01", "8414.5 kHz", "AREA", "GEOGRAPHIC AREA", "SAFETY", "002191000", "Denmark", "J3E TP", "1758.0 kHz", "2102.0 kHz", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "area-call-sw",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [102, 102, 36, 0, 3, 8, 14, 108, 0, 21, 91, 0, 0, 109, 126, 1, 75, 80, 2, 10, 20, 127, 15],
+          "parsed": {
+            "format": "area",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002191000",
+              "kind": "coast",
+              "mid": 219
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": {
+              "corner_lat": -60,
+              "corner_lon": -3,
+              "lat_quad": "S",
+              "lon_quad": "W",
+              "d_lat": 8,
+              "d_lon": 14
+            },
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 1758,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "freq",
+                "khz": 2102,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 15,
+              "computed": 15,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "c5114f6e4b10bc23"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499642,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:34:02", "8414.5 kHz", "AREA", "GEOGRAPHIC AREA", "SAFETY", "002191000", "Denmark", "J3E TP", "1758.0 kHz", "2102.0 kHz", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "real-recording",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 27, 11, 0, 10, 108, 35, 20, 3, 67, 50, 118, 126, 126, 126, 126, 126, 126, 126, 117, 54],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "352003675",
+              "kind": "ship",
+              "mid": 352
+            },
+            "to": {
+              "digits": "002711001",
+              "kind": "coast",
+              "mid": 271
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 54,
+              "computed": 54,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "c8bb2f5a6dad5233"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499703,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:35:03", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "352003675", "Panama (Republic of)", "002711001", "Republic of Türkiye", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "common-interest",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [114, 114, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 111],
+          "parsed": {
+            "format": "common",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 111,
+              "computed": 111,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "7956d4e9e9428711"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499764,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:36:04", "8414.5 kHz", "COMM", "COMMON INTEREST", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "individual-auto",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [123, 123, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 102],
+          "parsed": {
+            "format": "individual_auto",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 102,
+              "computed": 102,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "505e1d48eb302414"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499825,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:37:05", "8414.5 kHz", "IAUT", "INDIVIDUAL (AUTO)", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "urgency-category",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 110, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 103],
+          "parsed": {
+            "format": "individual",
+            "category": "urgency",
+            "severity": "urgency",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 103,
+              "computed": 103,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "1b3787298a855daf"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499886,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:38:06", "8414.5 kHz", "INDV", "INDIVIDUAL", "URGENCY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "routine-category",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 100, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 109],
+          "parsed": {
+            "format": "individual",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 109,
+              "computed": 109,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "1518c13bbe2b20ab"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792499947,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:39:07", "8414.5 kHz", "INDV", "INDIVIDUAL", "ROUTINE", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "group-mmsi",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 2, 11, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 44],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "021152700",
+              "kind": "group",
+              "mid": 211
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 44,
+              "computed": 44,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "2342fbcf627495d1"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500008,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:40:08", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "021152700", "Germany (Federal Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "eos-ack",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 122, 106],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "ack",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 106,
+              "computed": 106,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "5863373a0dc63261"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500069,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:41:09", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "eos-plain",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 127, 111],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 111,
+              "computed": 111,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "586e1a3a0dd0089f"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500130,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:42:10", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "tc1-no-info",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 126, 126, 126, 126, 126, 126, 126, 126, 117, 109],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 109,
+              "computed": 109,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "a49782d6bd878c8b"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500191,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:43:11", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "distress-no-time",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 88, 88, 109, 127, 48],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 107,
+            "distress_telecommand": null,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 48,
+              "computed": 48,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "c9c9d9ad098e7cab"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500252,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:44:12", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "undesignated", "undesignated distress", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "distress-no-position",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 99, 99, 99, 99, 99, 15, 0, 109, 127, 23],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 107,
+            "distress_telecommand": null,
+            "subsequent_comm": 109,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 23,
+              "computed": 23,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "d1901777b3477f93"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500313,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:45:13", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "undesignated", "undesignated distress", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "position-sw",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 21, 91, 0, 0, 100, 22, 6, 12, 0, 0, 109, 126, 55, 35, 23, 50, 1, 43, 117, 51],
+          "parsed": {
+            "format": "individual",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "220612000",
+              "kind": "ship",
+              "mid": 220
+            },
+            "to": {
+              "digits": "002191000",
+              "kind": "coast",
+              "mid": 219
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": {
+              "lat": -52.583333333333336,
+              "lon": -1.7166666666666668,
+              "lat_quad": "S",
+              "lon_quad": "W"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 51,
+              "computed": 51,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "fae5a5534ec8f78d"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500374,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:46:14", "8414.5 kHz", "INDV", "INDIVIDUAL", "ROUTINE", "220612000", "Denmark", "002191000", "J3E TP", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "vhf-channel",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 90, 0, 16, 90, 0, 16, 117, 114],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "vhf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 16,
+                "vhf_mode": 0
+              },
+              "tx": {
+                "kind": "vhf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 16,
+                "vhf_mode": 0
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 114,
+              "computed": 114,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "d1de084c77bfdadd"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500435,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:47:15", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "002570000", "Norway", "J3E TP", "VHF ch 16", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "freq-7-digit",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 27, 34, 20, 84, 0, 108, 27, 33, 42, 41, 0, 109, 126, 41, 22, 55, 0, 92, 25, 117, 127],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "273420840",
+              "kind": "ship",
+              "mid": 273
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 12255,
+                "seven_digit": true,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "unknown",
+                "khz": null,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 127,
+              "computed": 127,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "3981e6aee23a2fd1"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500496,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:48:16", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "273342410", "Russian Federation", "273420840", "J3E TP", "12255.00 kHz", "unknown", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "freq-7-digit-rx-tx",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 27, 34, 20, 84, 0, 108, 27, 33, 42, 41, 0, 113, 126, 41, 22, 55, 0, 41, 23, 55, 50, 117, 29],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "273420840",
+              "kind": "ship",
+              "mid": 273
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 113,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 12255,
+                "seven_digit": true,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "freq",
+                "khz": 12355.5,
+                "seven_digit": true,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 29,
+              "computed": 29,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "0e69f456893ea225"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500557,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:49:17", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "273342410", "Russian Federation", "273420840", "TTY-FEC", "12255.00 kHz", "12355.50 kHz", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "vhf-channel-simplex",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 90, 10, 16, 126, 126, 126, 117, 76],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "vhf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 1016,
+                "vhf_mode": 1
+              },
+              "tx": null
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 76,
+              "computed": 76,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "8dd7450693dd33b5"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500618,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:50:18", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "002570000", "Norway", "J3E TP", "VHF ch 1016", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "vhf-tm-nonzero",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 91, 0, 16, 126, 126, 126, 117, 71],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "unknown",
+                "khz": null,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": null
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 71,
+              "computed": 71,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "4ebbd94d41f09177"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500679,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:51:19", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "002570000", "Norway", "J3E TP", "unknown", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "freq-m586",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 80, 12, 34, 126, 126, 126, 117, 114],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "m586",
+                "khz": null,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": null
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 114,
+              "computed": 114,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "6eab5fc787f61889"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500740,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:52:20", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "002570000", "Norway", "J3E TP", "M.586", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "freq-hm-undefined",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 61, 0, 0, 126, 126, 126, 117, 49],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "unknown",
+                "khz": null,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": null
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 49,
+              "computed": 49,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "beff661534df052b"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500801,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:53:21", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "002570000", "Norway", "J3E TP", "unknown", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "self-cancel",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [116, 116, 112, 25, 89, 99, 11, 90, 110, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 87],
+          "parsed": {
+            "format": "allships",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "distress_nature": 107,
+            "distress_telecommand": 110,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": true,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 87,
+              "computed": 87,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "97e632fd542d1931"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500862,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:54:22", "8414.5 kHz", "ALL", "ALL SHIPS", "DISTRESS", "258999119", "Norway", "distress ack", "undesignated", "undesignated distress", "self-cancel", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "allships-distress-ack",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [116, 116, 112, 0, 25, 70, 0, 0, 110, 25, 73, 88, 0, 0, 110, 7, 60, 30, 32, 50, 18, 17, 109, 127, 117],
+          "parsed": {
+            "format": "allships",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "to": null,
+            "distress_mmsi": {
+              "digits": "257388000",
+              "kind": "ship",
+              "mid": 257
+            },
+            "distress_nature": 110,
+            "distress_telecommand": 110,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 76.05,
+              "lon": 32.833333333333336,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "18:17",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 117,
+              "computed": 117,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "6a2c73f924d41d71"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500923,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:55:23", "8414.5 kHz", "ALL", "ALL SHIPS", "DISTRESS", "002570000", "Norway", "257388000", "distress ack", "man overboard", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "mob-relay-own-id",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 23, 0, 12, 34, 50, 112, 97, 21, 23, 45, 60, 112, 97, 21, 23, 45, 60, 110, 6, 22, 80, 6, 13, 15, 0, 126, 117, 82],
+          "parsed": {
+            "format": "individual",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "972123456",
+              "kind": "mob",
+              "mid": null
+            },
+            "to": {
+              "digits": "230012345",
+              "kind": "ship",
+              "mid": 230
+            },
+            "distress_mmsi": {
+              "digits": "972123456",
+              "kind": "mob",
+              "mid": null
+            },
+            "distress_nature": 110,
+            "distress_telecommand": 112,
+            "subsequent_comm": null,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 82,
+              "computed": 82,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "0afd834a2a2c302d"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792500984,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:56:24", "8414.5 kHz", "INDV", "INDIVIDUAL", "DISTRESS", "972123456", "230012345", "Finland", "distress relay", "man overboard", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "distress-epirb-legacy",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 112, 25, 89, 99, 11, 90, 112, 6, 22, 80, 6, 13, 15, 0, 126, 127, 55],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 112,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 55,
+              "computed": 55,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "cb1737b6479cdb7b"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501045,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:57:25", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "EPIRB", "EPIRB emission", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "position-request",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 22, 6, 12, 0, 0, 108, 0, 21, 91, 0, 0, 121, 126, 126, 126, 126, 126, 126, 126, 117, 52],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002191000",
+              "kind": "coast",
+              "mid": 219
+            },
+            "to": {
+              "digits": "220612000",
+              "kind": "ship",
+              "mid": 220
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 121,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 52,
+              "computed": 52,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "3565436ad9ee0bbb"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501106,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:58:26", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "002191000", "Denmark", "220612000", "position", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "position-ack",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 21, 91, 0, 0, 108, 22, 6, 12, 0, 0, 121, 126, 6, 22, 80, 6, 13, 126, 15, 0, 122, 1],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "220612000",
+              "kind": "ship",
+              "mid": 220
+            },
+            "to": {
+              "digits": "002191000",
+              "kind": "coast",
+              "mid": 219
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": 121,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "ack",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 1,
+              "computed": 1,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "e9e1d455892629e1"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501167,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "15:59:27", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "220612000", "Denmark", "002191000", "position", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "position-refused",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 21, 91, 0, 0, 108, 22, 6, 12, 0, 0, 121, 126, 126, 126, 126, 126, 126, 126, 122, 59],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "220612000",
+              "kind": "ship",
+              "mid": 220
+            },
+            "to": {
+              "digits": "002191000",
+              "kind": "coast",
+              "mid": 219
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": true,
+            "event_time": null,
+            "tc1": 121,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "ack",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 59,
+              "computed": 59,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "7e5cdfa9e07e36b1"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501228,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:00:28", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "220612000", "Denmark", "002191000", "position", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "distress-cut-no-eos",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 107,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": null,
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": null,
+              "computed": null,
+              "ok": false
+            },
+            "garbled_count": 0,
+            "content_id": "ae8054e608e392c1"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501289,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:01:29", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "undesignated", "undesignated distress", "!!"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "distress-format-single-copy",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 255, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 107,
+            "distress_telecommand": null,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": true,
+            "ecc": {
+              "received": 63,
+              "computed": 63,
+              "ok": true
+            },
+            "garbled_count": 1,
+            "content_id": "cab862f35f710cc6"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501350,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:02:30", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "undesignated", "undesignated distress", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "allships-format-disagree",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [116, 120, 108, 0, 26, 18, 10, 20, 109, 126, 2, 71, 40, 2, 5, 40, 127, 32, 127, 127],
+          "parsed": {
+            "format": "allships",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002618102",
+              "kind": "coast",
+              "mid": 261
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 2714,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "freq",
+                "khz": 2054,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": true,
+            "ecc": {
+              "received": 32,
+              "computed": 32,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "cdd01e7323ea0863"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501411,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:03:31", "8414.5 kHz", "ALL", "ALL SHIPS", "SAFETY", "002618102", "Poland (Republic of)", "J3E TP", "2714.0 kHz", "2054.0 kHz", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "vts-format",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [103, 103, 0, 64, 52, 70, 0, 110, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 120],
+          "parsed": {
+            "format": "vts",
+            "category": "urgency",
+            "severity": "urgency",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 120,
+              "computed": 120,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "edabb04a2c895b7c"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501472,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:04:32", "8414.5 kHz", "VTS", "VTS AREA", "URGENCY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "vts-category",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 103, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 110],
+          "parsed": {
+            "format": "individual",
+            "category": "vts",
+            "severity": "routine",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 110,
+              "computed": 110,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "48950228f0a422f1"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501533,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:05:33", "8414.5 kHz", "INDV", "INDIVIDUAL", "VTS", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "acs-call",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 25, 70, 0, 0, 106, 27, 33, 42, 41, 0, 109, 122, 1, 92, 25, 1, 92, 25, 117, 22],
+          "parsed": {
+            "format": "individual",
+            "category": "acs",
+            "severity": "routine",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": 122,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 1922.5,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "freq",
+                "khz": 1922.5,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 22,
+              "computed": 22,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "bdcb64e8685e5ff7"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501594,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:06:34", "8414.5 kHz", "INDV", "INDIVIDUAL", "ACS", "273342410", "Russian Federation", "002570000", "Norway", "J3E TP", "1922.5 kHz", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "auto-number-odd",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 100, 126, 90, 0, 16, 126, 126, 126, 105, 0, 1, 23, 45, 117, 112],
+          "parsed": {
+            "format": "individual_auto",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 100,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "vhf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 16,
+                "vhf_mode": 0
+              },
+              "tx": null
+            },
+            "number": "0012345",
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 112,
+              "computed": 112,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "2ed9a60b4704b34a"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501655,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:07:35", "8414.5 kHz", "IAUT", "INDIVIDUAL (AUTO)", "ROUTINE", "273342410", "Russian Federation", "002570000", "Norway", "all modes TP", "VHF ch 16", "0012345", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "auto-number-even",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 100, 126, 90, 0, 16, 126, 126, 126, 106, 0, 12, 34, 56, 117, 94],
+          "parsed": {
+            "format": "individual_auto",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 100,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "vhf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 16,
+                "vhf_mode": 0
+              },
+              "tx": null
+            },
+            "number": "00123456",
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 94,
+              "computed": 94,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "9050ff540b70905c"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501716,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:08:36", "8414.5 kHz", "IAUT", "INDIVIDUAL (AUTO)", "ROUTINE", "273342410", "Russian Federation", "002570000", "Norway", "all modes TP", "VHF ch 16", "00123456", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "auto-end-ack-duration",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 105, 126, 0, 6, 50, 126, 126, 126, 105, 0, 1, 23, 45, 122, 12],
+          "parsed": {
+            "format": "individual_auto",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 105,
+            "tc2": null,
+            "freq_channel": null,
+            "number": "0012345",
+            "duration_s": 410,
+            "expansion": null,
+            "eos": "ack",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 12,
+              "computed": 12,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "6dcea135df0a1098"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501777,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:09:37", "8414.5 kHz", "IAUT", "INDIVIDUAL (AUTO)", "ROUTINE", "273342410", "Russian Federation", "002570000", "Norway", "end of call", "0012345", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "auto-end-ack-no-duration",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 105, 126, 126, 126, 126, 126, 126, 126, 105, 0, 1, 23, 45, 122, 70],
+          "parsed": {
+            "format": "individual_auto",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 105,
+            "tc2": null,
+            "freq_channel": null,
+            "number": "0012345",
+            "duration_s": null,
+            "expansion": null,
+            "eos": "ack",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 70,
+              "computed": 70,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "7a07287cf6c12494"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501838,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:10:38", "8414.5 kHz", "IAUT", "INDIVIDUAL (AUTO)", "ROUTINE", "273342410", "Russian Federation", "002570000", "Norway", "end of call", "0012345", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "auto-end-ack-unsolicited",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 105, 126, 1, 2, 3, 126, 126, 126, 105, 0, 1, 23, 45, 127, 61],
+          "parsed": {
+            "format": "individual_auto",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 105,
+            "tc2": null,
+            "freq_channel": null,
+            "number": "0012345",
+            "duration_s": 3723,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 61,
+              "computed": 61,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "c85a0704663e9982"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501899,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:11:39", "8414.5 kHz", "IAUT", "INDIVIDUAL (AUTO)", "ROUTINE", "273342410", "Russian Federation", "002570000", "Norway", "end of call", "0012345", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "auto-end-request",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 105, 126, 90, 0, 16, 126, 126, 126, 105, 0, 1, 23, 45, 117, 125],
+          "parsed": {
+            "format": "individual_auto",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "273342410",
+              "kind": "ship",
+              "mid": 273
+            },
+            "to": {
+              "digits": "002570000",
+              "kind": "coast",
+              "mid": 257
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 105,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "vhf",
+                "khz": null,
+                "seven_digit": false,
+                "channel": 16,
+                "vhf_mode": 0
+              },
+              "tx": null
+            },
+            "number": "0012345",
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 125,
+              "computed": 125,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "91a5aa95de447d92"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792501960,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:12:40", "8414.5 kHz", "IAUT", "INDIVIDUAL (AUTO)", "ROUTINE", "273342410", "Russian Federation", "002570000", "Norway", "end of call", "VHF ch 16", "0012345", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "position-minutes-out-of-range",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 21, 91, 0, 0, 100, 22, 6, 12, 0, 0, 109, 126, 55, 5, 26, 50, 1, 43, 117, 24],
+          "parsed": {
+            "format": "individual",
+            "category": "routine",
+            "severity": "routine",
+            "from": {
+              "digits": "220612000",
+              "kind": "ship",
+              "mid": 220
+            },
+            "to": {
+              "digits": "002191000",
+              "kind": "coast",
+              "mid": 219
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 24,
+              "computed": 24,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "20c0a110c0474b6b"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502021,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:13:41", "8414.5 kHz", "INDV", "INDIVIDUAL", "ROUTINE", "220612000", "Denmark", "002191000", "J3E TP", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "expansion-position",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63, 100, 5, 72, 59, 33, 127, 76, 127, 127],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 107,
+            "distress_telecommand": null,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": {
+              "lat_extra_min": 0.0572,
+              "lon_extra_min": 0.5933,
+              "precise_position": {
+                "lat": 62.467620000000004,
+                "lon": 6.226555
+              },
+              "position_source": null,
+              "hdop": null,
+              "datum": null,
+              "speed_kn": null,
+              "course_deg": null,
+              "station_id": null,
+              "area_lat_extra_min": null,
+              "area_lon_extra_min": null,
+              "area_dlat_extra_min": null,
+              "area_dlon_extra_min": null,
+              "area_speed_kn": null,
+              "area_course_deg": null,
+              "persons_on_board": null,
+              "requested": [],
+              "unavailable": [],
+              "eos": "eos",
+              "ecc": {
+                "received": 76,
+                "computed": 76,
+                "ok": true
+              }
+            },
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 63,
+              "computed": 63,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "214e1c423630dcf5"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502082,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:14:42", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "undesignated", "undesignated distress", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "expansion-position-fillers",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63, 126, 126, 100, 5, 72, 59, 33, 127, 76, 127, 127],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 107,
+            "distress_telecommand": null,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": {
+              "lat_extra_min": 0.0572,
+              "lon_extra_min": 0.5933,
+              "precise_position": {
+                "lat": 62.467620000000004,
+                "lon": 6.226555
+              },
+              "position_source": null,
+              "hdop": null,
+              "datum": null,
+              "speed_kn": null,
+              "course_deg": null,
+              "station_id": null,
+              "area_lat_extra_min": null,
+              "area_lon_extra_min": null,
+              "area_dlat_extra_min": null,
+              "area_dlon_extra_min": null,
+              "area_speed_kn": null,
+              "area_course_deg": null,
+              "persons_on_board": null,
+              "requested": [],
+              "unavailable": [],
+              "eos": "eos",
+              "ecc": {
+                "received": 76,
+                "computed": 76,
+                "ok": true
+              }
+            },
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 63,
+              "computed": 63,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "40681e483583a6dd"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502143,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:15:43", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "undesignated", "undesignated distress", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "expansion-position-ack",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 21, 91, 0, 0, 108, 22, 6, 12, 0, 0, 121, 126, 6, 22, 80, 6, 13, 126, 15, 0, 122, 1, 100, 5, 72, 59, 33, 122, 73, 122, 122],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "220612000",
+              "kind": "ship",
+              "mid": 220
+            },
+            "to": {
+              "digits": "002191000",
+              "kind": "coast",
+              "mid": 219
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": 121,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": {
+              "lat_extra_min": 0.0572,
+              "lon_extra_min": 0.5933,
+              "precise_position": {
+                "lat": 62.467620000000004,
+                "lon": 6.226555
+              },
+              "position_source": null,
+              "hdop": null,
+              "datum": null,
+              "speed_kn": null,
+              "course_deg": null,
+              "station_id": null,
+              "area_lat_extra_min": null,
+              "area_lon_extra_min": null,
+              "area_dlat_extra_min": null,
+              "area_dlon_extra_min": null,
+              "area_speed_kn": null,
+              "area_course_deg": null,
+              "persons_on_board": null,
+              "requested": [],
+              "unavailable": [],
+              "eos": "ack",
+              "ecc": {
+                "received": 73,
+                "computed": 73,
+                "ok": true
+              }
+            },
+            "eos": "ack",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 1,
+              "computed": 1,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "0d072e99c41459df"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502204,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:16:44", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "220612000", "Denmark", "002191000", "position", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "expansion-nav-speed-course",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101, 101, 1, 0, 0, 102, 1, 24, 103, 2, 98, 117, 105, 117, 117],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": {
+              "lat_extra_min": null,
+              "lon_extra_min": null,
+              "precise_position": null,
+              "position_source": 1,
+              "hdop": 0,
+              "datum": 0,
+              "speed_kn": 12.4,
+              "course_deg": 29.8,
+              "station_id": null,
+              "area_lat_extra_min": null,
+              "area_lon_extra_min": null,
+              "area_dlat_extra_min": null,
+              "area_dlon_extra_min": null,
+              "area_speed_kn": null,
+              "area_course_deg": null,
+              "persons_on_board": null,
+              "requested": [],
+              "unavailable": [],
+              "eos": "req",
+              "ecc": {
+                "received": 105,
+                "computed": 105,
+                "ok": true
+              }
+            },
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 101,
+              "computed": 101,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "c560f12546d6bf99"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502265,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:17:45", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "expansion-station-id",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101, 104, 26, 19, 13, 15, 29, 41, 3, 106, 0, 12, 117, 71, 117, 117],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": {
+              "lat_extra_min": null,
+              "lon_extra_min": null,
+              "precise_position": null,
+              "position_source": null,
+              "hdop": null,
+              "datum": null,
+              "speed_kn": null,
+              "course_deg": null,
+              "station_id": "PICES 3",
+              "area_lat_extra_min": null,
+              "area_lon_extra_min": null,
+              "area_dlat_extra_min": null,
+              "area_dlon_extra_min": null,
+              "area_speed_kn": null,
+              "area_course_deg": null,
+              "persons_on_board": 12,
+              "requested": [],
+              "unavailable": [],
+              "eos": "req",
+              "ecc": {
+                "received": 71,
+                "computed": 71,
+                "ok": true
+              }
+            },
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 101,
+              "computed": 101,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "22631f6317bc2a33"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502326,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:18:46", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "expansion-requests",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101, 100, 110, 104, 110, 102, 126, 117, 97, 117, 117],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": {
+              "lat_extra_min": null,
+              "lon_extra_min": null,
+              "precise_position": null,
+              "position_source": null,
+              "hdop": null,
+              "datum": null,
+              "speed_kn": null,
+              "course_deg": null,
+              "station_id": null,
+              "area_lat_extra_min": null,
+              "area_lon_extra_min": null,
+              "area_dlat_extra_min": null,
+              "area_dlon_extra_min": null,
+              "area_speed_kn": null,
+              "area_course_deg": null,
+              "persons_on_board": null,
+              "requested": [100, 104],
+              "unavailable": [102],
+              "eos": "req",
+              "ecc": {
+                "received": 97,
+                "computed": 97,
+                "ok": true
+              }
+            },
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 101,
+              "computed": 101,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "2daba07e4411449f"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502387,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:19:47", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "expansion-bad-ecc",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63, 100, 5, 72, 59, 33, 127, 0, 127, 127],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 107,
+            "distress_telecommand": null,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": "15:00",
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": {
+              "lat_extra_min": 0.0572,
+              "lon_extra_min": 0.5933,
+              "precise_position": {
+                "lat": 62.467620000000004,
+                "lon": 6.226555
+              },
+              "position_source": null,
+              "hdop": null,
+              "datum": null,
+              "speed_kn": null,
+              "course_deg": null,
+              "station_id": null,
+              "area_lat_extra_min": null,
+              "area_lon_extra_min": null,
+              "area_dlat_extra_min": null,
+              "area_dlon_extra_min": null,
+              "area_speed_kn": null,
+              "area_course_deg": null,
+              "persons_on_board": null,
+              "requested": [],
+              "unavailable": [],
+              "eos": "eos",
+              "ecc": {
+                "received": 0,
+                "computed": 76,
+                "ok": false
+              }
+            },
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 63,
+              "computed": 63,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "8ff1f040c2209031"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502448,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:20:48", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "undesignated", "undesignated distress", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "time-out-of-range",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 25, 61, 109, 127, 20],
+          "parsed": {
+            "format": "distress",
+            "category": "distress",
+            "severity": "distress",
+            "from": {
+              "digits": "258999119",
+              "kind": "ship",
+              "mid": 258
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": 107,
+            "distress_telecommand": null,
+            "subsequent_comm": 109,
+            "position": {
+              "lat": 62.46666666666667,
+              "lon": 6.216666666666667,
+              "lat_quad": "N",
+              "lon_quad": "E"
+            },
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": null,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 20,
+              "computed": 20,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "4301757a336ce77d"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502509,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:21:49", "8414.5 kHz", "DIST", "DISTRESS", "258999119", "Norway", "undesignated", "undesignated distress", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "garbled-from",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 255, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": null,
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 101,
+              "computed": 45,
+              "ok": false
+            },
+            "garbled_count": 1,
+            "content_id": "7953ecb94cc26ca8"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502570,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:22:50", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "006452700", "Mauritius (Republic of)", "test", "!!"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "garbled-format-first",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [255, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 101,
+              "computed": 101,
+              "ok": true
+            },
+            "garbled_count": 1,
+            "content_id": "9b7ba8e908aff622"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502631,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:23:51", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "format-disagree",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 116, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 101,
+              "computed": 101,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "56192694454e2c87"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502692,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:24:52", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "ecc-fail",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 100],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 100,
+              "computed": 101,
+              "ok": false
+            },
+            "garbled_count": 0,
+            "content_id": "584c1f3a0db32ab8"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502753,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:25:53", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "!!"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "ecc-garbled",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 255],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": null,
+              "computed": null,
+              "ok": false
+            },
+            "garbled_count": 1,
+            "content_id": "584caa3a0db416e9"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502814,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:26:54", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "!!"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "unknown-format",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [100, 100, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 121],
+          "parsed": {
+            "format": "unknown",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 121,
+              "computed": 121,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "eeb04723be5a74d7"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502875,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:27:55", "8414.5 kHz", "UNK", "UNKNOWN", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "eos-repeated-bad-ecc",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [116, 116, 108, 0, 27, 18, 10, 20, 109, 126, 2, 71, 40, 2, 5, 40, 127, 32, 127, 127],
+          "parsed": {
+            "format": "allships",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002718102",
+              "kind": "coast",
+              "mid": 271
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 2714,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "freq",
+                "khz": 2054,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 32,
+              "computed": 33,
+              "ok": false
+            },
+            "garbled_count": 0,
+            "content_id": "6c6820643c84f58a"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502936,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:28:56", "8414.5 kHz", "ALL", "ALL SHIPS", "SAFETY", "002718102", "Republic of Türkiye", "J3E TP", "2714.0 kHz", "2054.0 kHz", "!!"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "eos-repeated-good-ecc",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [116, 116, 108, 0, 27, 18, 10, 20, 109, 126, 2, 71, 40, 2, 5, 40, 127, 33, 127, 127],
+          "parsed": {
+            "format": "allships",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "002718102",
+              "kind": "coast",
+              "mid": 271
+            },
+            "to": null,
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 109,
+            "tc2": null,
+            "freq_channel": {
+              "rx": {
+                "kind": "freq",
+                "khz": 2714,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              },
+              "tx": {
+                "kind": "freq",
+                "khz": 2054,
+                "seven_digit": false,
+                "channel": null,
+                "vhf_mode": null
+              }
+            },
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "eos",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 33,
+              "computed": 33,
+              "ok": true
+            },
+            "garbled_count": 0,
+            "content_id": "771d4964432a2635"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792502997,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:29:57", "8414.5 kHz", "ALL", "ALL SHIPS", "SAFETY", "002718102", "Republic of Türkiye", "J3E TP", "2714.0 kHz", "2054.0 kHz", "OK"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "no-eos",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126],
+          "parsed": {
+            "format": "individual",
+            "category": "safety",
+            "severity": "safety",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": null,
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": null,
+              "computed": null,
+              "ok": false
+            },
+            "garbled_count": 0,
+            "content_id": "8035649fe8d96339"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792503058,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:30:58", "8414.5 kHz", "INDV", "INDIVIDUAL", "SAFETY", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "!!"]
+      },
+      "req": ["VIEW-06"]
+    },
+    {
+      "id": "garbled-category",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "record": {
+          "symbols": [120, 120, 0, 64, 52, 70, 0, 255, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 9],
+          "parsed": {
+            "format": "individual",
+            "category": null,
+            "severity": "routine",
+            "from": {
+              "digits": "477231700",
+              "kind": "ship",
+              "mid": 477
+            },
+            "to": {
+              "digits": "006452700",
+              "kind": "coast",
+              "mid": 645
+            },
+            "distress_mmsi": null,
+            "distress_nature": null,
+            "distress_telecommand": null,
+            "subsequent_comm": null,
+            "position": null,
+            "area": null,
+            "position_refused": false,
+            "event_time": null,
+            "tc1": 118,
+            "tc2": null,
+            "freq_channel": null,
+            "number": null,
+            "duration_s": null,
+            "expansion": null,
+            "eos": "req",
+            "self_cancel": false,
+            "format_unconfirmed": false,
+            "ecc": {
+              "received": 9,
+              "computed": 9,
+              "ok": true
+            },
+            "garbled_count": 1,
+            "content_id": "4c134d87ff6bfb3c"
+          },
+          "schema_version": 2,
+          "utc_epoch": 1792503119,
+          "utc_offset": 10800,
+          "time_source": "wallclock",
+          "source_label": "8414.5 kHz",
+          "source_file": null,
+          "snr_db": null,
+          "rx_location": null,
+          "position_dist_km": null,
+          "from_info": null,
+          "to_info": null,
+          "distress_info": null
+        }
+      },
+      "expected": {
+        "terms": ["2026-10-20", "16:31:59", "8414.5 kHz", "INDV", "INDIVIDUAL", "477231700", "China (People's Republic of) - Hong Kong (Special Administrative Region of China)", "006452700", "Mauritius (Republic of)", "test", "OK"]
+      },
+      "req": ["VIEW-06"]
+    }
+  ]
+}

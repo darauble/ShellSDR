@@ -1,0 +1,107 @@
+{
+  "conformance_format": 1,
+  "suites": [
+    {
+      "file": "codec/codewords.json",
+      "suite": "codewords",
+      "normative": true,
+      "cases": 128
+    },
+    {
+      "file": "parse/symbols.json",
+      "suite": "parse",
+      "normative": true,
+      "cases": 71
+    },
+    {
+      "file": "ndjson/write.json",
+      "suite": "ndjson-write",
+      "normative": true,
+      "cases": 7
+    },
+    {
+      "file": "ndjson/read.json",
+      "suite": "ndjson-read",
+      "normative": true,
+      "cases": 24
+    },
+    {
+      "file": "ndjson/day_file.json",
+      "suite": "day-file",
+      "normative": true,
+      "cases": 6
+    },
+    {
+      "file": "time/file_name.json",
+      "suite": "file-name-time",
+      "normative": true,
+      "cases": 16
+    },
+    {
+      "file": "time/iso8601.json",
+      "suite": "iso8601",
+      "normative": true,
+      "cases": 7
+    },
+    {
+      "file": "geo/distance.json",
+      "suite": "distance",
+      "normative": true,
+      "cases": 6
+    },
+    {
+      "file": "geo/parse_location.json",
+      "suite": "parse-location",
+      "normative": true,
+      "cases": 17
+    },
+    {
+      "file": "stations/mmsi.json",
+      "suite": "mmsi-lookup",
+      "normative": true,
+      "cases": 311
+    },
+    {
+      "file": "presentation/list_row.json",
+      "suite": "list-row",
+      "normative": false,
+      "cases": 69
+    },
+    {
+      "file": "presentation/search.json",
+      "suite": "search",
+      "normative": true,
+      "cases": 19
+    },
+    {
+      "file": "presentation/search_terms.json",
+      "suite": "search-terms",
+      "normative": true,
+      "cases": 69
+    },
+    {
+      "file": "presentation/detail.json",
+      "suite": "detail",
+      "normative": false,
+      "cases": 138
+    },
+    {
+      "file": "alerts/alerts.json",
+      "suite": "alerts",
+      "normative": true,
+      "cases": 138
+    },
+    {
+      "file": "config/merge.json",
+      "suite": "config-merge",
+      "normative": true,
+      "cases": 9
+    },
+    {
+      "file": "audio/decode.json",
+      "suite": "audio-decode",
+      "normative": true,
+      "cases": 15
+    }
+  ]
+}

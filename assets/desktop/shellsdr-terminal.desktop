@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=ShellSDR (terminal)
+GenericName=SDR receiver
+Comment=SDR receiver and recorder in the terminal
+Exec=shellsdr
+Icon=shellsdr
+Terminal=true
+Categories=AudioVideo;Audio;HamRadio;
+Keywords=SDR;radio;receiver;waterfall;

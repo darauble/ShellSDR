@@ -1,0 +1,15 @@
+{
+  "name": "Candy",
+  "text": "#FFF3E3",
+  "dim": "#A99BBE",
+  "accent": "#F2C14E",
+  "border": "#7FBF7F",
+  "border_focused": "#FF6F61",
+  "field_idle": "#B8A9D0",
+  "field_selected": "#9BE39B",
+  "editing_fg": "#2A2233",
+  "editing_bg": "#F2C14E",
+  "off_note": "#6E6380",
+  "spectrum": "#FF8A7A",
+  "waterfall": ["#1A1426", "#3B2A5C", "#4F9BA8", "#8FD18A", "#F2C14E", "#FF8A7A"]
+}

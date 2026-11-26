@@ -1,0 +1,313 @@
+direction,element,asn1_alternative,text
+uplink,0,uM0NULL,UNABLE
+uplink,1,uM1NULL,STANDBY
+uplink,2,uM2NULL,REQUEST DEFERRED
+uplink,3,uM3NULL,ROGER
+uplink,4,uM4NULL,AFFIRM
+uplink,5,uM5NULL,NEGATIVE
+uplink,6,uM6Altitude,EXPECT [altitude]
+uplink,7,uM7Time,EXPECT CLIMB AT [time]
+uplink,8,uM8Position,EXPECT CLIMB AT [position]
+uplink,9,uM9Time,EXPECT DESCENT AT [time]
+uplink,10,uM10Position,EXPECT DESCENT AT [position]
+uplink,11,uM11Time,EXPECT CRUISE CLIMB AT [time]
+uplink,12,uM12Position,EXPECT CRUISE CLIMB AT [position]
+uplink,13,uM13TimeAltitude,AT [time] EXPECT CLIMB TO [altitude]
+uplink,14,uM14PositionAltitude,AT [position] EXPECT CLIMB TO [altitude]
+uplink,15,uM15TimeAltitude,AT [time] EXPECT DESCENT TO [altitude]
+uplink,16,uM16PositionAltitude,AT [position] EXPECT DESCENT TO [altitude]
+uplink,17,uM17TimeAltitude,AT [time] EXPECT CRUISE CLIMB TO [altitude]
+uplink,18,uM18PositionAltitude,AT [position] EXPECT CRUISE CLIMB TO [altitude]
+uplink,19,uM19Altitude,MAINTAIN [altitude]
+uplink,20,uM20Altitude,CLIMB TO AND MAINTAIN [altitude]
+uplink,21,uM21TimeAltitude,AT [time] CLIMB TO AND MAINTAIN [altitude]
+uplink,22,uM22PositionAltitude,AT [position] CLIMB TO AND MAINTAIN [altitude]
+uplink,23,uM23Altitude,DESCEND TO AND MAINTAIN [altitude]
+uplink,24,uM24TimeAltitude,AT [time] DESCEND TO AND MAINTAIN [altitude]
+uplink,25,uM25PositionAltitude,AT [position] DESCEND TO AND MAINTAIN [altitude]
+uplink,26,uM26AltitudeTime,CLIMB TO REACH [altitude] BY [time]
+uplink,27,uM27AltitudePosition,CLIMB TO REACH [altitude] BY [position]
+uplink,28,uM28AltitudeTime,DESCEND TO REACH [altitude] BY [time]
+uplink,29,uM29AltitudePosition,DESCEND TO REACH [altitude] BY [position]
+uplink,30,uM30AltitudeAltitude,MAINTAIN BLOCK [altitude] TO [altitude]
+uplink,31,uM31AltitudeAltitude,CLIMB TO AND MAINTAIN BLOCK [altitude] TO [altitude]
+uplink,32,uM32AltitudeAltitude,DESCEND TO AND MAINTAIN BLOCK [altitude] TO [altitude]
+uplink,33,uM33Altitude,CRUISE [altitude]
+uplink,34,uM34Altitude,CRUISE CLIMB TO [altitude]
+uplink,35,uM35Altitude,CRUISE CLIMB ABOVE [altitude]
+uplink,36,uM36Altitude,EXPEDITE CLIMB TO [altitude]
+uplink,37,uM37Altitude,EXPEDITE DESCENT TO [altitude]
+uplink,38,uM38Altitude,IMMEDIATELY CLIMB TO [altitude]
+uplink,39,uM39Altitude,IMMEDIATELY DESCEND TO [altitude]
+uplink,40,uM40Altitude,IMMEDIATELY STOP CLIMB AT [altitude]
+uplink,41,uM41Altitude,IMMEDIATELY STOP DESCENT AT [altitude]
+uplink,42,uM42PositionAltitude,EXPECT TO CROSS [position] AT [altitude]
+uplink,43,uM43PositionAltitude,EXPECT TO CROSS [position] AT OR ABOVE [altitude]
+uplink,44,uM44PositionAltitude,EXPECT TO CROSS [position] AT OR BELOW [altitude]
+uplink,45,uM45PositionAltitude,EXPECT TO CROSS [position] AT AND MAINTAIN [altitude]
+uplink,46,uM46PositionAltitude,CROSS [position] AT [altitude]
+uplink,47,uM47PositionAltitude,CROSS [position] AT OR ABOVE [altitude]
+uplink,48,uM48PositionAltitude,CROSS [position] AT OR BELOW [altitude]
+uplink,49,uM49PositionAltitude,CROSS [position] AT AND MAINTAIN [altitude]
+uplink,50,uM50PositionAltitudeAltitude,CROSS [position] BETWEEN [altitude] AND [altitude]
+uplink,51,uM51PositionTime,CROSS [position] AT [time]
+uplink,52,uM52PositionTime,CROSS [position] AT OR BEFORE [time]
+uplink,53,uM53PositionTime,CROSS [position] AT OR AFTER [time]
+uplink,54,uM54PositionTimeTime,CROSS [position] BETWEEN [time] AND [time]
+uplink,55,uM55PositionSpeed,CROSS [position] AT [speed]
+uplink,56,uM56PositionSpeed,CROSS [position] AT OR LESS THAN [speed]
+uplink,57,uM57PositionSpeed,CROSS [position] AT OR GREATER THAN [speed]
+uplink,58,uM58PositionTimeAltitude,CROSS [position] AT [time] AT [altitude]
+uplink,59,uM59PositionTimeAltitude,CROSS [position] AT OR BEFORE [time] AT [altitude]
+uplink,60,uM60PositionTimeAltitude,CROSS [position] AT OR AFTER [time] AT [altitude]
+uplink,61,uM61PositionAltitudeSpeed,CROSS [position] AT AND MAINTAIN [altitude] AT [speed]
+uplink,62,uM62TimePositionAltitude,AT [time] CROSS [position] AT AND MAINTAIN [altitude]
+uplink,63,uM63TimePositionAltitudeSpeed,AT [time] CROSS [position] AT AND MAINTAIN [altitude] AT [speed]
+uplink,64,uM64DistanceOffsetDirection,OFFSET [distanceoffset] [direction] OF ROUTE
+uplink,65,uM65PositionDistanceOffsetDirection,AT [position] OFFSET [distanceoffset] [direction] OF ROUTE
+uplink,66,uM66TimeDistanceOffsetDirection,AT [time] OFFSET [distanceoffset] [direction] OF ROUTE
+uplink,67,uM67NULL,PROCEED BACK ON ROUTE
+uplink,68,uM68Position,REJOIN ROUTE BY [position]
+uplink,69,uM69Time,REJOIN ROUTE BY [time]
+uplink,70,uM70Position,EXPECT BACK ON ROUTE BY [position]
+uplink,71,uM71Time,EXPECT BACK ON ROUTE BY [time]
+uplink,72,uM72NULL,RESUME OWN NAVIGATION
+uplink,73,uM73Predepartureclearance,[predepartureclearance]
+uplink,74,uM74Position,PROCEED DIRECT TO [position]
+uplink,75,uM75Position,WHEN ABLE PROCEED DIRECT TO [position]
+uplink,76,uM76TimePosition,AT [time] PROCEED DIRECT TO [position]
+uplink,77,uM77PositionPosition,AT [position] PROCEED DIRECT TO [position]
+uplink,78,uM78AltitudePosition,AT [altitude] PROCEED DIRECT TO [position]
+uplink,79,uM79PositionRouteClearance,CLEARED TO [position] VIA [routeclearance]
+uplink,80,uM80RouteClearance,CLEARED [routeclearance]
+uplink,81,uM81ProcedureName,CLEARED [procedurename]
+uplink,82,uM82DistanceOffsetDirection,CLEARED TO DEVIATE UP TO [distanceoffset] [direction] OF ROUTE
+uplink,83,uM83PositionRouteClearance,AT [position] CLEARED [routeclearance]
+uplink,84,uM84PositionProcedureName,AT [position] CLEARED [procedurename]
+uplink,85,uM85RouteClearance,EXPECT [routeclearance]
+uplink,86,uM86PositionRouteClearance,AT [position] EXPECT [routeclearance]
+uplink,87,uM87Position,EXPECT DIRECT TO [position]
+uplink,88,uM88PositionPosition,AT [position] EXPECT DIRECT TO [position]
+uplink,89,uM89TimePosition,AT [time] EXPECT DIRECT TO [position]
+uplink,90,uM90AltitudePosition,AT [altitude] EXPECT DIRECT TO [position]
+uplink,91,uM91HoldClearance,HOLD AT [position] MAINTAIN [altitude] INBOUND TRACK [degrees] [direction] TURNS [legtype]
+uplink,92,uM92PositionAltitude,HOLD AT [position] AS PUBLISHED MAINTAIN [altitude]
+uplink,93,uM93Time,EXPECT FURTHER CLEARANCE AT [time]
+uplink,94,uM94DirectionDegrees,TURN [direction] HEADING [degrees]
+uplink,95,uM95DirectionDegrees,TURN [direction] GROUND TRACK [degrees]
+uplink,96,uM96NULL,FLY PRESENT HEADING
+uplink,97,uM97PositionDegrees,AT [position] FLY HEADING [degrees]
+uplink,98,uM98DirectionDegrees,IMMEDIATELY TURN [direction] HEADING [degrees]
+uplink,99,uM99ProcedureName,EXPECT [procedurename]
+uplink,100,uM100TimeSpeed,AT [time] EXPECT [speed]
+uplink,101,uM101PositionSpeed,AT [position] EXPECT [speed]
+uplink,102,uM102AltitudeSpeed,AT [altitude] EXPECT [speed]
+uplink,103,uM103TimeSpeedSpeed,AT [time] EXPECT [speed] TO [speed]
+uplink,104,uM104PositionSpeedSpeed,AT [position] EXPECT [speed] TO [speed]
+uplink,105,uM105AltitudeSpeedSpeed,AT [altitude] EXPECT [speed] TO [speed]
+uplink,106,uM106Speed,MAINTAIN [speed]
+uplink,107,uM107NULL,MAINTAIN PRESENT SPEED
+uplink,108,uM108Speed,MAINTAIN [speed] OR GREATER
+uplink,109,uM109Speed,MAINTAIN [speed] OR LESS
+uplink,110,uM110SpeedSpeed,MAINTAIN [speed] TO [speed]
+uplink,111,uM111Speed,INCREASE SPEED TO [speed]
+uplink,112,uM112Speed,INCREASE SPEED TO [speed] OR GREATER
+uplink,113,uM113Speed,REDUCE SPEED TO [speed]
+uplink,114,uM114Speed,REDUCE SPEED TO [speed] OR LESS
+uplink,115,uM115Speed,DO NOT EXCEED [speed]
+uplink,116,uM116NULL,RESUME NORMAL SPEED
+uplink,117,uM117ICAOunitnameFrequency,CONTACT [icaounitname] [frequency]
+uplink,118,uM118PositionICAOunitnameFrequency,AT [position] CONTACT [icaounitname] [frequency]
+uplink,119,uM119TimeICAOunitnameFrequency,AT [time] CONTACT [icaounitname] [frequency]
+uplink,120,uM120ICAOunitnameFrequency,MONITOR [icaounitname] [frequency]
+uplink,121,uM121PositionICAOunitnameFrequency,AT [position] MONITOR [icaounitname] [frequency]
+uplink,122,uM122TimeICAOunitnameFrequency,AT [time] MONITOR [icaounitname] [frequency]
+uplink,123,uM123BeaconCode,SQUAWK [beaconcode]
+uplink,124,uM124NULL,STOP SQUAWK
+uplink,125,uM125NULL,SQUAWK ALTITUDE
+uplink,126,uM126NULL,STOP ALTITUDE SQUAWK
+uplink,127,uM127NULL,REPORT BACK ON ROUTE
+uplink,128,uM128Altitude,REPORT LEAVING [altitude]
+uplink,129,uM129Altitude,REPORT LEVEL [altitude]
+uplink,130,uM130Position,REPORT PASSING [position]
+uplink,131,uM131NULL,REPORT REMAINING FUEL AND SOULS ON BOARD
+uplink,132,uM132NULL,CONFIRM POSITION
+uplink,133,uM133NULL,CONFIRM ALTITUDE
+uplink,134,uM134NULL,CONFIRM SPEED
+uplink,135,uM135NULL,CONFIRM ASSIGNED ALTITUDE
+uplink,136,uM136NULL,CONFIRM ASSIGNED SPEED
+uplink,137,uM137NULL,CONFIRM ASSIGNED ROUTE
+uplink,138,uM138NULL,CONFIRM TIME OVER REPORTED WAYPOINT
+uplink,139,uM139NULL,CONFIRM REPORTED WAYPOINT
+uplink,140,uM140NULL,CONFIRM NEXT WAYPOINT
+uplink,141,uM141NULL,CONFIRM NEXT WAYPOINT ETA
+uplink,142,uM142NULL,CONFIRM ENSUING WAYPOINT
+uplink,143,uM143NULL,CONFIRM REQUEST
+uplink,144,uM144NULL,CONFIRM SQUAWK
+uplink,145,uM145NULL,CONFIRM HEADING
+uplink,146,uM146NULL,CONFIRM GROUND TRACK
+uplink,147,uM147NULL,REQUEST POSITION REPORT
+uplink,148,uM148Altitude,WHEN CAN YOU ACCEPT [altitude]
+uplink,149,uM149AltitudePosition,CAN YOU ACCEPT [altitude] AT [position]
+uplink,150,uM150AltitudeTime,CAN YOU ACCEPT [altitude] AT [time]
+uplink,151,uM151Speed,WHEN CAN YOU ACCEPT [speed]
+uplink,152,uM152DistanceOffsetDirection,WHEN CAN YOU ACCEPT [distanceoffset] [direction] OFFSET
+uplink,153,uM153Altimeter,ALTIMETER [altimeter]
+uplink,154,uM154NULL,RADAR SERVICES TERMINATED
+uplink,155,uM155Position,RADAR CONTACT [position]
+uplink,156,uM156NULL,RADAR CONTACT LOST
+uplink,157,uM157Frequency,CHECK STUCK MICROPHONE [frequency]
+uplink,158,uM158ATISCode,ATIS [atiscode]
+uplink,159,uM159ErrorInformation,ERROR [errorinformation]
+uplink,160,uM160ICAOfacilitydesignation,NEXT DATA AUTHORITY [icaofacilitydesignation]
+uplink,161,uM161NULL,END SERVICE
+uplink,162,uM162NULL,SERVICE UNAVAILABLE
+uplink,163,uM163ICAOfacilitydesignationTp4table,[icaofacilitydesignation] [tp4table]
+uplink,164,uM164NULL,WHEN READY
+uplink,165,uM165NULL,THEN
+uplink,166,uM166NULL,DUE TO TRAFFIC
+uplink,167,uM167NULL,DUE TO AIRSPACE RESTRICTION
+uplink,168,uM168NULL,DISREGARD
+uplink,169,uM169FreeText,[freetext]
+uplink,170,uM170FreeText,[freetext]
+uplink,171,uM171VerticalRate,CLIMB AT [verticalrate] MINIMUM
+uplink,172,uM172VerticalRate,CLIMB AT [verticalrate] MAXIMUM
+uplink,173,uM173VerticalRate,DESCEND AT [verticalrate] MINIMUM
+uplink,174,uM174VerticalRate,DESCEND AT [verticalrate] MAXIMUM
+uplink,175,uM175Altitude,REPORT REACHING [altitude]
+uplink,176,uM176NULL,MAINTAIN OWN SEPARATION AND VMC
+uplink,177,uM177NULL,AT PILOTS DISCRETION
+uplink,178,uM178NULL,[trackdetailmsg-deleted]
+uplink,179,uM179NULL,SQUAWK IDENT
+uplink,180,uM180AltitudeAltitude,REPORT REACHING BLOCK [altitude] TO [altitude]
+uplink,181,uM181ToFromPosition,REPORT DISTANCE [tofrom] [position]
+uplink,182,uM182NULL,CONFIRM ATIS CODE
+downlink,0,dM0NULL,WILCO
+downlink,1,dM1NULL,UNABLE
+downlink,2,dM2NULL,STANDBY
+downlink,3,dM3NULL,ROGER
+downlink,4,dM4NULL,AFFIRM
+downlink,5,dM5NULL,NEGATIVE
+downlink,6,dM6Altitude,REQUEST [altitude]
+downlink,7,dM7AltitudeAltitude,REQUEST BLOCK [altitude] TO [altitude]
+downlink,8,dM8Altitude,REQUEST CRUISE CLIMB TO [altitude]
+downlink,9,dM9Altitude,REQUEST CLIMB TO [altitude]
+downlink,10,dM10Altitude,REQUEST DESCENT TO [altitude]
+downlink,11,dM11PositionAltitude,AT [position] REQUEST CLIMB TO [altitude]
+downlink,12,dM12PositionAltitude,AT [position] REQUEST DESCENT TO [altitude]
+downlink,13,dM13TimeAltitude,AT [time] REQUEST CLIMB TO [altitude]
+downlink,14,dM14TimeAltitude,AT [time] REQUEST DESCENT TO [altitude]
+downlink,15,dM15DistanceOffsetDirection,REQUEST OFFSET [distanceoffset] [direction] OF ROUTE
+downlink,16,dM16PositionDistanceOffsetDirection,AT [position] REQUEST OFFSET [distanceoffset] [direction] OF ROUTE
+downlink,17,dM17TimeDistanceOffsetDirection,AT [time] REQUEST OFFSET [distanceoffset] [direction] OF ROUTE
+downlink,18,dM18Speed,REQUEST [speed]
+downlink,19,dM19SpeedSpeed,REQUEST [speed] TO [speed]
+downlink,20,dM20NULL,REQUEST VOICE CONTACT
+downlink,21,dM21Frequency,REQUEST VOICE CONTACT [frequency]
+downlink,22,dM22Position,REQUEST DIRECT TO [position]
+downlink,23,dM23ProcedureName,REQUEST [procedurename]
+downlink,24,dM24RouteClearance,REQUEST [routeclearance]
+downlink,25,dM25NULL,REQUEST CLEARANCE
+downlink,26,dM26PositionRouteClearance,REQUEST WEATHER DEVIATION TO [position] VIA [routeclearance]
+downlink,27,dM27DistanceOffsetDirection,REQUEST WEATHER DEVIATION UP TO [distanceoffset] [direction] OF ROUTE
+downlink,28,dM28Altitude,LEAVING [altitude]
+downlink,29,dM29Altitude,CLIMBING TO [altitude]
+downlink,30,dM30Altitude,DESCENDING TO [altitude]
+downlink,31,dM31Position,PASSING [position]
+downlink,32,dM32Altitude,PRESENT ALTITUDE [altitude]
+downlink,33,dM33Position,PRESENT POSITION [position]
+downlink,34,dM34Speed,PRESENT SPEED [speed]
+downlink,35,dM35Degrees,PRESENT HEADING [degrees]
+downlink,36,dM36Degrees,PRESENT GROUND TRACK [degrees]
+downlink,37,dM37Altitude,LEVEL [altitude]
+downlink,38,dM38Altitude,ASSIGNED ALTITUDE [altitude]
+downlink,39,dM39Speed,ASSIGNED SPEED [speed]
+downlink,40,dM40RouteClearance,ASSIGNED ROUTE [routeclearance]
+downlink,41,dM41NULL,BACK ON ROUTE
+downlink,42,dM42Position,NEXT WAYPOINT [position]
+downlink,43,dM43Time,NEXT WAYPOINT ETA [time]
+downlink,44,dM44Position,ENSUING WAYPOINT [position]
+downlink,45,dM45Position,REPORTED WAYPOINT [position]
+downlink,46,dM46Time,REPORTED WAYPOINT [time]
+downlink,47,dM47BeaconCode,SQUAWKING [beaconcode]
+downlink,48,dM48PositionReport,POSITION REPORT [positionreport]
+downlink,49,dM49Speed,WHEN CAN WE EXPECT [speed]
+downlink,50,dM50SpeedSpeed,WHEN CAN WE EXPECT [speed] TO [speed]
+downlink,51,dM51NULL,WHEN CAN WE EXPECT BACK ON ROUTE
+downlink,52,dM52NULL,WHEN CAN WE EXPECT LOWER ALTITUDE
+downlink,53,dM53NULL,WHEN CAN WE EXPECT HIGHER ALTITUDE
+downlink,54,dM54Altitude,WHEN CAN WE EXPECT CRUISE CLIMB TO [altitude]
+downlink,55,dM55NULL,PAN PAN PAN
+downlink,56,dM56NULL,MAYDAY MAYDAY MAYDAY
+downlink,57,dM57RemainingFuelRemainingSouls,[remainingfuel] OF FUEL REMAINING AND [remainingsouls] SOULS ON BOARD
+downlink,58,dM58NULL,CANCEL EMERGENCY
+downlink,59,dM59PositionRouteClearance,DIVERTING TO [position] VIA [routeclearance]
+downlink,60,dM60DistanceOffsetDirection,OFFSETTING [distanceoffset] [direction] OF ROUTE
+downlink,61,dM61Altitude,DESCENDING TO [altitude]
+downlink,62,dM62ErrorInformation,ERROR [errorinformation]
+downlink,63,dM63NULL,NOT CURRENT DATA AUTHORITY
+downlink,64,dM64ICAOfacilitydesignation,[icaofacilitydesignation]
+downlink,65,dM65NULL,DUE TO WEATHER
+downlink,66,dM66NULL,DUE TO AIRCRAFT PERFORMANCE
+downlink,67,dM67FreeText,[freetext]
+downlink,68,dM68FreeText,[freetext]
+downlink,69,dM69NULL,REQUEST VMC DESCENT
+downlink,70,dM70Degrees,REQUEST HEADING [degrees]
+downlink,71,dM71Degrees,REQUEST GROUND TRACK [degrees]
+downlink,72,dM72Altitude,REACHING [altitude]
+downlink,73,dM73VersionNumber,[versionnumber]
+downlink,74,dM74NULL,MAINTAIN OWN SEPARATION AND VMC
+downlink,75,dM75NULL,AT PILOTS DISCRETION
+downlink,76,dM76AltitudeAltitude,REACHING BLOCK [altitude] TO [altitude]
+downlink,77,dM77AltitudeAltitude,ASSIGNED BLOCK [altitude] TO [altitude]
+downlink,78,dM78TimeDistanceToFromPosition,AT [time] [distance] [tofrom] [position]
+downlink,79,dM79ATISCode,ATIS [atiscode]
+downlink,80,dM80DistanceOffsetDirection,DEVIATING [distanceoffset][direction] OF ROUTE
+downlink,81,dM81NULL,(reserved: dM81NULL)
+downlink,82,dM82NULL,(reserved: dM82NULL)
+downlink,83,dM83NULL,(reserved: dM83NULL)
+downlink,84,dM84NULL,(reserved: dM84NULL)
+downlink,85,dM85NULL,(reserved: dM85NULL)
+downlink,86,dM86NULL,(reserved: dM86NULL)
+downlink,87,dM87NULL,(reserved: dM87NULL)
+downlink,88,dM88NULL,(reserved: dM88NULL)
+downlink,89,dM89NULL,(reserved: dM89NULL)
+downlink,90,dM90NULL,(reserved: dM90NULL)
+downlink,91,dM91NULL,(reserved: dM91NULL)
+downlink,92,dM92NULL,(reserved: dM92NULL)
+downlink,93,dM93NULL,(reserved: dM93NULL)
+downlink,94,dM94NULL,(reserved: dM94NULL)
+downlink,95,dM95NULL,(reserved: dM95NULL)
+downlink,96,dM96NULL,(reserved: dM96NULL)
+downlink,97,dM97NULL,(reserved: dM97NULL)
+downlink,98,dM98NULL,(reserved: dM98NULL)
+downlink,99,dM99NULL,(reserved: dM99NULL)
+downlink,100,dM100NULL,(reserved: dM100NULL)
+downlink,101,dM101NULL,(reserved: dM101NULL)
+downlink,102,dM102NULL,(reserved: dM102NULL)
+downlink,103,dM103NULL,(reserved: dM103NULL)
+downlink,104,dM104NULL,(reserved: dM104NULL)
+downlink,105,dM105NULL,(reserved: dM105NULL)
+downlink,106,dM106NULL,(reserved: dM106NULL)
+downlink,107,dM107NULL,(reserved: dM107NULL)
+downlink,108,dM108NULL,(reserved: dM108NULL)
+downlink,109,dM109NULL,(reserved: dM109NULL)
+downlink,110,dM110NULL,(reserved: dM110NULL)
+downlink,111,dM111NULL,(reserved: dM111NULL)
+downlink,112,dM112NULL,(reserved: dM112NULL)
+downlink,113,dM113NULL,(reserved: dM113NULL)
+downlink,114,dM114NULL,(reserved: dM114NULL)
+downlink,115,dM115NULL,(reserved: dM115NULL)
+downlink,116,dM116NULL,(reserved: dM116NULL)
+downlink,117,dM117NULL,(reserved: dM117NULL)
+downlink,118,dM118NULL,(reserved: dM118NULL)
+downlink,119,dM119NULL,(reserved: dM119NULL)
+downlink,120,dM120NULL,(reserved: dM120NULL)
+downlink,121,dM121NULL,(reserved: dM121NULL)
+downlink,122,dM122NULL,(reserved: dM122NULL)
+downlink,123,dM123NULL,(reserved: dM123NULL)
+downlink,124,dM124NULL,(reserved: dM124NULL)
+downlink,125,dM125NULL,(reserved: dM125NULL)
+downlink,126,dM126NULL,(reserved: dM126NULL)
+downlink,127,dM127NULL,(reserved: dM127NULL)
+downlink,128,dM128NULL,(reserved: dM128NULL)

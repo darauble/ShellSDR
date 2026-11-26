@@ -1,0 +1,145 @@
+#!/bin/bash
+# Builds shellsdr in a container (docker/Dockerfile.build) and packs it into dist/.
+# Compile only: the cross-built binary is not run.
+#
+#   tools/dev build [release|debug] [x64|arm64|all]   build and pack (default: release x64)
+#   tools/dev image [x64|arm64|all]                   (re)build the build image(s)
+#   tools/dev shell [x64|arm64]                       interactive shell in the build container
+#   tools/dev libfax [x64|arm64|all]                  build libfax.so.1 only (into assets/lib/<arch>/)
+#
+#   x64     Ubuntu 24.04 and newer (also Debian 13), x86_64
+#   arm64   Debian 13 Trixie / Raspberry Pi OS 13 64-bit and newer
+#
+# Both packages have the egui window (`shellsdr --gui`, cargo feature gui), loading its
+# display libraries only when it opens.
+# Output: dist/shellsdr-<version>-<arch>[-debug].tar.gz with bin/shellsdr,
+# share/shellsdr/themes/*.json, share/doc/shellsdr/ (licence notices), the icon and menu
+# entries (share/icons/hicolor/scalable/apps/shellsdr.svg, share/applications/) and lib/shellsdr/
+# (VFO-type libraries, loaded at runtime: assets/lib/<arch>/*.so*). libfax.so.1 (the FAX
+# type) is built first from the FAX source in $FAX_DIR (default ../FAX);
+# without it the package has no libfax and the FAX type is shown as unavailable.
+# install with: sudo tar -C /usr/local -xzf <file>
+# Runtime packages on the target: libsoapysdr0.8 (+ the SoapySDR module for your device),
+# libasound2t64 (same names on Ubuntu 24.04 and Debian 13). See README.md.
+set -euo pipefail
+
+HERE=$(cd "$(dirname "$0")/.." && pwd)
+usage() { sed -n '2,18p' "$0"; exit 2; }
+FAX_DIR=${FAX_DIR:-$HERE/../FAX}
+
+CMD=${1:-}; [ $# -gt 0 ] && shift
+PROFILE=release; ARCHES=x64
+for a in "$@"; do
+    case $a in
+        release|debug) PROFILE=$a ;;
+        x64|arm64) ARCHES=$a ;;
+        all) ARCHES="x64 arm64" ;;
+        *) usage ;;
+    esac
+done
+
+image_name() { echo "shellsdr-build:$1"; }
+build_image() {
+    local base
+    case $1 in x64) base=ubuntu:24.04 ;; arm64) base=debian:trixie ;; esac
+    docker build -t "$(image_name "$1")" --build-arg ARCH="$1" --build-arg BASE="$base" \
+        -f "$HERE/docker/Dockerfile.build" "$HERE/docker"
+}
+ensure_image() {
+    if ! docker image inspect "$(image_name "$1")" > /dev/null 2>&1; then build_image "$1"; fi
+}
+
+# Separate target dir per arch, so the container's build scripts (linked against the image's
+# glibc) never mix with the host's target/.
+run() {
+    local arch=$1; shift
+    local tty=(); [ -t 0 ] && [ -t 1 ] && tty=(-it)
+    docker run --rm --init "${tty[@]}" --user "$(id -u):$(id -g)" -e HOME=/tmp -e TERM \
+        -e CARGO_HOME=/work/shellsdr/target/docker/cargo-home \
+        -e CARGO_TARGET_DIR=/work/shellsdr/target/docker/$arch \
+        -v "$HERE:/work/shellsdr" -w /work/shellsdr "$(image_name "$arch")" "$@"
+}
+
+# libfax.so.1 from the FAX source (portable: no AVX-512 of the build machine), into
+# assets/lib/<arch>/. The source is mounted read-only; the build goes to target/docker/<arch>/libfax.
+build_libfax() {
+    local arch=$1
+    if [ ! -f "$FAX_DIR/include/fax/fax_c.h" ]; then
+        echo "libfax: no FAX source with the C API in $FAX_DIR (set FAX_DIR); using assets/lib/$arch as is"
+        return 0
+    fi
+    local cross=""
+    [ "$arch" = arm64 ] && cross="-DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+        -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+        -DZLIB_LIBRARY=/usr/lib/aarch64-linux-gnu/libz.so -DZLIB_INCLUDE_DIR=/usr/include"
+    local strip=strip; [ "$arch" = arm64 ] && strip=aarch64-linux-gnu-strip
+    echo "=== libfax.so.1 ($arch) from $FAX_DIR"
+    local tty=(); [ -t 0 ] && [ -t 1 ] && tty=(-it)
+    docker run --rm --init "${tty[@]}" --user "$(id -u):$(id -g)" -e HOME=/tmp \
+        -v "$HERE:/work/shellsdr" -v "$(cd "$FAX_DIR" && pwd):/work/fax:ro" -w /work/shellsdr \
+        "$(image_name "$arch")" bash -euo pipefail -c "
+            B=target/docker/$arch/libfax
+            cmake -S /work/fax -B \$B -DCMAKE_BUILD_TYPE=Release -DFAX_BUILD_SHARED=ON -DFAX_PORTABLE=ON \
+                -DFAX_BUILD_CLI=OFF -DFAX_BUILD_TESTS=OFF -DFAX_INSTALL=OFF $cross > /dev/null
+            cmake --build \$B -j\$(nproc) --target fax_shared > /dev/null
+            mkdir -p assets/lib/$arch
+            cp -L \$B/src/libfax.so.1 assets/lib/$arch/libfax.so.1
+            $strip --strip-unneeded assets/lib/$arch/libfax.so.1
+            file assets/lib/$arch/libfax.so.1 | sed 's/^.*: //; s/, BuildID[^,]*//'
+            echo -n 'libfax needs: '; objdump -p assets/lib/$arch/libfax.so.1 | awk '/NEEDED/{printf \"%s \", \$2}'; echo
+            echo -n 'libfax max glibc: '; objdump -T assets/lib/$arch/libfax.so.1 | grep -o 'GLIBC_[0-9.]*' | sort -uV | tail -1
+            echo -n 'libfax max GLIBCXX: '; objdump -T assets/lib/$arch/libfax.so.1 | grep -o 'GLIBCXX_[0-9.]*' | sort -uV | tail -1
+        "
+}
+
+VERSION=$(sed -n 's/^version *= *"\(.*\)"/\1/p' "$HERE/Cargo.toml" | head -1)
+
+case "$CMD" in
+    image)
+        for ARCH in $ARCHES; do build_image "$ARCH"; done ;;
+    shell)
+        ensure_image "$ARCHES"; run "$ARCHES" bash ;;
+    libfax)
+        for ARCH in $ARCHES; do ensure_image "$ARCH"; build_libfax "$ARCH"; done ;;
+    build)
+        mkdir -p "$HERE/dist"
+        for ARCH in $ARCHES; do
+            ensure_image "$ARCH"
+            build_libfax "$ARCH"
+            # both have the egui window (--gui); it loads X11/Wayland and GL only when opened
+            case $ARCH in
+                x64)   TRIPLE=x86_64-unknown-linux-gnu;  STRIP=strip; FEATURES="--features gui" ;;
+                arm64) TRIPLE=aarch64-unknown-linux-gnu; STRIP=aarch64-linux-gnu-strip; FEATURES="--features gui" ;;
+            esac
+            NAME=shellsdr-$VERSION-$ARCH; FLAG=--release; OUT=release
+            [ "$PROFILE" = debug ] && { NAME=$NAME-debug; FLAG=; OUT=debug; }
+            echo "=== $NAME"
+            run "$ARCH" bash -euo pipefail -c "
+                cargo build --locked $FLAG $FEATURES --target $TRIPLE --bin shellsdr
+                STAGE=\$CARGO_TARGET_DIR/stage
+                rm -rf \$STAGE
+                mkdir -p \$STAGE/bin \$STAGE/share/shellsdr/themes \$STAGE/lib/shellsdr \$STAGE/share/doc/shellsdr
+                cp \$CARGO_TARGET_DIR/$TRIPLE/$OUT/shellsdr \$STAGE/bin/
+                cp assets/themes/*.json \$STAGE/share/shellsdr/themes/
+                # the icon and the menu entries (the window's only with the GUI)
+                mkdir -p \$STAGE/share/icons/hicolor/scalable/apps \$STAGE/share/applications
+                cp assets/icon/shell-sdr-icon.svg \$STAGE/share/icons/hicolor/scalable/apps/shellsdr.svg
+                cp assets/desktop/shellsdr-terminal.desktop \$STAGE/share/applications/
+                case '$FEATURES' in *gui*) cp assets/desktop/shellsdr.desktop \$STAGE/share/applications/ ;; esac
+                if compgen -G 'assets/lib/$ARCH/*.so*' > /dev/null; then
+                    cp assets/lib/$ARCH/*.so* \$STAGE/lib/shellsdr/
+                fi
+                if [ -f \$STAGE/lib/shellsdr/libfax.so.1 ]; then
+                    cp assets/licenses/libfax-NOTICE assets/licenses/GPL-3 \$STAGE/share/doc/shellsdr/
+                fi
+                [ '$PROFILE' = release ] && $STRIP \$STAGE/bin/shellsdr
+                file \$STAGE/bin/shellsdr | sed 's/^.*: //; s/, BuildID[^,]*//'
+                echo -n 'needs: '; objdump -p \$STAGE/bin/shellsdr | awk '/NEEDED/{printf \"%s \", \$2}'; echo
+                echo -n 'max glibc: '; objdump -T \$STAGE/bin/shellsdr | grep -o 'GLIBC_[0-9.]*' | sort -uV | tail -1
+                echo -n 'type libraries: '; ls \$STAGE/lib/shellsdr | tr '\\n' ' '; echo
+                tar -C \$STAGE -czf dist/$NAME.tar.gz --owner=0 --group=0 bin share lib
+            "
+            ls -l "$HERE/dist/$NAME.tar.gz" | awk '{print $5, $NF}'
+        done ;;
+    *) usage ;;
+esac

@@ -1,0 +1,4986 @@
+{
+  "suite": "mmsi-lookup",
+  "description": "MMSI -> identity kind and MID by the forms of ITU-R M.585-10 (spec/03-domain/identities.md), MID -> administration by the ITU MID table (spec/03-domain/mid.csv; a MID shared by several territories gives all of them joined by \" / \"), coast-station test, and whether the built-in coast-station table knows it.",
+  "normative": true,
+  "compare": {
+    "method": "Exact."
+  },
+  "cases": [
+    {
+      "id": "ship-lithuania",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "277123456"
+      },
+      "expected": {
+        "country": "Lithuania (Republic of)",
+        "kind": "ship",
+        "mid": 277,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "ship-panama",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "352003675"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 352,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "ship-norway",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "258999119"
+      },
+      "expected": {
+        "country": "Norway",
+        "kind": "ship",
+        "mid": 258,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "coast-turkey",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "002711001"
+      },
+      "expected": {
+        "country": "Republic of Türkiye",
+        "kind": "coast",
+        "mid": 271,
+        "is_coast": true,
+        "builtin_station": "Antalya Turk Radio"
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "coast-denmark",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "002191000"
+      },
+      "expected": {
+        "country": "Denmark",
+        "kind": "coast",
+        "mid": 219,
+        "is_coast": true,
+        "builtin_station": "Lyngby Radio"
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "group-uk",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "023200000"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "kind": "group",
+        "mid": 232,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "unknown-mid",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "999123456"
+      },
+      "expected": {
+        "country": "",
+        "kind": "aton",
+        "mid": 912,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "too-short",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "27"
+      },
+      "expected": {
+        "country": "",
+        "kind": "unknown",
+        "mid": null,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "sar-aircraft",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "111232105"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "kind": "sar_aircraft",
+        "mid": 232,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "handheld",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "823212345"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "kind": "handheld",
+        "mid": 232,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "parent-craft",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "982321234"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "kind": "parent_craft",
+        "mid": 232,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "aton",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "992321234"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "kind": "aton",
+        "mid": 232,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "ais-sart",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "970011234"
+      },
+      "expected": {
+        "country": "",
+        "kind": "ais_sart",
+        "mid": null,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mob-device",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "972123456"
+      },
+      "expected": {
+        "country": "",
+        "kind": "mob",
+        "mid": null,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "epirb-ais",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "974011234"
+      },
+      "expected": {
+        "country": "",
+        "kind": "epirb_ais",
+        "mid": null,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "amrd-b",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "979123456"
+      },
+      "expected": {
+        "country": "",
+        "kind": "amrd_b",
+        "mid": null,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "shared-mid",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "306123456"
+      },
+      "expected": {
+        "country": "Netherlands (Kingdom of the) - Bonaire, Sint Eustatius and Saba / Netherlands (Kingdom of the) - Curaçao / Netherlands (Kingdom of the) - Sint Maarten (Dutch part)",
+        "kind": "ship",
+        "mid": 306,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "undefined-form",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "123456789"
+      },
+      "expected": {
+        "country": "",
+        "kind": "unknown",
+        "mid": null,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "coast-no-such-mid",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "mmsi": "001001234"
+      },
+      "expected": {
+        "country": "",
+        "kind": "coast",
+        "mid": 100,
+        "is_coast": true,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-201",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "201123456"
+      },
+      "expected": {
+        "country": "Albania (Republic of)",
+        "kind": "ship",
+        "mid": 201,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-202",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "202123456"
+      },
+      "expected": {
+        "country": "Andorra (Principality of)",
+        "kind": "ship",
+        "mid": 202,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-203",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "203123456"
+      },
+      "expected": {
+        "country": "Austria",
+        "kind": "ship",
+        "mid": 203,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-204",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "204123456"
+      },
+      "expected": {
+        "country": "Portugal - Azores",
+        "kind": "ship",
+        "mid": 204,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-205",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "205123456"
+      },
+      "expected": {
+        "country": "Belgium",
+        "kind": "ship",
+        "mid": 205,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-206",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "206123456"
+      },
+      "expected": {
+        "country": "Belarus (Republic of)",
+        "kind": "ship",
+        "mid": 206,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-207",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "207123456"
+      },
+      "expected": {
+        "country": "Bulgaria (Republic of)",
+        "kind": "ship",
+        "mid": 207,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-208",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "208123456"
+      },
+      "expected": {
+        "country": "Vatican City State",
+        "kind": "ship",
+        "mid": 208,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-209",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "209123456"
+      },
+      "expected": {
+        "country": "Cyprus (Republic of)",
+        "kind": "ship",
+        "mid": 209,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-210",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "210123456"
+      },
+      "expected": {
+        "country": "Cyprus (Republic of)",
+        "kind": "ship",
+        "mid": 210,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-211",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "211123456"
+      },
+      "expected": {
+        "country": "Germany (Federal Republic of)",
+        "kind": "ship",
+        "mid": 211,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-212",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "212123456"
+      },
+      "expected": {
+        "country": "Cyprus (Republic of)",
+        "kind": "ship",
+        "mid": 212,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-213",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "213123456"
+      },
+      "expected": {
+        "country": "Georgia",
+        "kind": "ship",
+        "mid": 213,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-214",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "214123456"
+      },
+      "expected": {
+        "country": "Moldova (Republic of)",
+        "kind": "ship",
+        "mid": 214,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-215",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "215123456"
+      },
+      "expected": {
+        "country": "Malta",
+        "kind": "ship",
+        "mid": 215,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-216",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "216123456"
+      },
+      "expected": {
+        "country": "Armenia (Republic of)",
+        "kind": "ship",
+        "mid": 216,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-218",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "218123456"
+      },
+      "expected": {
+        "country": "Germany (Federal Republic of)",
+        "kind": "ship",
+        "mid": 218,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-219",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "219123456"
+      },
+      "expected": {
+        "country": "Denmark",
+        "kind": "ship",
+        "mid": 219,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-220",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "220123456"
+      },
+      "expected": {
+        "country": "Denmark",
+        "kind": "ship",
+        "mid": 220,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-224",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "224123456"
+      },
+      "expected": {
+        "country": "Spain",
+        "kind": "ship",
+        "mid": 224,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-225",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "225123456"
+      },
+      "expected": {
+        "country": "Spain",
+        "kind": "ship",
+        "mid": 225,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-226",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "226123456"
+      },
+      "expected": {
+        "country": "France",
+        "kind": "ship",
+        "mid": 226,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-227",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "227123456"
+      },
+      "expected": {
+        "country": "France",
+        "kind": "ship",
+        "mid": 227,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-228",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "228123456"
+      },
+      "expected": {
+        "country": "France",
+        "kind": "ship",
+        "mid": 228,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-229",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "229123456"
+      },
+      "expected": {
+        "country": "Malta",
+        "kind": "ship",
+        "mid": 229,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-230",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "230123456"
+      },
+      "expected": {
+        "country": "Finland",
+        "kind": "ship",
+        "mid": 230,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-231",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "231123456"
+      },
+      "expected": {
+        "country": "Denmark - Faroe Islands",
+        "kind": "ship",
+        "mid": 231,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-232",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "232123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "kind": "ship",
+        "mid": 232,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-233",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "233123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "kind": "ship",
+        "mid": 233,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-234",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "234123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "kind": "ship",
+        "mid": 234,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-235",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "235123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "kind": "ship",
+        "mid": 235,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-236",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "236123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Gibraltar",
+        "kind": "ship",
+        "mid": 236,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-237",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "237123456"
+      },
+      "expected": {
+        "country": "Greece",
+        "kind": "ship",
+        "mid": 237,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-238",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "238123456"
+      },
+      "expected": {
+        "country": "Croatia (Republic of)",
+        "kind": "ship",
+        "mid": 238,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-239",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "239123456"
+      },
+      "expected": {
+        "country": "Greece",
+        "kind": "ship",
+        "mid": 239,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-240",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "240123456"
+      },
+      "expected": {
+        "country": "Greece",
+        "kind": "ship",
+        "mid": 240,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-241",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "241123456"
+      },
+      "expected": {
+        "country": "Greece",
+        "kind": "ship",
+        "mid": 241,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-242",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "242123456"
+      },
+      "expected": {
+        "country": "Morocco (Kingdom of)",
+        "kind": "ship",
+        "mid": 242,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-243",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "243123456"
+      },
+      "expected": {
+        "country": "Hungary",
+        "kind": "ship",
+        "mid": 243,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-244",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "244123456"
+      },
+      "expected": {
+        "country": "Netherlands (Kingdom of the)",
+        "kind": "ship",
+        "mid": 244,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-245",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "245123456"
+      },
+      "expected": {
+        "country": "Netherlands (Kingdom of the)",
+        "kind": "ship",
+        "mid": 245,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-246",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "246123456"
+      },
+      "expected": {
+        "country": "Netherlands (Kingdom of the)",
+        "kind": "ship",
+        "mid": 246,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-247",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "247123456"
+      },
+      "expected": {
+        "country": "Italy",
+        "kind": "ship",
+        "mid": 247,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-248",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "248123456"
+      },
+      "expected": {
+        "country": "Malta",
+        "kind": "ship",
+        "mid": 248,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-249",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "249123456"
+      },
+      "expected": {
+        "country": "Malta",
+        "kind": "ship",
+        "mid": 249,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-250",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "250123456"
+      },
+      "expected": {
+        "country": "Ireland",
+        "kind": "ship",
+        "mid": 250,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-251",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "251123456"
+      },
+      "expected": {
+        "country": "Iceland",
+        "kind": "ship",
+        "mid": 251,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-252",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "252123456"
+      },
+      "expected": {
+        "country": "Liechtenstein (Principality of)",
+        "kind": "ship",
+        "mid": 252,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-253",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "253123456"
+      },
+      "expected": {
+        "country": "Luxembourg",
+        "kind": "ship",
+        "mid": 253,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-254",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "254123456"
+      },
+      "expected": {
+        "country": "Monaco (Principality of)",
+        "kind": "ship",
+        "mid": 254,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-255",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "255123456"
+      },
+      "expected": {
+        "country": "Portugal - Madeira",
+        "kind": "ship",
+        "mid": 255,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-256",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "256123456"
+      },
+      "expected": {
+        "country": "Malta",
+        "kind": "ship",
+        "mid": 256,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-257",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "257123456"
+      },
+      "expected": {
+        "country": "Norway",
+        "kind": "ship",
+        "mid": 257,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-258",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "258123456"
+      },
+      "expected": {
+        "country": "Norway",
+        "kind": "ship",
+        "mid": 258,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-259",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "259123456"
+      },
+      "expected": {
+        "country": "Norway",
+        "kind": "ship",
+        "mid": 259,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-261",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "261123456"
+      },
+      "expected": {
+        "country": "Poland (Republic of)",
+        "kind": "ship",
+        "mid": 261,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-262",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "262123456"
+      },
+      "expected": {
+        "country": "Montenegro",
+        "kind": "ship",
+        "mid": 262,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-263",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "263123456"
+      },
+      "expected": {
+        "country": "Portugal",
+        "kind": "ship",
+        "mid": 263,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-264",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "264123456"
+      },
+      "expected": {
+        "country": "Romania",
+        "kind": "ship",
+        "mid": 264,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-265",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "265123456"
+      },
+      "expected": {
+        "country": "Sweden",
+        "kind": "ship",
+        "mid": 265,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-266",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "266123456"
+      },
+      "expected": {
+        "country": "Sweden",
+        "kind": "ship",
+        "mid": 266,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-267",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "267123456"
+      },
+      "expected": {
+        "country": "Slovak Republic",
+        "kind": "ship",
+        "mid": 267,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-268",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "268123456"
+      },
+      "expected": {
+        "country": "San Marino (Republic of)",
+        "kind": "ship",
+        "mid": 268,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-269",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "269123456"
+      },
+      "expected": {
+        "country": "Switzerland (Confederation of)",
+        "kind": "ship",
+        "mid": 269,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-270",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "270123456"
+      },
+      "expected": {
+        "country": "Czech Republic",
+        "kind": "ship",
+        "mid": 270,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-271",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "271123456"
+      },
+      "expected": {
+        "country": "Republic of Türkiye",
+        "kind": "ship",
+        "mid": 271,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-272",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "272123456"
+      },
+      "expected": {
+        "country": "Ukraine",
+        "kind": "ship",
+        "mid": 272,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-273",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "273123456"
+      },
+      "expected": {
+        "country": "Russian Federation",
+        "kind": "ship",
+        "mid": 273,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-274",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "274123456"
+      },
+      "expected": {
+        "country": "North Macedonia (Republic of)",
+        "kind": "ship",
+        "mid": 274,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-275",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "275123456"
+      },
+      "expected": {
+        "country": "Latvia (Republic of)",
+        "kind": "ship",
+        "mid": 275,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-276",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "276123456"
+      },
+      "expected": {
+        "country": "Estonia (Republic of)",
+        "kind": "ship",
+        "mid": 276,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-277",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "277123456"
+      },
+      "expected": {
+        "country": "Lithuania (Republic of)",
+        "kind": "ship",
+        "mid": 277,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-278",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "278123456"
+      },
+      "expected": {
+        "country": "Slovenia (Republic of)",
+        "kind": "ship",
+        "mid": 278,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-279",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "279123456"
+      },
+      "expected": {
+        "country": "Serbia (Republic of)",
+        "kind": "ship",
+        "mid": 279,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-301",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "301123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Anguilla",
+        "kind": "ship",
+        "mid": 301,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-303",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "303123456"
+      },
+      "expected": {
+        "country": "United States of America - Alaska (State of)",
+        "kind": "ship",
+        "mid": 303,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-304",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "304123456"
+      },
+      "expected": {
+        "country": "Antigua and Barbuda",
+        "kind": "ship",
+        "mid": 304,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-305",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "305123456"
+      },
+      "expected": {
+        "country": "Antigua and Barbuda",
+        "kind": "ship",
+        "mid": 305,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-306",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "306123456"
+      },
+      "expected": {
+        "country": "Netherlands (Kingdom of the) - Bonaire, Sint Eustatius and Saba / Netherlands (Kingdom of the) - Curaçao / Netherlands (Kingdom of the) - Sint Maarten (Dutch part)",
+        "kind": "ship",
+        "mid": 306,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-307",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "307123456"
+      },
+      "expected": {
+        "country": "Netherlands (Kingdom of the) - Aruba",
+        "kind": "ship",
+        "mid": 307,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-308",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "308123456"
+      },
+      "expected": {
+        "country": "Bahamas (Commonwealth of the)",
+        "kind": "ship",
+        "mid": 308,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-309",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "309123456"
+      },
+      "expected": {
+        "country": "Bahamas (Commonwealth of the)",
+        "kind": "ship",
+        "mid": 309,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-310",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "310123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Bermuda",
+        "kind": "ship",
+        "mid": 310,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-311",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "311123456"
+      },
+      "expected": {
+        "country": "Bahamas (Commonwealth of the)",
+        "kind": "ship",
+        "mid": 311,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-312",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "312123456"
+      },
+      "expected": {
+        "country": "Belize",
+        "kind": "ship",
+        "mid": 312,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-314",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "314123456"
+      },
+      "expected": {
+        "country": "Barbados",
+        "kind": "ship",
+        "mid": 314,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-316",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "316123456"
+      },
+      "expected": {
+        "country": "Canada",
+        "kind": "ship",
+        "mid": 316,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-319",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "319123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Cayman Islands",
+        "kind": "ship",
+        "mid": 319,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-321",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "321123456"
+      },
+      "expected": {
+        "country": "Costa Rica",
+        "kind": "ship",
+        "mid": 321,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-323",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "323123456"
+      },
+      "expected": {
+        "country": "Cuba",
+        "kind": "ship",
+        "mid": 323,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-325",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "325123456"
+      },
+      "expected": {
+        "country": "Dominica (Commonwealth of)",
+        "kind": "ship",
+        "mid": 325,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-327",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "327123456"
+      },
+      "expected": {
+        "country": "Dominican Republic",
+        "kind": "ship",
+        "mid": 327,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-329",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "329123456"
+      },
+      "expected": {
+        "country": "France - Guadeloupe (French Department of)",
+        "kind": "ship",
+        "mid": 329,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-330",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "330123456"
+      },
+      "expected": {
+        "country": "Grenada",
+        "kind": "ship",
+        "mid": 330,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-331",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "331123456"
+      },
+      "expected": {
+        "country": "Denmark - Greenland",
+        "kind": "ship",
+        "mid": 331,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-332",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "332123456"
+      },
+      "expected": {
+        "country": "Guatemala (Republic of)",
+        "kind": "ship",
+        "mid": 332,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-334",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "334123456"
+      },
+      "expected": {
+        "country": "Honduras (Republic of)",
+        "kind": "ship",
+        "mid": 334,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-336",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "336123456"
+      },
+      "expected": {
+        "country": "Haiti (Republic of)",
+        "kind": "ship",
+        "mid": 336,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-338",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "338123456"
+      },
+      "expected": {
+        "country": "United States of America",
+        "kind": "ship",
+        "mid": 338,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-339",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "339123456"
+      },
+      "expected": {
+        "country": "Jamaica",
+        "kind": "ship",
+        "mid": 339,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-341",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "341123456"
+      },
+      "expected": {
+        "country": "Saint Kitts and Nevis (Federation of)",
+        "kind": "ship",
+        "mid": 341,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-343",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "343123456"
+      },
+      "expected": {
+        "country": "Saint Lucia",
+        "kind": "ship",
+        "mid": 343,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-345",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "345123456"
+      },
+      "expected": {
+        "country": "Mexico",
+        "kind": "ship",
+        "mid": 345,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-347",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "347123456"
+      },
+      "expected": {
+        "country": "France - Martinique (French Department of)",
+        "kind": "ship",
+        "mid": 347,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-348",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "348123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Montserrat",
+        "kind": "ship",
+        "mid": 348,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-350",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "350123456"
+      },
+      "expected": {
+        "country": "Nicaragua",
+        "kind": "ship",
+        "mid": 350,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-351",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "351123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 351,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-352",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "352123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 352,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-353",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "353123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 353,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-354",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "354123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 354,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-355",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "355123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 355,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-356",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "356123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 356,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-357",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "357123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 357,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-358",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "358123456"
+      },
+      "expected": {
+        "country": "United States of America - Puerto Rico",
+        "kind": "ship",
+        "mid": 358,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-359",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "359123456"
+      },
+      "expected": {
+        "country": "El Salvador (Republic of)",
+        "kind": "ship",
+        "mid": 359,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-361",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "361123456"
+      },
+      "expected": {
+        "country": "France - Saint Pierre and Miquelon (Territorial Collectivity of)",
+        "kind": "ship",
+        "mid": 361,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-362",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "362123456"
+      },
+      "expected": {
+        "country": "Trinidad and Tobago",
+        "kind": "ship",
+        "mid": 362,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-364",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "364123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Turks and Caicos Islands",
+        "kind": "ship",
+        "mid": 364,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-366",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "366123456"
+      },
+      "expected": {
+        "country": "United States of America",
+        "kind": "ship",
+        "mid": 366,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-367",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "367123456"
+      },
+      "expected": {
+        "country": "United States of America",
+        "kind": "ship",
+        "mid": 367,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-368",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "368123456"
+      },
+      "expected": {
+        "country": "United States of America",
+        "kind": "ship",
+        "mid": 368,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-369",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "369123456"
+      },
+      "expected": {
+        "country": "United States of America",
+        "kind": "ship",
+        "mid": 369,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-370",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "370123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 370,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-371",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "371123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 371,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-372",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "372123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 372,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-373",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "373123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 373,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-374",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "374123456"
+      },
+      "expected": {
+        "country": "Panama (Republic of)",
+        "kind": "ship",
+        "mid": 374,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-375",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "375123456"
+      },
+      "expected": {
+        "country": "Saint Vincent and the Grenadines",
+        "kind": "ship",
+        "mid": 375,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-376",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "376123456"
+      },
+      "expected": {
+        "country": "Saint Vincent and the Grenadines",
+        "kind": "ship",
+        "mid": 376,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-377",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "377123456"
+      },
+      "expected": {
+        "country": "Saint Vincent and the Grenadines",
+        "kind": "ship",
+        "mid": 377,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-378",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "378123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - British Virgin Islands",
+        "kind": "ship",
+        "mid": 378,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-379",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "379123456"
+      },
+      "expected": {
+        "country": "United States of America - United States Virgin Islands",
+        "kind": "ship",
+        "mid": 379,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-401",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "401123456"
+      },
+      "expected": {
+        "country": "Afghanistan",
+        "kind": "ship",
+        "mid": 401,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-403",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "403123456"
+      },
+      "expected": {
+        "country": "Saudi Arabia (Kingdom of)",
+        "kind": "ship",
+        "mid": 403,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-405",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "405123456"
+      },
+      "expected": {
+        "country": "Bangladesh (People's Republic of)",
+        "kind": "ship",
+        "mid": 405,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-408",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "408123456"
+      },
+      "expected": {
+        "country": "Bahrain (Kingdom of)",
+        "kind": "ship",
+        "mid": 408,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-410",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "410123456"
+      },
+      "expected": {
+        "country": "Bhutan (Kingdom of)",
+        "kind": "ship",
+        "mid": 410,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-412",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "412123456"
+      },
+      "expected": {
+        "country": "China (People's Republic of)",
+        "kind": "ship",
+        "mid": 412,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-413",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "413123456"
+      },
+      "expected": {
+        "country": "China (People's Republic of)",
+        "kind": "ship",
+        "mid": 413,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-414",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "414123456"
+      },
+      "expected": {
+        "country": "China (People's Republic of)",
+        "kind": "ship",
+        "mid": 414,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-416",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "416123456"
+      },
+      "expected": {
+        "country": "China (People's Republic of) - Taiwan (Province of China)",
+        "kind": "ship",
+        "mid": 416,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-417",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "417123456"
+      },
+      "expected": {
+        "country": "Sri Lanka (Democratic Socialist Republic of)",
+        "kind": "ship",
+        "mid": 417,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-419",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "419123456"
+      },
+      "expected": {
+        "country": "India (Republic of)",
+        "kind": "ship",
+        "mid": 419,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-422",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "422123456"
+      },
+      "expected": {
+        "country": "Iran (Islamic Republic of)",
+        "kind": "ship",
+        "mid": 422,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-423",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "423123456"
+      },
+      "expected": {
+        "country": "Azerbaijan (Republic of)",
+        "kind": "ship",
+        "mid": 423,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-425",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "425123456"
+      },
+      "expected": {
+        "country": "Iraq (Republic of)",
+        "kind": "ship",
+        "mid": 425,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-428",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "428123456"
+      },
+      "expected": {
+        "country": "Israel (State of)",
+        "kind": "ship",
+        "mid": 428,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-431",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "431123456"
+      },
+      "expected": {
+        "country": "Japan",
+        "kind": "ship",
+        "mid": 431,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-432",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "432123456"
+      },
+      "expected": {
+        "country": "Japan",
+        "kind": "ship",
+        "mid": 432,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-434",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "434123456"
+      },
+      "expected": {
+        "country": "Turkmenistan",
+        "kind": "ship",
+        "mid": 434,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-436",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "436123456"
+      },
+      "expected": {
+        "country": "Kazakhstan (Republic of)",
+        "kind": "ship",
+        "mid": 436,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-437",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "437123456"
+      },
+      "expected": {
+        "country": "Uzbekistan (Republic of)",
+        "kind": "ship",
+        "mid": 437,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-438",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "438123456"
+      },
+      "expected": {
+        "country": "Jordan (Hashemite Kingdom of)",
+        "kind": "ship",
+        "mid": 438,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-440",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "440123456"
+      },
+      "expected": {
+        "country": "Korea (Republic of)",
+        "kind": "ship",
+        "mid": 440,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-441",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "441123456"
+      },
+      "expected": {
+        "country": "Korea (Republic of)",
+        "kind": "ship",
+        "mid": 441,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-443",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "443123456"
+      },
+      "expected": {
+        "country": "State of Palestine (In accordance with Resolution 99 Rev. Dubai, 2018)",
+        "kind": "ship",
+        "mid": 443,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-445",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "445123456"
+      },
+      "expected": {
+        "country": "Democratic People's Republic of Korea",
+        "kind": "ship",
+        "mid": 445,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-447",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "447123456"
+      },
+      "expected": {
+        "country": "Kuwait (State of)",
+        "kind": "ship",
+        "mid": 447,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-450",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "450123456"
+      },
+      "expected": {
+        "country": "Lebanon",
+        "kind": "ship",
+        "mid": 450,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-451",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "451123456"
+      },
+      "expected": {
+        "country": "Kyrgyz Republic",
+        "kind": "ship",
+        "mid": 451,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-453",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "453123456"
+      },
+      "expected": {
+        "country": "China (People's Republic of) - Macao (Special Administrative Region of China)",
+        "kind": "ship",
+        "mid": 453,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-455",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "455123456"
+      },
+      "expected": {
+        "country": "Maldives (Republic of)",
+        "kind": "ship",
+        "mid": 455,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-457",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "457123456"
+      },
+      "expected": {
+        "country": "Mongolia",
+        "kind": "ship",
+        "mid": 457,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-459",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "459123456"
+      },
+      "expected": {
+        "country": "Nepal (Federal Democratic Republic of)",
+        "kind": "ship",
+        "mid": 459,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-461",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "461123456"
+      },
+      "expected": {
+        "country": "Oman (Sultanate of)",
+        "kind": "ship",
+        "mid": 461,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-463",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "463123456"
+      },
+      "expected": {
+        "country": "Pakistan (Islamic Republic of)",
+        "kind": "ship",
+        "mid": 463,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-466",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "466123456"
+      },
+      "expected": {
+        "country": "Qatar (State of)",
+        "kind": "ship",
+        "mid": 466,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-468",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "468123456"
+      },
+      "expected": {
+        "country": "Syrian Arab Republic",
+        "kind": "ship",
+        "mid": 468,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-470",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "470123456"
+      },
+      "expected": {
+        "country": "United Arab Emirates",
+        "kind": "ship",
+        "mid": 470,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-471",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "471123456"
+      },
+      "expected": {
+        "country": "United Arab Emirates",
+        "kind": "ship",
+        "mid": 471,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-472",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "472123456"
+      },
+      "expected": {
+        "country": "Tajikistan (Republic of)",
+        "kind": "ship",
+        "mid": 472,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-473",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "473123456"
+      },
+      "expected": {
+        "country": "Yemen (Republic of)",
+        "kind": "ship",
+        "mid": 473,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-475",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "475123456"
+      },
+      "expected": {
+        "country": "Yemen (Republic of)",
+        "kind": "ship",
+        "mid": 475,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-477",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "477123456"
+      },
+      "expected": {
+        "country": "China (People's Republic of) - Hong Kong (Special Administrative Region of China)",
+        "kind": "ship",
+        "mid": 477,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-478",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "478123456"
+      },
+      "expected": {
+        "country": "Bosnia and Herzegovina",
+        "kind": "ship",
+        "mid": 478,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-501",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "501123456"
+      },
+      "expected": {
+        "country": "France - Adelie Land",
+        "kind": "ship",
+        "mid": 501,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-503",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "503123456"
+      },
+      "expected": {
+        "country": "Australia",
+        "kind": "ship",
+        "mid": 503,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-506",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "506123456"
+      },
+      "expected": {
+        "country": "Myanmar (Union of)",
+        "kind": "ship",
+        "mid": 506,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-508",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "508123456"
+      },
+      "expected": {
+        "country": "Brunei Darussalam",
+        "kind": "ship",
+        "mid": 508,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-510",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "510123456"
+      },
+      "expected": {
+        "country": "Micronesia (Federated States of)",
+        "kind": "ship",
+        "mid": 510,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-511",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "511123456"
+      },
+      "expected": {
+        "country": "Palau (Republic of)",
+        "kind": "ship",
+        "mid": 511,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-512",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "512123456"
+      },
+      "expected": {
+        "country": "New Zealand",
+        "kind": "ship",
+        "mid": 512,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-514",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "514123456"
+      },
+      "expected": {
+        "country": "Cambodia (Kingdom of)",
+        "kind": "ship",
+        "mid": 514,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-515",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "515123456"
+      },
+      "expected": {
+        "country": "Cambodia (Kingdom of)",
+        "kind": "ship",
+        "mid": 515,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-516",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "516123456"
+      },
+      "expected": {
+        "country": "Australia - Christmas Island (Indian Ocean)",
+        "kind": "ship",
+        "mid": 516,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-518",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "518123456"
+      },
+      "expected": {
+        "country": "New Zealand - Cook Islands",
+        "kind": "ship",
+        "mid": 518,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-520",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "520123456"
+      },
+      "expected": {
+        "country": "Fiji (Republic of)",
+        "kind": "ship",
+        "mid": 520,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-523",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "523123456"
+      },
+      "expected": {
+        "country": "Australia - Cocos (Keeling) Islands",
+        "kind": "ship",
+        "mid": 523,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-525",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "525123456"
+      },
+      "expected": {
+        "country": "Indonesia (Republic of)",
+        "kind": "ship",
+        "mid": 525,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-529",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "529123456"
+      },
+      "expected": {
+        "country": "Kiribati (Republic of)",
+        "kind": "ship",
+        "mid": 529,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-531",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "531123456"
+      },
+      "expected": {
+        "country": "Lao People's Democratic Republic",
+        "kind": "ship",
+        "mid": 531,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-533",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "533123456"
+      },
+      "expected": {
+        "country": "Malaysia",
+        "kind": "ship",
+        "mid": 533,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-536",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "536123456"
+      },
+      "expected": {
+        "country": "United States of America - Northern Mariana Islands (Commonwealth of the)",
+        "kind": "ship",
+        "mid": 536,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-538",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "538123456"
+      },
+      "expected": {
+        "country": "Marshall Islands (Republic of the)",
+        "kind": "ship",
+        "mid": 538,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-540",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "540123456"
+      },
+      "expected": {
+        "country": "France - New Caledonia",
+        "kind": "ship",
+        "mid": 540,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-542",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "542123456"
+      },
+      "expected": {
+        "country": "New Zealand - Niue",
+        "kind": "ship",
+        "mid": 542,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-544",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "544123456"
+      },
+      "expected": {
+        "country": "Republic of Naoero",
+        "kind": "ship",
+        "mid": 544,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-546",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "546123456"
+      },
+      "expected": {
+        "country": "France - French Polynesia",
+        "kind": "ship",
+        "mid": 546,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-548",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "548123456"
+      },
+      "expected": {
+        "country": "Philippines (Republic of the)",
+        "kind": "ship",
+        "mid": 548,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-550",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "550123456"
+      },
+      "expected": {
+        "country": "Timor-Leste (Democratic Republic of)",
+        "kind": "ship",
+        "mid": 550,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-553",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "553123456"
+      },
+      "expected": {
+        "country": "Papua New Guinea",
+        "kind": "ship",
+        "mid": 553,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-555",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "555123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Pitcairn Island",
+        "kind": "ship",
+        "mid": 555,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-557",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "557123456"
+      },
+      "expected": {
+        "country": "Solomon Islands",
+        "kind": "ship",
+        "mid": 557,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-559",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "559123456"
+      },
+      "expected": {
+        "country": "United States of America - American Samoa",
+        "kind": "ship",
+        "mid": 559,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-561",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "561123456"
+      },
+      "expected": {
+        "country": "Samoa (Independent State of)",
+        "kind": "ship",
+        "mid": 561,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-563",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "563123456"
+      },
+      "expected": {
+        "country": "Singapore (Republic of)",
+        "kind": "ship",
+        "mid": 563,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-564",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "564123456"
+      },
+      "expected": {
+        "country": "Singapore (Republic of)",
+        "kind": "ship",
+        "mid": 564,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-565",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "565123456"
+      },
+      "expected": {
+        "country": "Singapore (Republic of)",
+        "kind": "ship",
+        "mid": 565,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-566",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "566123456"
+      },
+      "expected": {
+        "country": "Singapore (Republic of)",
+        "kind": "ship",
+        "mid": 566,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-567",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "567123456"
+      },
+      "expected": {
+        "country": "Thailand",
+        "kind": "ship",
+        "mid": 567,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-570",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "570123456"
+      },
+      "expected": {
+        "country": "Tonga (Kingdom of)",
+        "kind": "ship",
+        "mid": 570,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-572",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "572123456"
+      },
+      "expected": {
+        "country": "Tuvalu",
+        "kind": "ship",
+        "mid": 572,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-574",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "574123456"
+      },
+      "expected": {
+        "country": "Viet Nam (Socialist Republic of)",
+        "kind": "ship",
+        "mid": 574,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-576",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "576123456"
+      },
+      "expected": {
+        "country": "Vanuatu (Republic of)",
+        "kind": "ship",
+        "mid": 576,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-577",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "577123456"
+      },
+      "expected": {
+        "country": "Vanuatu (Republic of)",
+        "kind": "ship",
+        "mid": 577,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-578",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "578123456"
+      },
+      "expected": {
+        "country": "France - Wallis and Futuna Islands",
+        "kind": "ship",
+        "mid": 578,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-601",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "601123456"
+      },
+      "expected": {
+        "country": "South Africa (Republic of)",
+        "kind": "ship",
+        "mid": 601,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-603",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "603123456"
+      },
+      "expected": {
+        "country": "Angola (Republic of)",
+        "kind": "ship",
+        "mid": 603,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-605",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "605123456"
+      },
+      "expected": {
+        "country": "Algeria (People's Democratic Republic of)",
+        "kind": "ship",
+        "mid": 605,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-607",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "607123456"
+      },
+      "expected": {
+        "country": "France - Saint Paul and Amsterdam Islands",
+        "kind": "ship",
+        "mid": 607,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-608",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "608123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Ascension Island",
+        "kind": "ship",
+        "mid": 608,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-609",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "609123456"
+      },
+      "expected": {
+        "country": "Burundi (Republic of)",
+        "kind": "ship",
+        "mid": 609,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-610",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "610123456"
+      },
+      "expected": {
+        "country": "Benin (Republic of)",
+        "kind": "ship",
+        "mid": 610,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-611",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "611123456"
+      },
+      "expected": {
+        "country": "Botswana (Republic of)",
+        "kind": "ship",
+        "mid": 611,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-612",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "612123456"
+      },
+      "expected": {
+        "country": "Central African Republic",
+        "kind": "ship",
+        "mid": 612,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-613",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "613123456"
+      },
+      "expected": {
+        "country": "Cameroon (Republic of)",
+        "kind": "ship",
+        "mid": 613,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-615",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "615123456"
+      },
+      "expected": {
+        "country": "Congo (Republic of the)",
+        "kind": "ship",
+        "mid": 615,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-616",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "616123456"
+      },
+      "expected": {
+        "country": "Comoros (Union of the)",
+        "kind": "ship",
+        "mid": 616,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-617",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "617123456"
+      },
+      "expected": {
+        "country": "Cabo Verde (Republic of)",
+        "kind": "ship",
+        "mid": 617,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-618",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "618123456"
+      },
+      "expected": {
+        "country": "France - Crozet Archipelago",
+        "kind": "ship",
+        "mid": 618,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-619",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "619123456"
+      },
+      "expected": {
+        "country": "Côte d'Ivoire (Republic of)",
+        "kind": "ship",
+        "mid": 619,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-620",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "620123456"
+      },
+      "expected": {
+        "country": "Comoros (Union of the)",
+        "kind": "ship",
+        "mid": 620,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-621",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "621123456"
+      },
+      "expected": {
+        "country": "Djibouti (Republic of)",
+        "kind": "ship",
+        "mid": 621,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-622",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "622123456"
+      },
+      "expected": {
+        "country": "Egypt (Arab Republic of)",
+        "kind": "ship",
+        "mid": 622,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-624",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "624123456"
+      },
+      "expected": {
+        "country": "Ethiopia (Federal Democratic Republic of)",
+        "kind": "ship",
+        "mid": 624,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-625",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "625123456"
+      },
+      "expected": {
+        "country": "Eritrea",
+        "kind": "ship",
+        "mid": 625,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-626",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "626123456"
+      },
+      "expected": {
+        "country": "Gabonese Republic",
+        "kind": "ship",
+        "mid": 626,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-627",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "627123456"
+      },
+      "expected": {
+        "country": "Ghana",
+        "kind": "ship",
+        "mid": 627,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-629",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "629123456"
+      },
+      "expected": {
+        "country": "Gambia (Republic of the)",
+        "kind": "ship",
+        "mid": 629,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-630",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "630123456"
+      },
+      "expected": {
+        "country": "Guinea-Bissau (Republic of)",
+        "kind": "ship",
+        "mid": 630,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-631",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "631123456"
+      },
+      "expected": {
+        "country": "Equatorial Guinea (Republic of)",
+        "kind": "ship",
+        "mid": 631,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-632",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "632123456"
+      },
+      "expected": {
+        "country": "Guinea (Republic of)",
+        "kind": "ship",
+        "mid": 632,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-633",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "633123456"
+      },
+      "expected": {
+        "country": "Burkina Faso",
+        "kind": "ship",
+        "mid": 633,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-634",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "634123456"
+      },
+      "expected": {
+        "country": "Kenya (Republic of)",
+        "kind": "ship",
+        "mid": 634,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-635",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "635123456"
+      },
+      "expected": {
+        "country": "France - Kerguelen Islands",
+        "kind": "ship",
+        "mid": 635,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-636",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "636123456"
+      },
+      "expected": {
+        "country": "Liberia (Republic of)",
+        "kind": "ship",
+        "mid": 636,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-637",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "637123456"
+      },
+      "expected": {
+        "country": "Liberia (Republic of)",
+        "kind": "ship",
+        "mid": 637,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-638",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "638123456"
+      },
+      "expected": {
+        "country": "South Sudan (Republic of)",
+        "kind": "ship",
+        "mid": 638,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-642",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "642123456"
+      },
+      "expected": {
+        "country": "Libya (State of)",
+        "kind": "ship",
+        "mid": 642,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-644",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "644123456"
+      },
+      "expected": {
+        "country": "Lesotho (Kingdom of)",
+        "kind": "ship",
+        "mid": 644,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-645",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "645123456"
+      },
+      "expected": {
+        "country": "Mauritius (Republic of)",
+        "kind": "ship",
+        "mid": 645,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-647",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "647123456"
+      },
+      "expected": {
+        "country": "Madagascar (Republic of)",
+        "kind": "ship",
+        "mid": 647,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-649",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "649123456"
+      },
+      "expected": {
+        "country": "Mali (Republic of)",
+        "kind": "ship",
+        "mid": 649,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-650",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "650123456"
+      },
+      "expected": {
+        "country": "Mozambique (Republic of)",
+        "kind": "ship",
+        "mid": 650,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-654",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "654123456"
+      },
+      "expected": {
+        "country": "Mauritania (Islamic Republic of)",
+        "kind": "ship",
+        "mid": 654,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-655",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "655123456"
+      },
+      "expected": {
+        "country": "Malawi",
+        "kind": "ship",
+        "mid": 655,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-656",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "656123456"
+      },
+      "expected": {
+        "country": "Niger (Republic of the)",
+        "kind": "ship",
+        "mid": 656,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-657",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "657123456"
+      },
+      "expected": {
+        "country": "Nigeria (Federal Republic of)",
+        "kind": "ship",
+        "mid": 657,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-659",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "659123456"
+      },
+      "expected": {
+        "country": "Namibia (Republic of)",
+        "kind": "ship",
+        "mid": 659,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-660",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "660123456"
+      },
+      "expected": {
+        "country": "France - Reunion (French Department of)",
+        "kind": "ship",
+        "mid": 660,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-661",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "661123456"
+      },
+      "expected": {
+        "country": "Rwanda (Republic of)",
+        "kind": "ship",
+        "mid": 661,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-662",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "662123456"
+      },
+      "expected": {
+        "country": "Sudan (Republic of the)",
+        "kind": "ship",
+        "mid": 662,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-663",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "663123456"
+      },
+      "expected": {
+        "country": "Senegal (Republic of)",
+        "kind": "ship",
+        "mid": 663,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-664",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "664123456"
+      },
+      "expected": {
+        "country": "Seychelles (Republic of)",
+        "kind": "ship",
+        "mid": 664,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-665",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "665123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Saint Helena",
+        "kind": "ship",
+        "mid": 665,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-666",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "666123456"
+      },
+      "expected": {
+        "country": "Somalia (Federal Republic of)",
+        "kind": "ship",
+        "mid": 666,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-667",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "667123456"
+      },
+      "expected": {
+        "country": "Sierra Leone",
+        "kind": "ship",
+        "mid": 667,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-668",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "668123456"
+      },
+      "expected": {
+        "country": "Sao Tome and Principe (Democratic Republic of)",
+        "kind": "ship",
+        "mid": 668,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-669",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "669123456"
+      },
+      "expected": {
+        "country": "Eswatini (Kingdom of)",
+        "kind": "ship",
+        "mid": 669,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-670",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "670123456"
+      },
+      "expected": {
+        "country": "Chad (Republic of)",
+        "kind": "ship",
+        "mid": 670,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-671",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "671123456"
+      },
+      "expected": {
+        "country": "Togolese Republic",
+        "kind": "ship",
+        "mid": 671,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-672",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "672123456"
+      },
+      "expected": {
+        "country": "Tunisia",
+        "kind": "ship",
+        "mid": 672,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-674",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "674123456"
+      },
+      "expected": {
+        "country": "Tanzania (United Republic of)",
+        "kind": "ship",
+        "mid": 674,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-675",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "675123456"
+      },
+      "expected": {
+        "country": "Uganda (Republic of)",
+        "kind": "ship",
+        "mid": 675,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-676",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "676123456"
+      },
+      "expected": {
+        "country": "Democratic Republic of the Congo",
+        "kind": "ship",
+        "mid": 676,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-677",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "677123456"
+      },
+      "expected": {
+        "country": "Tanzania (United Republic of)",
+        "kind": "ship",
+        "mid": 677,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-678",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "678123456"
+      },
+      "expected": {
+        "country": "Zambia (Republic of)",
+        "kind": "ship",
+        "mid": 678,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-679",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "679123456"
+      },
+      "expected": {
+        "country": "Zimbabwe (Republic of)",
+        "kind": "ship",
+        "mid": 679,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-701",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "701123456"
+      },
+      "expected": {
+        "country": "Argentine Republic",
+        "kind": "ship",
+        "mid": 701,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-710",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "710123456"
+      },
+      "expected": {
+        "country": "Brazil (Federative Republic of)",
+        "kind": "ship",
+        "mid": 710,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-720",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "720123456"
+      },
+      "expected": {
+        "country": "Bolivia (Plurinational State of)",
+        "kind": "ship",
+        "mid": 720,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-725",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "725123456"
+      },
+      "expected": {
+        "country": "Chile",
+        "kind": "ship",
+        "mid": 725,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-730",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "730123456"
+      },
+      "expected": {
+        "country": "Colombia (Republic of)",
+        "kind": "ship",
+        "mid": 730,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-735",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "735123456"
+      },
+      "expected": {
+        "country": "Ecuador",
+        "kind": "ship",
+        "mid": 735,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-740",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "740123456"
+      },
+      "expected": {
+        "country": "United Kingdom of Great Britain and Northern Ireland - Falkland Islands (Malvinas)",
+        "kind": "ship",
+        "mid": 740,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-745",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "745123456"
+      },
+      "expected": {
+        "country": "France - Guiana (French Department of)",
+        "kind": "ship",
+        "mid": 745,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-750",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "750123456"
+      },
+      "expected": {
+        "country": "Guyana",
+        "kind": "ship",
+        "mid": 750,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-755",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "755123456"
+      },
+      "expected": {
+        "country": "Paraguay (Republic of)",
+        "kind": "ship",
+        "mid": 755,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-760",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "760123456"
+      },
+      "expected": {
+        "country": "Peru",
+        "kind": "ship",
+        "mid": 760,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-765",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "765123456"
+      },
+      "expected": {
+        "country": "Suriname (Republic of)",
+        "kind": "ship",
+        "mid": 765,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-770",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "770123456"
+      },
+      "expected": {
+        "country": "Uruguay (Eastern Republic of)",
+        "kind": "ship",
+        "mid": 770,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    },
+    {
+      "id": "mid-775",
+      "source": "itu-mid-table",
+      "description": "",
+      "input": {
+        "mmsi": "775123456"
+      },
+      "expected": {
+        "country": "Venezuela (Bolivarian Republic of)",
+        "kind": "ship",
+        "mid": 775,
+        "is_coast": false,
+        "builtin_station": null
+      },
+      "req": ["PAR-04", "PAR-07", "ENR-03"]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+asn1_type,label,kind,unit,scale,decimals
+FANSAircraftFlightIdentification,Flight ID,value,,,
+FANSAircraftType,Aircraft type,value,,,
+FANSAirport,Airport,value,,,
+FANSAirportDeparture,Departure airport,value,,,
+FANSAirportDestination,Destination airport,value,,,
+FANSAirwayIdentifier,Airway ID,value,,,
+FANSAirwayIntercept,Airway intercept,value,,,
+FANSAltimeterEnglish,Altimeter,number,inHg,0.01,2
+FANSAltimeterMetric,Altimeter,number,hPa,0.1,1
+FANSAltitudeFlightLevel,Flight level,value,,,
+FANSAltitudeFlightLevelMetric,Flight level,number,m,10,0
+FANSAltitudeGNSSFeet,Altitude (GNSS),number,ft,1,0
+FANSAltitudeGNSSMeters,Altitude (GNSS),number,m,1,0
+FANSAltitudeQFE,Altitude (QFE),number,ft,10,0
+FANSAltitudeQFEMeters,Altitude (QFE),number,m,1,0
+FANSAltitudeQNH,Altitude (QNH),number,ft,10,0
+FANSAltitudeQNHMeters,Altitude (QNH),number,m,1,0
+FANSAltitudeRestriction,Altitude restriction,structure,,,
+FANSATCDownlinkMessage,CPDLC Downlink Message,structure,,,
+FANSATCMessageHeader,Header,structure,,,
+FANSATCUplinkMessage,CPDLC Uplink Message,structure,,,
+FANSATISCode,ATIS code,value,,,
+FANSATWAlongTrackWaypointSequence,Along-track waypoints,structure,,,
+FANSATWAltitudeTolerance,ATW altitude tolerance,enumerated,,,
+FANSATWDistanceTolerance,ATW distance tolerance,enumerated,,,
+FANSBeaconCode,Code,squawk code,,,
+FANSCOMNAVApproachEquipmentAvailable,COMM/NAV/Approach equipment available,value,,,
+FANSCOMNAVEquipmentStatus,COMM/NAV equipment status,enumerated,,,
+FANSCOMNAVEquipmentStatusSequence,COMM/NAV Equipment status list,structure,,,
+FANSDegreeIncrement,Degree increment,number,deg,1,0
+FANSDegreesMagnetic,Degrees (magnetic),number,deg,1,0
+FANSDegreesTrue,Degrees (true),number,deg,1,0
+FANSDirection,Direction,enumerated,,,
+FANSDistanceKm,Distance,number,km,1,0
+FANSDistanceNm,Distance,number,nm,0.1,1
+FANSDistanceOffsetKm,Offset,number,km,1,0
+FANSDistanceOffsetNm,Offset,number,nm,1,0
+FANSEFCtime,Expect further clearance at,time hh:mm,,,
+FANSErrorInformation,Error information,enumerated,,,
+FANSFixName,Fix,value,,,
+FANSFixNext,Next fix,structure,,,
+FANSFixNextPlusOne,Next+1 fix,structure,,,
+FANSFrequencyDeparture,Departure frequency,number,MHz,0.001,3
+FANSFrequencyhf,HF,number,kHz,1,0
+FANSFrequencysatchannel,Satcom channel,value,,,
+FANSFrequencyuhf,UHF,number,MHz,0.001,3
+FANSFrequencyvhf,VHF,number,MHz,0.001,3
+FANSHoldatwaypointSequence,Holding points,structure,,,
+FANSHoldatwaypointSpeedHigh,Holding speed (max),structure,,,
+FANSHoldatwaypointSpeedLow,Holding speed (min),structure,,,
+FANSICAOfacilityDesignation,Facility designation,value,,,
+FANSICAOFacilityFunction,Facility function,enumerated,,,
+FANSICAOFacilityName,Facility Name,value,,,
+FANSIcing,Icing,enumerated,,,
+FANSInterceptCourseFromSequence,Intercept courses,structure,,,
+FANSLatitude,Latitude,latitude,,,
+FANSLatitudeDegrees,Latitude,number,deg,1,0
+FANSLatitudeDirection,Direction,enumerated,,,
+FANSLatitudeLongitudeSequence,Coordinate list,structure,,,
+FANSLegDistanceEnglish,Leg distance,number,nm,0.1,1
+FANSLegDistanceMetric,Leg distance,number,km,1,0
+FANSLegTime,Leg time,number,min,0.1,1
+FANSLongitude,Longitude,longitude,,,
+FANSLongitudeDegrees,Longitude,number,deg,1,0
+FANSLongitudeDirection,Direction,enumerated,,,
+FANSMsgIdentificationNumber,Msg ID,value,,,
+FANSMsgReferenceNumber,Msg Ref,value,,,
+FANSNavaid,Navaid,value,,,
+FANSPDCrevision,Revision number,value,,,
+FANSProcedure,Procedure name,value,,,
+FANSProcedureApproach,Approach procedure,structure,,,
+FANSProcedureArrival,Arrival procedure,structure,,,
+FANSProcedureDeparture,Departure procedure,structure,,,
+FANSProcedureTransition,Procedure transition,value,,,
+FANSProcedureType,Procedure type,enumerated,,,
+FANSPublishedIdentifier,Published identifier,structure,,,
+FANSRemainingFuel,Remaining fuel,time hh:mm,,,
+FANSRemainingSouls,Persons on board,value,,,
+FANSReportedWaypointAltitude,Reported waypoint altitude,structure,,,
+FANSReportedWaypointPosition,Reported waypoint position,structure,,,
+FANSReportedWaypointTime,Reported waypoint time,time hh:mm,,,
+FANSRouteInformationSequence,Route,structure,,,
+FANSRTARequiredTimeArrivalSequence,Required arrival times,structure,,,
+FANSRTATolerance,RTA tolerance,number,min,0.1,1
+FANSRunwayArrival,Arrival runway,structure,,,
+FANSRunwayConfiguration,Runway configuration,enumerated,,,
+FANSRunwayDeparture,Departure runway,structure,,,
+FANSRunwayDirection,Runway direction,value,,,
+FANSSpeedGround,Ground speed,number,kts,10,0
+FANSSpeedGroundMetric,Ground speed,number,km/h,10,0
+FANSSpeedIndicated,Indicated airspeed,number,kts,10,0
+FANSSpeedIndicatedMetric,Indicated airspeed,number,km/h,10,0
+FANSSpeedMach,Mach number,number,,0.01,2
+FANSSpeedMachLarge,Mach number,number,,0.01,2
+FANSSpeedTrue,True airspeed,number,kts,10,0
+FANSSpeedTrueMetric,True airspeed,number,km/h,10,0
+FANSSSREquipmentAvailable,SSR equipment available,enumerated,,,
+FANSSupplementaryInformation,Supplementary information,value,,,
+FANSTemperatureC,Temperature,number,C,1,0
+FANSTemperatureF,Temperature,number,F,1,0
+FANSTime,Time,time hh:mm,,,
+FANSTimeAtPositionCurrent,Time at current position,time hh:mm,,,
+FANSTimeDepartureEdct,Estimated departure time,time hh:mm,,,
+FANSTimeEtaAtFixNext,ETA at next fix,time hh:mm,,,
+FANSTimeEtaDestination,ETA at destination,time hh:mm,,,
+FANSTimestamp,Timestamp,time hh:mm:ss,,,
+FANSTimeTolerance,Time tolerance,enumerated,,,
+FANSToFrom,To/From,enumerated,,,
+FANSTp4table,TP4 table,enumerated,,,
+FANSTrackAngle,Track angle,structure,,,
+FANSTrackName,Track name,value,,,
+FANSTrueheading,True heading,structure,,,
+FANSTurbulence,Turbulence,enumerated,,,
+FANSVersionNumber,Version number,value,,,
+FANSVerticalDirection,Vertical direction,enumerated,,,
+FANSVerticalRateEnglish,Vertical rate,number,ft/min,100,0
+FANSVerticalRateMetric,Vertical rate,number,m/min,10,0
+FANSWaypointSpeedAltitudesequence,"Waypoints, speeds and altitudes",structure,,,
+FANSWindDirection,Wind direction,number,deg,1,0
+FANSWindSpeedEnglish,Wind speed,number,kts,1,0
+FANSWindSpeedMetric,Wind speed,number,km/h,1,0

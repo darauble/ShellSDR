@@ -1,0 +1,1679 @@
+{
+  "suite": "codewords",
+  "description": "The 10-bit error-detecting code (ITU-R M.493 sec 3): every symbol 0..127 with its codeword, plus the DX/RX phasing and dot-pattern codewords.",
+  "normative": true,
+  "compare": {
+    "method": "Exact. Codeword bit i is the i-th bit transmitted. Bits 0..6 = symbol value, LSB first; bits 7..9 = number of 0 bits among bits 0..6, MSB first."
+  },
+  "special": {
+    "dx_codeword": 637,
+    "dot_pattern_codeword": 682,
+    "rx_codewords_for_symbols_104_to_111": [232, 873, 874, 363, 876, 365, 366, 623]
+  },
+  "cases": [
+    {
+      "id": "symbol-0",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 0
+      },
+      "expected": {
+        "codeword": 896,
+        "bits_in_transmission_order": "0000000111"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-1",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 1
+      },
+      "expected": {
+        "codeword": 385,
+        "bits_in_transmission_order": "1000000110"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-2",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 2
+      },
+      "expected": {
+        "codeword": 386,
+        "bits_in_transmission_order": "0100000110"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-3",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 3
+      },
+      "expected": {
+        "codeword": 643,
+        "bits_in_transmission_order": "1100000101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-4",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 4
+      },
+      "expected": {
+        "codeword": 388,
+        "bits_in_transmission_order": "0010000110"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-5",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 5
+      },
+      "expected": {
+        "codeword": 645,
+        "bits_in_transmission_order": "1010000101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-6",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 6
+      },
+      "expected": {
+        "codeword": 646,
+        "bits_in_transmission_order": "0110000101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-7",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 7
+      },
+      "expected": {
+        "codeword": 135,
+        "bits_in_transmission_order": "1110000100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-8",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 8
+      },
+      "expected": {
+        "codeword": 392,
+        "bits_in_transmission_order": "0001000110"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-9",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 9
+      },
+      "expected": {
+        "codeword": 649,
+        "bits_in_transmission_order": "1001000101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-10",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 10
+      },
+      "expected": {
+        "codeword": 650,
+        "bits_in_transmission_order": "0101000101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-11",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 11
+      },
+      "expected": {
+        "codeword": 139,
+        "bits_in_transmission_order": "1101000100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-12",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 12
+      },
+      "expected": {
+        "codeword": 652,
+        "bits_in_transmission_order": "0011000101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-13",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 13
+      },
+      "expected": {
+        "codeword": 141,
+        "bits_in_transmission_order": "1011000100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-14",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 14
+      },
+      "expected": {
+        "codeword": 142,
+        "bits_in_transmission_order": "0111000100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-15",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 15
+      },
+      "expected": {
+        "codeword": 783,
+        "bits_in_transmission_order": "1111000011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-16",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 16
+      },
+      "expected": {
+        "codeword": 400,
+        "bits_in_transmission_order": "0000100110"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-17",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 17
+      },
+      "expected": {
+        "codeword": 657,
+        "bits_in_transmission_order": "1000100101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-18",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 18
+      },
+      "expected": {
+        "codeword": 658,
+        "bits_in_transmission_order": "0100100101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-19",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 19
+      },
+      "expected": {
+        "codeword": 147,
+        "bits_in_transmission_order": "1100100100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-20",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 20
+      },
+      "expected": {
+        "codeword": 660,
+        "bits_in_transmission_order": "0010100101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-21",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 21
+      },
+      "expected": {
+        "codeword": 149,
+        "bits_in_transmission_order": "1010100100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-22",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 22
+      },
+      "expected": {
+        "codeword": 150,
+        "bits_in_transmission_order": "0110100100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-23",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 23
+      },
+      "expected": {
+        "codeword": 791,
+        "bits_in_transmission_order": "1110100011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-24",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 24
+      },
+      "expected": {
+        "codeword": 664,
+        "bits_in_transmission_order": "0001100101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-25",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 25
+      },
+      "expected": {
+        "codeword": 153,
+        "bits_in_transmission_order": "1001100100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-26",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 26
+      },
+      "expected": {
+        "codeword": 154,
+        "bits_in_transmission_order": "0101100100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-27",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 27
+      },
+      "expected": {
+        "codeword": 795,
+        "bits_in_transmission_order": "1101100011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-28",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 28
+      },
+      "expected": {
+        "codeword": 156,
+        "bits_in_transmission_order": "0011100100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-29",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 29
+      },
+      "expected": {
+        "codeword": 797,
+        "bits_in_transmission_order": "1011100011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-30",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 30
+      },
+      "expected": {
+        "codeword": 798,
+        "bits_in_transmission_order": "0111100011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-31",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 31
+      },
+      "expected": {
+        "codeword": 287,
+        "bits_in_transmission_order": "1111100010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-32",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 32
+      },
+      "expected": {
+        "codeword": 416,
+        "bits_in_transmission_order": "0000010110"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-33",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 33
+      },
+      "expected": {
+        "codeword": 673,
+        "bits_in_transmission_order": "1000010101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-34",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 34
+      },
+      "expected": {
+        "codeword": 674,
+        "bits_in_transmission_order": "0100010101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-35",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 35
+      },
+      "expected": {
+        "codeword": 163,
+        "bits_in_transmission_order": "1100010100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-36",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 36
+      },
+      "expected": {
+        "codeword": 676,
+        "bits_in_transmission_order": "0010010101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-37",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 37
+      },
+      "expected": {
+        "codeword": 165,
+        "bits_in_transmission_order": "1010010100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-38",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 38
+      },
+      "expected": {
+        "codeword": 166,
+        "bits_in_transmission_order": "0110010100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-39",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 39
+      },
+      "expected": {
+        "codeword": 807,
+        "bits_in_transmission_order": "1110010011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-40",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 40
+      },
+      "expected": {
+        "codeword": 680,
+        "bits_in_transmission_order": "0001010101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-41",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 41
+      },
+      "expected": {
+        "codeword": 169,
+        "bits_in_transmission_order": "1001010100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-42",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 42
+      },
+      "expected": {
+        "codeword": 170,
+        "bits_in_transmission_order": "0101010100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-43",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 43
+      },
+      "expected": {
+        "codeword": 811,
+        "bits_in_transmission_order": "1101010011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-44",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 44
+      },
+      "expected": {
+        "codeword": 172,
+        "bits_in_transmission_order": "0011010100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-45",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 45
+      },
+      "expected": {
+        "codeword": 813,
+        "bits_in_transmission_order": "1011010011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-46",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 46
+      },
+      "expected": {
+        "codeword": 814,
+        "bits_in_transmission_order": "0111010011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-47",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 47
+      },
+      "expected": {
+        "codeword": 303,
+        "bits_in_transmission_order": "1111010010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-48",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 48
+      },
+      "expected": {
+        "codeword": 688,
+        "bits_in_transmission_order": "0000110101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-49",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 49
+      },
+      "expected": {
+        "codeword": 177,
+        "bits_in_transmission_order": "1000110100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-50",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 50
+      },
+      "expected": {
+        "codeword": 178,
+        "bits_in_transmission_order": "0100110100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-51",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 51
+      },
+      "expected": {
+        "codeword": 819,
+        "bits_in_transmission_order": "1100110011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-52",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 52
+      },
+      "expected": {
+        "codeword": 180,
+        "bits_in_transmission_order": "0010110100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-53",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 53
+      },
+      "expected": {
+        "codeword": 821,
+        "bits_in_transmission_order": "1010110011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-54",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 54
+      },
+      "expected": {
+        "codeword": 822,
+        "bits_in_transmission_order": "0110110011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-55",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 55
+      },
+      "expected": {
+        "codeword": 311,
+        "bits_in_transmission_order": "1110110010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-56",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 56
+      },
+      "expected": {
+        "codeword": 184,
+        "bits_in_transmission_order": "0001110100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-57",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 57
+      },
+      "expected": {
+        "codeword": 825,
+        "bits_in_transmission_order": "1001110011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-58",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 58
+      },
+      "expected": {
+        "codeword": 826,
+        "bits_in_transmission_order": "0101110011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-59",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 59
+      },
+      "expected": {
+        "codeword": 315,
+        "bits_in_transmission_order": "1101110010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-60",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 60
+      },
+      "expected": {
+        "codeword": 828,
+        "bits_in_transmission_order": "0011110011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-61",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 61
+      },
+      "expected": {
+        "codeword": 317,
+        "bits_in_transmission_order": "1011110010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-62",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 62
+      },
+      "expected": {
+        "codeword": 318,
+        "bits_in_transmission_order": "0111110010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-63",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 63
+      },
+      "expected": {
+        "codeword": 575,
+        "bits_in_transmission_order": "1111110001"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-64",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 64
+      },
+      "expected": {
+        "codeword": 448,
+        "bits_in_transmission_order": "0000001110"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-65",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 65
+      },
+      "expected": {
+        "codeword": 705,
+        "bits_in_transmission_order": "1000001101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-66",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 66
+      },
+      "expected": {
+        "codeword": 706,
+        "bits_in_transmission_order": "0100001101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-67",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 67
+      },
+      "expected": {
+        "codeword": 195,
+        "bits_in_transmission_order": "1100001100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-68",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 68
+      },
+      "expected": {
+        "codeword": 708,
+        "bits_in_transmission_order": "0010001101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-69",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 69
+      },
+      "expected": {
+        "codeword": 197,
+        "bits_in_transmission_order": "1010001100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-70",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 70
+      },
+      "expected": {
+        "codeword": 198,
+        "bits_in_transmission_order": "0110001100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-71",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 71
+      },
+      "expected": {
+        "codeword": 839,
+        "bits_in_transmission_order": "1110001011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-72",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 72
+      },
+      "expected": {
+        "codeword": 712,
+        "bits_in_transmission_order": "0001001101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-73",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 73
+      },
+      "expected": {
+        "codeword": 201,
+        "bits_in_transmission_order": "1001001100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-74",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 74
+      },
+      "expected": {
+        "codeword": 202,
+        "bits_in_transmission_order": "0101001100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-75",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 75
+      },
+      "expected": {
+        "codeword": 843,
+        "bits_in_transmission_order": "1101001011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-76",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 76
+      },
+      "expected": {
+        "codeword": 204,
+        "bits_in_transmission_order": "0011001100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-77",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 77
+      },
+      "expected": {
+        "codeword": 845,
+        "bits_in_transmission_order": "1011001011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-78",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 78
+      },
+      "expected": {
+        "codeword": 846,
+        "bits_in_transmission_order": "0111001011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-79",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 79
+      },
+      "expected": {
+        "codeword": 335,
+        "bits_in_transmission_order": "1111001010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-80",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 80
+      },
+      "expected": {
+        "codeword": 720,
+        "bits_in_transmission_order": "0000101101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-81",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 81
+      },
+      "expected": {
+        "codeword": 209,
+        "bits_in_transmission_order": "1000101100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-82",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 82
+      },
+      "expected": {
+        "codeword": 210,
+        "bits_in_transmission_order": "0100101100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-83",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 83
+      },
+      "expected": {
+        "codeword": 851,
+        "bits_in_transmission_order": "1100101011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-84",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 84
+      },
+      "expected": {
+        "codeword": 212,
+        "bits_in_transmission_order": "0010101100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-85",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 85
+      },
+      "expected": {
+        "codeword": 853,
+        "bits_in_transmission_order": "1010101011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-86",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 86
+      },
+      "expected": {
+        "codeword": 854,
+        "bits_in_transmission_order": "0110101011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-87",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 87
+      },
+      "expected": {
+        "codeword": 343,
+        "bits_in_transmission_order": "1110101010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-88",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 88
+      },
+      "expected": {
+        "codeword": 216,
+        "bits_in_transmission_order": "0001101100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-89",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 89
+      },
+      "expected": {
+        "codeword": 857,
+        "bits_in_transmission_order": "1001101011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-90",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 90
+      },
+      "expected": {
+        "codeword": 858,
+        "bits_in_transmission_order": "0101101011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-91",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 91
+      },
+      "expected": {
+        "codeword": 347,
+        "bits_in_transmission_order": "1101101010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-92",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 92
+      },
+      "expected": {
+        "codeword": 860,
+        "bits_in_transmission_order": "0011101011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-93",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 93
+      },
+      "expected": {
+        "codeword": 349,
+        "bits_in_transmission_order": "1011101010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-94",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 94
+      },
+      "expected": {
+        "codeword": 350,
+        "bits_in_transmission_order": "0111101010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-95",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 95
+      },
+      "expected": {
+        "codeword": 607,
+        "bits_in_transmission_order": "1111101001"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-96",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 96
+      },
+      "expected": {
+        "codeword": 736,
+        "bits_in_transmission_order": "0000011101"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-97",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 97
+      },
+      "expected": {
+        "codeword": 225,
+        "bits_in_transmission_order": "1000011100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-98",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 98
+      },
+      "expected": {
+        "codeword": 226,
+        "bits_in_transmission_order": "0100011100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-99",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 99
+      },
+      "expected": {
+        "codeword": 867,
+        "bits_in_transmission_order": "1100011011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-100",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 100
+      },
+      "expected": {
+        "codeword": 228,
+        "bits_in_transmission_order": "0010011100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-101",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 101
+      },
+      "expected": {
+        "codeword": 869,
+        "bits_in_transmission_order": "1010011011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-102",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 102
+      },
+      "expected": {
+        "codeword": 870,
+        "bits_in_transmission_order": "0110011011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-103",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 103
+      },
+      "expected": {
+        "codeword": 359,
+        "bits_in_transmission_order": "1110011010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-104",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 104
+      },
+      "expected": {
+        "codeword": 232,
+        "bits_in_transmission_order": "0001011100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-105",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 105
+      },
+      "expected": {
+        "codeword": 873,
+        "bits_in_transmission_order": "1001011011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-106",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 106
+      },
+      "expected": {
+        "codeword": 874,
+        "bits_in_transmission_order": "0101011011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-107",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 107
+      },
+      "expected": {
+        "codeword": 363,
+        "bits_in_transmission_order": "1101011010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-108",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 108
+      },
+      "expected": {
+        "codeword": 876,
+        "bits_in_transmission_order": "0011011011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-109",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 109
+      },
+      "expected": {
+        "codeword": 365,
+        "bits_in_transmission_order": "1011011010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-110",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 110
+      },
+      "expected": {
+        "codeword": 366,
+        "bits_in_transmission_order": "0111011010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-111",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 111
+      },
+      "expected": {
+        "codeword": 623,
+        "bits_in_transmission_order": "1111011001"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-112",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 112
+      },
+      "expected": {
+        "codeword": 240,
+        "bits_in_transmission_order": "0000111100"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-113",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 113
+      },
+      "expected": {
+        "codeword": 881,
+        "bits_in_transmission_order": "1000111011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-114",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 114
+      },
+      "expected": {
+        "codeword": 882,
+        "bits_in_transmission_order": "0100111011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-115",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 115
+      },
+      "expected": {
+        "codeword": 371,
+        "bits_in_transmission_order": "1100111010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-116",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 116
+      },
+      "expected": {
+        "codeword": 884,
+        "bits_in_transmission_order": "0010111011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-117",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 117
+      },
+      "expected": {
+        "codeword": 373,
+        "bits_in_transmission_order": "1010111010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-118",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 118
+      },
+      "expected": {
+        "codeword": 374,
+        "bits_in_transmission_order": "0110111010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-119",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 119
+      },
+      "expected": {
+        "codeword": 631,
+        "bits_in_transmission_order": "1110111001"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-120",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 120
+      },
+      "expected": {
+        "codeword": 888,
+        "bits_in_transmission_order": "0001111011"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-121",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 121
+      },
+      "expected": {
+        "codeword": 377,
+        "bits_in_transmission_order": "1001111010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-122",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 122
+      },
+      "expected": {
+        "codeword": 378,
+        "bits_in_transmission_order": "0101111010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-123",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 123
+      },
+      "expected": {
+        "codeword": 635,
+        "bits_in_transmission_order": "1101111001"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-124",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 124
+      },
+      "expected": {
+        "codeword": 380,
+        "bits_in_transmission_order": "0011111010"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-125",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 125
+      },
+      "expected": {
+        "codeword": 637,
+        "bits_in_transmission_order": "1011111001"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-126",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 126
+      },
+      "expected": {
+        "codeword": 638,
+        "bits_in_transmission_order": "0111111001"
+      },
+      "req": ["DEC-03"]
+    },
+    {
+      "id": "symbol-127",
+      "source": "itu-table",
+      "description": "",
+      "input": {
+        "symbol": 127
+      },
+      "expected": {
+        "codeword": 127,
+        "bits_in_transmission_order": "1111111000"
+      },
+      "req": ["DEC-03"]
+    }
+  ]
+}

@@ -1,0 +1,3892 @@
+{
+  "suite": "parse",
+  "description": "Message body symbols (format specifier twice, data, EOS, ECC; 255 = garbled) -> parsed message fields, severity, ECC check and content id.",
+  "normative": true,
+  "compare": {
+    "method": "Parse input.symbols; compare every key of `expected`. null means the field MUST be absent. Keys listed in a case's non_normative_fields are informative only.",
+    "float_abs_tolerance": 1e-09
+  },
+  "cases": [
+    {
+      "id": "individual-safety",
+      "source": "itu-sample",
+      "description": "Individual call, SAFETY, telecommand test (118), EOS REQ.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 101,
+          "computed": 101,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "584c203a0db32c6b"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "allships-safety",
+      "source": "itu-sample",
+      "description": "All-ships call, SAFETY, with channel/frequency element.",
+      "input": {
+        "symbols": [116, 116, 108, 0, 26, 18, 10, 20, 109, 126, 2, 71, 40, 2, 5, 40, 127, 32, 127, 127]
+      },
+      "expected": {
+        "format": "allships",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002618102",
+          "kind": "coast",
+          "mid": 261
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 2714,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "freq",
+            "khz": 2054,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 32,
+          "computed": 32,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "2efd7ccc496c4f27"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "individual-position",
+      "source": "itu-sample",
+      "description": "Individual ROUTINE call carrying a position (55 prefix).",
+      "input": {
+        "symbols": [120, 120, 0, 21, 91, 0, 0, 100, 22, 6, 12, 0, 0, 109, 126, 55, 5, 23, 50, 1, 43, 117, 21]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "220612000",
+          "kind": "ship",
+          "mid": 220
+        },
+        "to": {
+          "digits": "002191000",
+          "kind": "coast",
+          "mid": 219
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": {
+          "lat": 52.583333333333336,
+          "lon": 1.7166666666666668,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 21,
+          "computed": 21,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "5f5b34546a8fb251"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "individual-freq-rx-tx",
+      "source": "itu-sample",
+      "description": "Individual call with RX and TX frequencies (6-digit form).",
+      "input": {
+        "symbols": [120, 120, 27, 34, 20, 84, 0, 108, 27, 33, 42, 41, 0, 109, 126, 1, 92, 25, 1, 92, 25, 117, 50]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "273420840",
+          "kind": "ship",
+          "mid": 273
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 1922.5,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "freq",
+            "khz": 1922.5,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 50,
+          "computed": 50,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "1693ed914a9874b5"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "individual-freq-rx-only",
+      "source": "itu-sample",
+      "description": "Individual call with an RX frequency only (TX = 126 no-info).",
+      "input": {
+        "symbols": [120, 120, 27, 34, 27, 50, 0, 108, 27, 34, 37, 66, 0, 109, 126, 2, 72, 30, 126, 126, 126, 117, 22]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "273437660",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "273427500",
+          "kind": "ship",
+          "mid": 273
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 2723,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": null
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 22,
+          "computed": 22,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "f732150610107d3d"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "individual-hfmf-channel-a",
+      "source": "itu-sample",
+      "description": "Individual call with HF/MF channel numbers.",
+      "input": {
+        "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 30, 2, 66, 30, 2, 66, 117, 114]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "hfmf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 266,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "hfmf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 266,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 114,
+          "computed": 114,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "8b7a805f124c34a5"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "individual-hfmf-channel-b",
+      "source": "itu-sample",
+      "description": "Individual call with different RX/TX HF/MF channels.",
+      "input": {
+        "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 34, 42, 72, 34, 42, 73, 117, 115]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "hfmf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 44272,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "hfmf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 44273,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 115,
+          "computed": 115,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "5e0ed6db275e0b75"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "distress-alert",
+      "source": "itu-sample",
+      "description": "Distress alert: nature 107, position, event time, telecommand.",
+      "input": {
+        "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 107,
+        "distress_telecommand": null,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 63,
+          "computed": 63,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "358bf156812f2867"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "allships-distress-relay",
+      "source": "itu-sample",
+      "description": "All-ships distress relay from a coast station (man overboard).",
+      "input": {
+        "symbols": [116, 116, 112, 0, 25, 70, 0, 0, 112, 25, 73, 88, 0, 0, 110, 7, 60, 30, 32, 50, 18, 17, 109, 127, 107]
+      },
+      "expected": {
+        "format": "allships",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "to": null,
+        "distress_mmsi": {
+          "digits": "257388000",
+          "kind": "ship",
+          "mid": 257
+        },
+        "distress_nature": 110,
+        "distress_telecommand": 112,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 76.05,
+          "lon": 32.833333333333336,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "18:17",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 107,
+          "computed": 107,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "3c83d7a1beb6aee9"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "garbled-short",
+      "source": "itu-sample",
+      "description": "Damaged reception: garbled (255) symbols and wrong length.",
+      "input": {
+        "symbols": [120, 120, 0, 23, 71, 0, 0, 108, 53, 80, 4, 9, 0, 255, 255, 127, 255, 127, 127]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "538004090",
+          "kind": "ship",
+          "mid": 538
+        },
+        "to": {
+          "digits": "002371000",
+          "kind": "coast",
+          "mid": 237
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": null,
+          "computed": null,
+          "ok": false
+        },
+        "garbled_count": 3,
+        "content_id": "0ca959a75f6377fb"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "area-call",
+      "source": "itu-sample",
+      "description": "Geographic area call.",
+      "input": {
+        "symbols": [102, 102, 6, 0, 3, 8, 14, 108, 0, 21, 91, 0, 0, 109, 126, 1, 75, 80, 2, 10, 20, 127, 45]
+      },
+      "expected": {
+        "format": "area",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002191000",
+          "kind": "coast",
+          "mid": 219
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": {
+          "corner_lat": 60,
+          "corner_lon": 3,
+          "lat_quad": "N",
+          "lon_quad": "E",
+          "d_lat": 8,
+          "d_lon": 14
+        },
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 1758,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "freq",
+            "khz": 2102,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 45,
+          "computed": 45,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "affe57559e5bd78b"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "area-call-sw",
+      "source": "synthetic",
+      "description": "area-call moved to the SW quadrant (quadrant digit 3): corner latitude and longitude negative.",
+      "input": {
+        "symbols": [102, 102, 36, 0, 3, 8, 14, 108, 0, 21, 91, 0, 0, 109, 126, 1, 75, 80, 2, 10, 20, 127, 15]
+      },
+      "expected": {
+        "format": "area",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002191000",
+          "kind": "coast",
+          "mid": 219
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": {
+          "corner_lat": -60,
+          "corner_lon": -3,
+          "lat_quad": "S",
+          "lon_quad": "W",
+          "d_lat": 8,
+          "d_lon": 14
+        },
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 1758,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "freq",
+            "khz": 2102,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 15,
+          "computed": 15,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "c5114f6e4b10bc23"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "real-recording",
+      "source": "real-recording",
+      "description": "Symbols decoded from the sample WAV recording (8414.5 kHz).",
+      "input": {
+        "symbols": [120, 120, 0, 27, 11, 0, 10, 108, 35, 20, 3, 67, 50, 118, 126, 126, 126, 126, 126, 126, 126, 117, 54]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "352003675",
+          "kind": "ship",
+          "mid": 352
+        },
+        "to": {
+          "digits": "002711001",
+          "kind": "coast",
+          "mid": 271
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 54,
+          "computed": 54,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "c8bb2f5a6dad5233"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "common-interest",
+      "source": "synthetic",
+      "description": "Format 114 (group with common interest) built from individual-safety.",
+      "input": {
+        "symbols": [114, 114, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 111]
+      },
+      "expected": {
+        "format": "common",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 111,
+          "computed": 111,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "7956d4e9e9428711"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "individual-auto",
+      "source": "synthetic",
+      "description": "Format 123 (individual, automatic service).",
+      "input": {
+        "symbols": [123, 123, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 102]
+      },
+      "expected": {
+        "format": "individual_auto",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 102,
+          "computed": 102,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "505e1d48eb302414"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "urgency-category",
+      "source": "synthetic",
+      "description": "Individual call with category URGENCY (110).",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 110, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 103]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "urgency",
+        "severity": "urgency",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 103,
+          "computed": 103,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "1b3787298a855daf"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "routine-category",
+      "source": "synthetic",
+      "description": "Individual call with category ROUTINE (100).",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 100, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 109]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 109,
+          "computed": 109,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "1518c13bbe2b20ab"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "group-mmsi",
+      "source": "synthetic",
+      "description": "TO is a group MMSI (one leading zero).",
+      "input": {
+        "symbols": [120, 120, 2, 11, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 44]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "021152700",
+          "kind": "group",
+          "mid": 211
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 44,
+          "computed": 44,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "2342fbcf627495d1"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "eos-ack",
+      "source": "synthetic",
+      "description": "End of sequence ACK (122).",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 122, 106]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "ack",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 106,
+          "computed": 106,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "5863373a0dc63261"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "eos-plain",
+      "source": "synthetic",
+      "description": "End of sequence 127.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 127, 111]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 111,
+          "computed": 111,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "586e1a3a0dd0089f"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "tc1-no-info",
+      "source": "synthetic",
+      "description": "First telecommand is 126 (no information) -> absent.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 126, 126, 126, 126, 126, 126, 126, 126, 117, 109]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 109,
+          "computed": 109,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "a49782d6bd878c8b"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "distress-no-time",
+      "source": "synthetic",
+      "description": "Distress alert with event time 88 88 (not provided).",
+      "input": {
+        "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 88, 88, 109, 127, 48]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 107,
+        "distress_telecommand": null,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 48,
+          "computed": 48,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "c9c9d9ad098e7cab"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "distress-no-position",
+      "source": "synthetic",
+      "description": "Distress alert with position 99 99 99 99 99 (not provided).",
+      "input": {
+        "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 99, 99, 99, 99, 99, 15, 0, 109, 127, 23]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 107,
+        "distress_telecommand": null,
+        "subsequent_comm": 109,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 23,
+          "computed": 23,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "d1901777b3477f93"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "position-sw",
+      "source": "synthetic",
+      "description": "Position in the SW quadrant (signed negative lat/lon).",
+      "input": {
+        "symbols": [120, 120, 0, 21, 91, 0, 0, 100, 22, 6, 12, 0, 0, 109, 126, 55, 35, 23, 50, 1, 43, 117, 51]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "220612000",
+          "kind": "ship",
+          "mid": 220
+        },
+        "to": {
+          "digits": "002191000",
+          "kind": "coast",
+          "mid": 219
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": {
+          "lat": -52.583333333333336,
+          "lon": -1.7166666666666668,
+          "lat_quad": "S",
+          "lon_quad": "W"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 51,
+          "computed": 51,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "fae5a5534ec8f78d"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "vhf-channel",
+      "source": "synthetic",
+      "description": "VHF channel 16 (first symbol 90 -> channel form).",
+      "input": {
+        "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 90, 0, 16, 90, 0, 16, 117, 114]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "vhf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 16,
+            "vhf_mode": 0
+          },
+          "tx": {
+            "kind": "vhf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 16,
+            "vhf_mode": 0
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 114,
+          "computed": 114,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "d1de084c77bfdadd"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "freq-7-digit",
+      "source": "synthetic",
+      "description": "RX element 41 22 55 00 in the 7-digit form (HM 4): 12255.00 kHz (F-06). The TX element that follows, 92 25, has HM 9 with TM 2: kind unknown (F-15).",
+      "input": {
+        "symbols": [120, 120, 27, 34, 20, 84, 0, 108, 27, 33, 42, 41, 0, 109, 126, 41, 22, 55, 0, 92, 25, 117, 127]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "273420840",
+          "kind": "ship",
+          "mid": 273
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 12255,
+            "seven_digit": true,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "unknown",
+            "khz": null,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 127,
+          "computed": 127,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "3981e6aee23a2fd1"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "freq-7-digit-rx-tx",
+      "source": "synthetic",
+      "description": "Two 7-digit elements (four symbols each): RX 12255.00 kHz, TX 12355.50 kHz (F-06).",
+      "input": {
+        "symbols": [120, 120, 27, 34, 20, 84, 0, 108, 27, 33, 42, 41, 0, 113, 126, 41, 22, 55, 0, 41, 23, 55, 50, 117, 29]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "273420840",
+          "kind": "ship",
+          "mid": 273
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 113,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 12255,
+            "seven_digit": true,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "freq",
+            "khz": 12355.5,
+            "seven_digit": true,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 29,
+          "computed": 29,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "0e69f456893ea225"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "vhf-channel-simplex",
+      "source": "synthetic",
+      "description": "VHF channel element 90 10 16: digit M = 1 (ship transmit frequency as simplex), channel 1016 (F-15).",
+      "input": {
+        "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 90, 10, 16, 126, 126, 126, 117, 76]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "vhf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 1016,
+            "vhf_mode": 1
+          },
+          "tx": null
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 76,
+          "computed": 76,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "8dd7450693dd33b5"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "vhf-tm-nonzero",
+      "source": "synthetic",
+      "description": "Element 91 0 16: HM 9 with TM 1 is not defined: kind unknown (F-15).",
+      "input": {
+        "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 91, 0, 16, 126, 126, 126, 117, 71]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "unknown",
+            "khz": null,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": null
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 71,
+          "computed": 71,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "4ebbd94d41f09177"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "freq-m586",
+      "source": "synthetic",
+      "description": "Element 80 12 34: HM 8, ITU-R M.586 equipment: kind m586, no value (F-15).",
+      "input": {
+        "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 80, 12, 34, 126, 126, 126, 117, 114]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "m586",
+            "khz": null,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": null
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 114,
+          "computed": 114,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "6eab5fc787f61889"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "freq-hm-undefined",
+      "source": "synthetic",
+      "description": "Element 61 0 0: HM 6 is not defined (would be 6.1 MHz-class above 30 MHz): kind unknown, not a frequency (F-15).",
+      "input": {
+        "symbols": [120, 120, 0, 25, 70, 0, 0, 108, 0, 25, 70, 0, 0, 109, 126, 61, 0, 0, 126, 126, 126, 117, 49]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "unknown",
+            "khz": null,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": null
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 49,
+          "computed": 49,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "beff661534df052b"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "self-cancel",
+      "source": "synthetic",
+      "description": "All-ships distress acknowledgement (110) whose distress identity equals the sender: self-cancel (sec 8.6, Table A1-4.2).",
+      "input": {
+        "symbols": [116, 116, 112, 25, 89, 99, 11, 90, 110, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 87]
+      },
+      "expected": {
+        "format": "allships",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "distress_nature": 107,
+        "distress_telecommand": 110,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": true,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 87,
+          "computed": 87,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "97e632fd542d1931"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "allships-distress-ack",
+      "source": "synthetic",
+      "description": "allships-distress-relay with distress telecommand 110: an acknowledgement, not a relay (F-12).",
+      "input": {
+        "symbols": [116, 116, 112, 0, 25, 70, 0, 0, 110, 25, 73, 88, 0, 0, 110, 7, 60, 30, 32, 50, 18, 17, 109, 127, 117]
+      },
+      "expected": {
+        "format": "allships",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "to": null,
+        "distress_mmsi": {
+          "digits": "257388000",
+          "kind": "ship",
+          "mid": 257
+        },
+        "distress_nature": 110,
+        "distress_telecommand": 110,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 76.05,
+          "lon": 32.833333333333336,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "18:17",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 117,
+          "computed": 117,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "6a2c73f924d41d71"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "mob-relay-own-id",
+      "source": "synthetic",
+      "description": "Individual distress alert relay (112) from a man overboard device in closed loop: distress identity = sender = MOB identity 972123456. Not a self-cancel (sec 8.4, Table A1-4.3).",
+      "input": {
+        "symbols": [120, 120, 23, 0, 12, 34, 50, 112, 97, 21, 23, 45, 60, 112, 97, 21, 23, 45, 60, 110, 6, 22, 80, 6, 13, 15, 0, 126, 117, 82]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "972123456",
+          "kind": "mob",
+          "mid": null
+        },
+        "to": {
+          "digits": "230012345",
+          "kind": "ship",
+          "mid": 230
+        },
+        "distress_mmsi": {
+          "digits": "972123456",
+          "kind": "mob",
+          "mid": null
+        },
+        "distress_nature": 110,
+        "distress_telecommand": 112,
+        "subsequent_comm": null,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 82,
+          "computed": 82,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "0afd834a2a2c302d"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "distress-epirb-legacy",
+      "source": "synthetic",
+      "description": "Distress alert with nature 112 (EPIRB emission, M.493-15 only): decoded as legacy (F-21).",
+      "input": {
+        "symbols": [112, 112, 25, 89, 99, 11, 90, 112, 6, 22, 80, 6, 13, 15, 0, 126, 127, 55]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 112,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 55,
+          "computed": 55,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "cb1737b6479cdb7b"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "position-request",
+      "source": "synthetic",
+      "description": "Position request: first telecommand 121, message 2 = six 126 (Pos3), EOS 117 (Table A1-4.7).",
+      "input": {
+        "symbols": [120, 120, 22, 6, 12, 0, 0, 108, 0, 21, 91, 0, 0, 121, 126, 126, 126, 126, 126, 126, 126, 117, 52]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002191000",
+          "kind": "coast",
+          "mid": 219
+        },
+        "to": {
+          "digits": "220612000",
+          "kind": "ship",
+          "mid": 220
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 121,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 52,
+          "computed": 52,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "3565436ad9ee0bbb"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "position-ack",
+      "source": "synthetic",
+      "description": "Position acknowledgement: Pos4 (Pos1 + 126) and message 3 UTC 15:00, EOS 122 (F-13). Formerly decoded as 6228.00 kHz.",
+      "input": {
+        "symbols": [120, 120, 0, 21, 91, 0, 0, 108, 22, 6, 12, 0, 0, 121, 126, 6, 22, 80, 6, 13, 126, 15, 0, 122, 1]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "220612000",
+          "kind": "ship",
+          "mid": 220
+        },
+        "to": {
+          "digits": "002191000",
+          "kind": "coast",
+          "mid": 219
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": 121,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "ack",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 1,
+          "computed": 1,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "e9e1d455892629e1"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "position-refused",
+      "source": "synthetic",
+      "description": "Position acknowledgement refusing the request: six 126, EOS 122 (M.493-16 Table A1-7).",
+      "input": {
+        "symbols": [120, 120, 0, 21, 91, 0, 0, 108, 22, 6, 12, 0, 0, 121, 126, 126, 126, 126, 126, 126, 126, 122, 59]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "220612000",
+          "kind": "ship",
+          "mid": 220
+        },
+        "to": {
+          "digits": "002191000",
+          "kind": "coast",
+          "mid": 219
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": true,
+        "event_time": null,
+        "tc1": 121,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "ack",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 59,
+          "computed": 59,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "7e5cdfa9e07e36b1"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "distress-cut-no-eos",
+      "source": "synthetic",
+      "description": "Distress alert cut off before its EOS (the receiver gave up at its character limit): recorded, no EOS and no ECC, and no alert (F-27).",
+      "input": {
+        "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 107,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": null,
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": null,
+          "computed": null,
+          "ok": false
+        },
+        "garbled_count": 0,
+        "content_id": "ae8054e608e392c1"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "distress-format-single-copy",
+      "source": "synthetic",
+      "description": "Distress alert with the second format specifier garbled: decoded, but format_unconfirmed, so no alert (sec 4.2, F-14).",
+      "input": {
+        "symbols": [112, 255, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 107,
+        "distress_telecommand": null,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": true,
+        "ecc": {
+          "received": 63,
+          "computed": 63,
+          "ok": true
+        },
+        "garbled_count": 1,
+        "content_id": "cab862f35f710cc6"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "allships-format-disagree",
+      "source": "synthetic",
+      "description": "All-ships call whose format copies disagree (116 vs 120): format_unconfirmed (sec 4.2, F-14).",
+      "input": {
+        "symbols": [116, 120, 108, 0, 26, 18, 10, 20, 109, 126, 2, 71, 40, 2, 5, 40, 127, 32, 127, 127]
+      },
+      "expected": {
+        "format": "allships",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002618102",
+          "kind": "coast",
+          "mid": 261
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 2714,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "freq",
+            "khz": 2054,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": true,
+        "ecc": {
+          "received": 32,
+          "computed": 32,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "cdd01e7323ea0863"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "vts-format",
+      "source": "synthetic",
+      "description": "Format specifier 103: call to ships in a VTS area (ITU-R M.825), with category URGENCY: never alerts (Table A1-3 note 3, F-16).",
+      "input": {
+        "symbols": [103, 103, 0, 64, 52, 70, 0, 110, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 120]
+      },
+      "expected": {
+        "format": "vts",
+        "category": "urgency",
+        "severity": "urgency",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 120,
+          "computed": 120,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "edabb04a2c895b7c"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "vts-category",
+      "source": "synthetic",
+      "description": "Category 103 (VTS, ITU-R M.825) (F-16).",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 103, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 110]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "vts",
+        "severity": "routine",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 110,
+          "computed": 110,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "48950228f0a422f1"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "acs-call",
+      "source": "synthetic",
+      "description": "ACS individual call (M.493-16 Table A1-4.9.2): category 106, second telecommand 122 = two ACS transmissions remaining. 122 is also an EOS value: the EOS is the one after the second telecommand (F-04, F-22).",
+      "input": {
+        "symbols": [120, 120, 0, 25, 70, 0, 0, 106, 27, 33, 42, 41, 0, 109, 122, 1, 92, 25, 1, 92, 25, 117, 22]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "acs",
+        "severity": "routine",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": 122,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 1922.5,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "freq",
+            "khz": 1922.5,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 22,
+          "computed": 22,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "bdcb64e8685e5ff7"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "auto-number-odd",
+      "source": "synthetic",
+      "description": "Format 123 request with public network number 0012345 (105 00 01 23 45, sec 8.3.3) (F-17).",
+      "input": {
+        "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 100, 126, 90, 0, 16, 126, 126, 126, 105, 0, 1, 23, 45, 117, 112]
+      },
+      "expected": {
+        "format": "individual_auto",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 100,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "vhf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 16,
+            "vhf_mode": 0
+          },
+          "tx": null
+        },
+        "number": "0012345",
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 112,
+          "computed": 112,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "2ed9a60b4704b34a"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "auto-number-even",
+      "source": "synthetic",
+      "description": "Format 123 request with public network number 00123456 (106 00 12 34 56, sec 8.3.3) (F-17).",
+      "input": {
+        "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 100, 126, 90, 0, 16, 126, 126, 126, 106, 0, 12, 34, 56, 117, 94]
+      },
+      "expected": {
+        "format": "individual_auto",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 100,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "vhf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 16,
+            "vhf_mode": 0
+          },
+          "tx": null
+        },
+        "number": "00123456",
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 94,
+          "computed": 94,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "9050ff540b70905c"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "auto-end-ack-duration",
+      "source": "synthetic",
+      "description": "Format 123 end-of-call acknowledgement (tc1 105, EOS 122): chargeable duration 00 06 50 = 6 min 50 s (ITU-R M.1082-1 sec 2.5.2 example), then the number.",
+      "input": {
+        "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 105, 126, 0, 6, 50, 126, 126, 126, 105, 0, 1, 23, 45, 122, 12]
+      },
+      "expected": {
+        "format": "individual_auto",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 105,
+        "tc2": null,
+        "freq_channel": null,
+        "number": "0012345",
+        "duration_s": 410,
+        "expansion": null,
+        "eos": "ack",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 12,
+          "computed": 12,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "6dcea135df0a1098"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "auto-end-ack-no-duration",
+      "source": "synthetic",
+      "description": "End-of-call acknowledgement with six 126: duration not available.",
+      "input": {
+        "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 105, 126, 126, 126, 126, 126, 126, 126, 105, 0, 1, 23, 45, 122, 70]
+      },
+      "expected": {
+        "format": "individual_auto",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 105,
+        "tc2": null,
+        "freq_channel": null,
+        "number": "0012345",
+        "duration_s": null,
+        "expansion": null,
+        "eos": "ack",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 70,
+          "computed": 70,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "7a07287cf6c12494"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "auto-end-ack-unsolicited",
+      "source": "synthetic",
+      "description": "Unsolicited end-of-call acknowledgement (EOS 127, Table A1-4.10.1 note 1): duration 01 02 03 = 3723 s.",
+      "input": {
+        "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 105, 126, 1, 2, 3, 126, 126, 126, 105, 0, 1, 23, 45, 127, 61]
+      },
+      "expected": {
+        "format": "individual_auto",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 105,
+        "tc2": null,
+        "freq_channel": null,
+        "number": "0012345",
+        "duration_s": 3723,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 61,
+          "computed": 61,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "c85a0704663e9982"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "auto-end-request",
+      "source": "synthetic",
+      "description": "End-of-call request (tc1 105, EOS 117): message 2 is a frequency, not a duration (VHF channel 16).",
+      "input": {
+        "symbols": [123, 123, 0, 25, 70, 0, 0, 100, 27, 33, 42, 41, 0, 105, 126, 90, 0, 16, 126, 126, 126, 105, 0, 1, 23, 45, 117, 125]
+      },
+      "expected": {
+        "format": "individual_auto",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "273342410",
+          "kind": "ship",
+          "mid": 273
+        },
+        "to": {
+          "digits": "002570000",
+          "kind": "coast",
+          "mid": 257
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 105,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "vhf",
+            "khz": null,
+            "seven_digit": false,
+            "channel": 16,
+            "vhf_mode": 0
+          },
+          "tx": null
+        },
+        "number": "0012345",
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 125,
+          "computed": 125,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "91a5aa95de447d92"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "position-minutes-out-of-range",
+      "source": "synthetic",
+      "description": "individual-position with latitude minutes 65: the position is absent (F-19).",
+      "input": {
+        "symbols": [120, 120, 0, 21, 91, 0, 0, 100, 22, 6, 12, 0, 0, 109, 126, 55, 5, 26, 50, 1, 43, 117, 24]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "routine",
+        "severity": "routine",
+        "from": {
+          "digits": "220612000",
+          "kind": "ship",
+          "mid": 220
+        },
+        "to": {
+          "digits": "002191000",
+          "kind": "coast",
+          "mid": 219
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 24,
+          "computed": 24,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "20c0a110c0474b6b"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "expansion-position",
+      "source": "synthetic",
+      "description": "distress-alert with an M.821 enhanced position resolution field 100 05 72 59 33 (M.821 sec 3.1 example digits): 62 deg 28.0572 min N, 006 deg 13.5933 min E (F-18).",
+      "input": {
+        "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63, 100, 5, 72, 59, 33, 127, 76, 127, 127]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 107,
+        "distress_telecommand": null,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": {
+          "lat_extra_min": 0.0572,
+          "lon_extra_min": 0.5933,
+          "precise_position": {
+            "lat": 62.467620000000004,
+            "lon": 6.226555
+          },
+          "position_source": null,
+          "hdop": null,
+          "datum": null,
+          "speed_kn": null,
+          "course_deg": null,
+          "station_id": null,
+          "area_lat_extra_min": null,
+          "area_lon_extra_min": null,
+          "area_dlat_extra_min": null,
+          "area_dlon_extra_min": null,
+          "area_speed_kn": null,
+          "area_course_deg": null,
+          "persons_on_board": null,
+          "requested": [],
+          "unavailable": [],
+          "eos": "eos",
+          "ecc": {
+            "received": 76,
+            "computed": 76,
+            "ok": true
+          }
+        },
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 63,
+          "computed": 63,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "214e1c423630dcf5"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "expansion-position-fillers",
+      "source": "synthetic",
+      "description": "expansion-position with the two 126 fillers of the first RX positions between the call and the expansion (M.821 sec 2.2.1).",
+      "input": {
+        "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63, 126, 126, 100, 5, 72, 59, 33, 127, 76, 127, 127]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 107,
+        "distress_telecommand": null,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": {
+          "lat_extra_min": 0.0572,
+          "lon_extra_min": 0.5933,
+          "precise_position": {
+            "lat": 62.467620000000004,
+            "lon": 6.226555
+          },
+          "position_source": null,
+          "hdop": null,
+          "datum": null,
+          "speed_kn": null,
+          "course_deg": null,
+          "station_id": null,
+          "area_lat_extra_min": null,
+          "area_lon_extra_min": null,
+          "area_dlat_extra_min": null,
+          "area_dlon_extra_min": null,
+          "area_speed_kn": null,
+          "area_course_deg": null,
+          "persons_on_board": null,
+          "requested": [],
+          "unavailable": [],
+          "eos": "eos",
+          "ecc": {
+            "received": 76,
+            "computed": 76,
+            "ok": true
+          }
+        },
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 63,
+          "computed": 63,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "40681e483583a6dd"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "expansion-position-ack",
+      "source": "synthetic",
+      "description": "position-ack followed by expan3 (Table A1-4.11: EOS 122) with enhanced position.",
+      "input": {
+        "symbols": [120, 120, 0, 21, 91, 0, 0, 108, 22, 6, 12, 0, 0, 121, 126, 6, 22, 80, 6, 13, 126, 15, 0, 122, 1, 100, 5, 72, 59, 33, 122, 73, 122, 122]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "220612000",
+          "kind": "ship",
+          "mid": 220
+        },
+        "to": {
+          "digits": "002191000",
+          "kind": "coast",
+          "mid": 219
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": 121,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": {
+          "lat_extra_min": 0.0572,
+          "lon_extra_min": 0.5933,
+          "precise_position": {
+            "lat": 62.467620000000004,
+            "lon": 6.226555
+          },
+          "position_source": null,
+          "hdop": null,
+          "datum": null,
+          "speed_kn": null,
+          "course_deg": null,
+          "station_id": null,
+          "area_lat_extra_min": null,
+          "area_lon_extra_min": null,
+          "area_dlat_extra_min": null,
+          "area_dlon_extra_min": null,
+          "area_speed_kn": null,
+          "area_course_deg": null,
+          "persons_on_board": null,
+          "requested": [],
+          "unavailable": [],
+          "eos": "ack",
+          "ecc": {
+            "received": 73,
+            "computed": 73,
+            "ok": true
+          }
+        },
+        "eos": "ack",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 1,
+          "computed": 1,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "0d072e99c41459df"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "expansion-nav-speed-course",
+      "source": "synthetic",
+      "description": "Expansion fields from the M.821 examples: 101 01 00 00 (differential GPS, HDOP not specified, WGS-84), 102 01 24 (12.4 kn), 103 02 98 (by the coding rule of sec 2.1.2.4: 29.8 deg; the example text says 298 deg, F-23).",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101, 101, 1, 0, 0, 102, 1, 24, 103, 2, 98, 117, 105, 117, 117]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": {
+          "lat_extra_min": null,
+          "lon_extra_min": null,
+          "precise_position": null,
+          "position_source": 1,
+          "hdop": 0,
+          "datum": 0,
+          "speed_kn": 12.4,
+          "course_deg": 29.8,
+          "station_id": null,
+          "area_lat_extra_min": null,
+          "area_lon_extra_min": null,
+          "area_dlat_extra_min": null,
+          "area_dlon_extra_min": null,
+          "area_speed_kn": null,
+          "area_course_deg": null,
+          "persons_on_board": null,
+          "requested": [],
+          "unavailable": [],
+          "eos": "req",
+          "ecc": {
+            "received": 105,
+            "computed": 105,
+            "ok": true
+          }
+        },
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 101,
+          "computed": 101,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "c560f12546d6bf99"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "expansion-station-id",
+      "source": "synthetic",
+      "description": "Expansion field 104 26 19 13 15 29 41 03: station identification \"PICES 3\" (M.821 sec 3.4 example), and 106 00 12: 12 persons on board.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101, 104, 26, 19, 13, 15, 29, 41, 3, 106, 0, 12, 117, 71, 117, 117]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": {
+          "lat_extra_min": null,
+          "lon_extra_min": null,
+          "precise_position": null,
+          "position_source": null,
+          "hdop": null,
+          "datum": null,
+          "speed_kn": null,
+          "course_deg": null,
+          "station_id": "PICES 3",
+          "area_lat_extra_min": null,
+          "area_lon_extra_min": null,
+          "area_dlat_extra_min": null,
+          "area_dlon_extra_min": null,
+          "area_speed_kn": null,
+          "area_course_deg": null,
+          "persons_on_board": 12,
+          "requested": [],
+          "unavailable": [],
+          "eos": "req",
+          "ecc": {
+            "received": 71,
+            "computed": 71,
+            "ok": true
+          }
+        },
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 101,
+          "computed": 101,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "22631f6317bc2a33"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "expansion-requests",
+      "source": "synthetic",
+      "description": "Expansion carrying data requests: 100 110 (position) and 104 110 (identification); 102 126 (speed: no data available).",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101, 100, 110, 104, 110, 102, 126, 117, 97, 117, 117]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": {
+          "lat_extra_min": null,
+          "lon_extra_min": null,
+          "precise_position": null,
+          "position_source": null,
+          "hdop": null,
+          "datum": null,
+          "speed_kn": null,
+          "course_deg": null,
+          "station_id": null,
+          "area_lat_extra_min": null,
+          "area_lon_extra_min": null,
+          "area_dlat_extra_min": null,
+          "area_dlon_extra_min": null,
+          "area_speed_kn": null,
+          "area_course_deg": null,
+          "persons_on_board": null,
+          "requested": [100, 104],
+          "unavailable": [102],
+          "eos": "req",
+          "ecc": {
+            "received": 97,
+            "computed": 97,
+            "ok": true
+          }
+        },
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 101,
+          "computed": 101,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "2daba07e4411449f"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "expansion-bad-ecc",
+      "source": "synthetic",
+      "description": "expansion-position with the expansion's ECC changed: fields still decoded, expansion ECC fails, the call's ECC is unaffected.",
+      "input": {
+        "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63, 100, 5, 72, 59, 33, 127, 0, 127, 127]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 107,
+        "distress_telecommand": null,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": "15:00",
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": {
+          "lat_extra_min": 0.0572,
+          "lon_extra_min": 0.5933,
+          "precise_position": {
+            "lat": 62.467620000000004,
+            "lon": 6.226555
+          },
+          "position_source": null,
+          "hdop": null,
+          "datum": null,
+          "speed_kn": null,
+          "course_deg": null,
+          "station_id": null,
+          "area_lat_extra_min": null,
+          "area_lon_extra_min": null,
+          "area_dlat_extra_min": null,
+          "area_dlon_extra_min": null,
+          "area_speed_kn": null,
+          "area_course_deg": null,
+          "persons_on_board": null,
+          "requested": [],
+          "unavailable": [],
+          "eos": "eos",
+          "ecc": {
+            "received": 0,
+            "computed": 76,
+            "ok": false
+          }
+        },
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 63,
+          "computed": 63,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "8ff1f040c2209031"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "time-out-of-range",
+      "source": "synthetic",
+      "description": "Distress alert with time 25:61: the time is absent (F-19).",
+      "input": {
+        "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 25, 61, 109, 127, 20]
+      },
+      "expected": {
+        "format": "distress",
+        "category": "distress",
+        "severity": "distress",
+        "from": {
+          "digits": "258999119",
+          "kind": "ship",
+          "mid": 258
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": 107,
+        "distress_telecommand": null,
+        "subsequent_comm": 109,
+        "position": {
+          "lat": 62.46666666666667,
+          "lon": 6.216666666666667,
+          "lat_quad": "N",
+          "lon_quad": "E"
+        },
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 20,
+          "computed": 20,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "4301757a336ce77d"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "garbled-from",
+      "source": "synthetic",
+      "description": "One garbled symbol inside FROM: FROM absent, ECC skips the garbled symbol.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 255, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": null,
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 101,
+          "computed": 45,
+          "ok": false
+        },
+        "garbled_count": 1,
+        "content_id": "7953ecb94cc26ca8"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "garbled-format-first",
+      "source": "synthetic",
+      "description": "First format specifier garbled; the second copy is used.",
+      "input": {
+        "symbols": [255, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 101,
+          "computed": 101,
+          "ok": true
+        },
+        "garbled_count": 1,
+        "content_id": "9b7ba8e908aff622"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "format-disagree",
+      "source": "synthetic",
+      "description": "Format specifier copies disagree (120 vs 116); a known format is preferred.",
+      "input": {
+        "symbols": [120, 116, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 101,
+          "computed": 101,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "56192694454e2c87"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "ecc-fail",
+      "source": "synthetic",
+      "description": "Valid message with a wrong ECC symbol.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 100]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 100,
+          "computed": 101,
+          "ok": false
+        },
+        "garbled_count": 0,
+        "content_id": "584c1f3a0db32ab8"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "ecc-garbled",
+      "source": "synthetic",
+      "description": "ECC symbol itself garbled: received/computed unavailable.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 255]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": null,
+          "computed": null,
+          "ok": false
+        },
+        "garbled_count": 1,
+        "content_id": "584caa3a0db416e9"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "unknown-format",
+      "source": "synthetic",
+      "description": "Unknown format specifier (100).",
+      "input": {
+        "symbols": [100, 100, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 121]
+      },
+      "expected": {
+        "format": "unknown",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 121,
+          "computed": 121,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "eeb04723be5a74d7"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "eos-repeated-bad-ecc",
+      "source": "synthetic",
+      "description": "allships-safety with one content symbol changed and the original ECC kept; the tail EOS, ECC, EOS, EOS must not mask the error (F-04).",
+      "input": {
+        "symbols": [116, 116, 108, 0, 27, 18, 10, 20, 109, 126, 2, 71, 40, 2, 5, 40, 127, 32, 127, 127]
+      },
+      "expected": {
+        "format": "allships",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002718102",
+          "kind": "coast",
+          "mid": 271
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 2714,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "freq",
+            "khz": 2054,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 32,
+          "computed": 33,
+          "ok": false
+        },
+        "garbled_count": 0,
+        "content_id": "6c6820643c84f58a"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "eos-repeated-good-ecc",
+      "source": "synthetic",
+      "description": "eos-repeated-bad-ecc with the ECC after the first EOS corrected.",
+      "input": {
+        "symbols": [116, 116, 108, 0, 27, 18, 10, 20, 109, 126, 2, 71, 40, 2, 5, 40, 127, 33, 127, 127]
+      },
+      "expected": {
+        "format": "allships",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "002718102",
+          "kind": "coast",
+          "mid": 271
+        },
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 109,
+        "tc2": null,
+        "freq_channel": {
+          "rx": {
+            "kind": "freq",
+            "khz": 2714,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          },
+          "tx": {
+            "kind": "freq",
+            "khz": 2054,
+            "seven_digit": false,
+            "channel": null,
+            "vhf_mode": null
+          }
+        },
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "eos",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 33,
+          "computed": 33,
+          "ok": true
+        },
+        "garbled_count": 0,
+        "content_id": "771d4964432a2635"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "no-eos",
+      "source": "synthetic",
+      "description": "No EOS symbol at all (reception cut short): EOS and ECC absent.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126]
+      },
+      "expected": {
+        "format": "individual",
+        "category": "safety",
+        "severity": "safety",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": null,
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": null,
+          "computed": null,
+          "ok": false
+        },
+        "garbled_count": 0,
+        "content_id": "8035649fe8d96339"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "garbled-category",
+      "source": "synthetic",
+      "description": "Category symbol garbled: category absent (not \"unknown\").",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 255, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 9]
+      },
+      "expected": {
+        "format": "individual",
+        "category": null,
+        "severity": "routine",
+        "from": {
+          "digits": "477231700",
+          "kind": "ship",
+          "mid": 477
+        },
+        "to": {
+          "digits": "006452700",
+          "kind": "coast",
+          "mid": 645
+        },
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": 118,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": "req",
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": 9,
+          "computed": 9,
+          "ok": true
+        },
+        "garbled_count": 1,
+        "content_id": "4c134d87ff6bfb3c"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "empty",
+      "source": "synthetic",
+      "description": "Empty symbol sequence.",
+      "input": {
+        "symbols": []
+      },
+      "expected": {
+        "format": "unknown",
+        "category": null,
+        "severity": "routine",
+        "from": null,
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": null,
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": null,
+          "computed": null,
+          "ok": false
+        },
+        "garbled_count": 0,
+        "content_id": "14650fb0739d0383"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    },
+    {
+      "id": "single-symbol",
+      "source": "synthetic",
+      "description": "A single symbol.",
+      "input": {
+        "symbols": [120]
+      },
+      "expected": {
+        "format": "individual",
+        "category": null,
+        "severity": "routine",
+        "from": null,
+        "to": null,
+        "distress_mmsi": null,
+        "distress_nature": null,
+        "distress_telecommand": null,
+        "subsequent_comm": null,
+        "position": null,
+        "area": null,
+        "position_refused": false,
+        "event_time": null,
+        "tc1": null,
+        "tc2": null,
+        "freq_channel": null,
+        "number": null,
+        "duration_s": null,
+        "expansion": null,
+        "eos": null,
+        "self_cancel": false,
+        "format_unconfirmed": false,
+        "ecc": {
+          "received": null,
+          "computed": null,
+          "ok": false
+        },
+        "garbled_count": 0,
+        "content_id": "44bda3d473cdc381"
+      },
+      "req": ["PAR-01", "PAR-02", "PAR-03", "PAR-04", "PAR-05", "PAR-06"]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "suite": "iso8601",
+  "description": "Formatting an instant: UTC as YYYY-MM-DDTHH:MM:SSZ, local as YYYY-MM-DDTHH:MM:SS+HH:MM (utc_offset in seconds east of UTC).",
+  "normative": true,
+  "compare": {
+    "method": "Exact."
+  },
+  "cases": [
+    {
+      "id": "utc",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1792498971,
+        "utc_offset": 0
+      },
+      "expected": {
+        "utc": "2026-10-20T12:22:51Z",
+        "local": "2026-10-20T12:22:51+00:00"
+      },
+      "req": ["TIM-05", "TIM-01"]
+    },
+    {
+      "id": "plus3",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1792498971,
+        "utc_offset": 10800
+      },
+      "expected": {
+        "utc": "2026-10-20T12:22:51Z",
+        "local": "2026-10-20T15:22:51+03:00"
+      },
+      "req": ["TIM-05", "TIM-01"]
+    },
+    {
+      "id": "minus5",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1792498971,
+        "utc_offset": -18000
+      },
+      "expected": {
+        "utc": "2026-10-20T12:22:51Z",
+        "local": "2026-10-20T07:22:51-05:00"
+      },
+      "req": ["TIM-05", "TIM-01"]
+    },
+    {
+      "id": "plus0530",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1792498971,
+        "utc_offset": 19800
+      },
+      "expected": {
+        "utc": "2026-10-20T12:22:51Z",
+        "local": "2026-10-20T17:52:51+05:30"
+      },
+      "req": ["TIM-05", "TIM-01"]
+    },
+    {
+      "id": "minus0330",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 1792498971,
+        "utc_offset": -12600
+      },
+      "expected": {
+        "utc": "2026-10-20T12:22:51Z",
+        "local": "2026-10-20T08:52:51-03:30"
+      },
+      "req": ["TIM-05", "TIM-01"]
+    },
+    {
+      "id": "epoch-zero",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 0,
+        "utc_offset": 0
+      },
+      "expected": {
+        "utc": "1970-01-01T00:00:00Z",
+        "local": "1970-01-01T00:00:00+00:00"
+      },
+      "req": ["TIM-05", "TIM-01"]
+    },
+    {
+      "id": "year-2038-plus",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "utc_epoch": 2240611200,
+        "utc_offset": 3600
+      },
+      "expected": {
+        "utc": "2041-01-01T00:00:00Z",
+        "local": "2041-01-01T01:00:00+01:00"
+      },
+      "req": ["TIM-05", "TIM-01"]
+    }
+  ]
+}

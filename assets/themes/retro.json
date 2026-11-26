@@ -1,0 +1,15 @@
+{
+  "name": "Retro terminal",
+  "text": "#66FF66",
+  "dim": "#309030",
+  "accent": "#FFFF33",
+  "border": "#309030",
+  "border_focused": "#66FF66",
+  "field_idle": "#309030",
+  "field_selected": "#66FF66",
+  "editing_fg": "#000000",
+  "editing_bg": "#FFFF33",
+  "off_note": "#309030",
+  "spectrum": "#66FF66",
+  "waterfall": ["#000000", "#005000", "#00FF00", "#FFFF00"]
+}

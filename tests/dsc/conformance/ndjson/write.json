@@ -1,0 +1,517 @@
+{
+  "suite": "ndjson-write",
+  "description": "Message record -> one NDJSON line (the per-day message file format).",
+  "normative": true,
+  "compare": {
+    "method": "Serialize the input record to one line. Compare as JSON values (key order and whitespace are free; the line MUST NOT contain a newline). Floats compare with the tolerance; keys absent in expected MUST be absent.",
+    "float_abs_tolerance": 1e-06,
+    "float_abs_tolerance_overrides": {
+      "pos.lat": 1e-06,
+      "pos.lon": 1e-06,
+      "area.lat": 1e-06,
+      "area.lon": 1e-06,
+      "note": "Coordinates MUST be written with at least 6 decimal places (DSC positions are whole minutes, e.g. 54.583333)."
+    }
+  },
+  "cases": [
+    {
+      "id": "minimal",
+      "source": "synthetic",
+      "description": "Plain decoded message, no enrichment.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101],
+        "parsed": {
+          "format": "individual",
+          "category": "safety",
+          "severity": "safety",
+          "from": {
+            "digits": "477231700",
+            "kind": "ship",
+            "mid": 477
+          },
+          "to": {
+            "digits": "006452700",
+            "kind": "coast",
+            "mid": 645
+          },
+          "distress_mmsi": null,
+          "distress_nature": null,
+          "distress_telecommand": null,
+          "subsequent_comm": null,
+          "position": null,
+          "area": null,
+          "position_refused": false,
+          "event_time": null,
+          "tc1": 118,
+          "tc2": null,
+          "freq_channel": null,
+          "number": null,
+          "duration_s": null,
+          "expansion": null,
+          "eos": "req",
+          "self_cancel": false,
+          "format_unconfirmed": false,
+          "ecc": {
+            "received": 101,
+            "computed": 101,
+            "ok": true
+          },
+          "garbled_count": 0,
+          "content_id": "584c203a0db32c6b"
+        },
+        "schema_version": 2,
+        "utc_epoch": 1792498971,
+        "utc_offset": 10800,
+        "time_source": "wallclock",
+        "source_label": "8414.5 kHz",
+        "source_file": null,
+        "snr_db": null,
+        "rx_location": null,
+        "position_dist_km": null,
+        "from_info": null,
+        "to_info": null,
+        "distress_info": null
+      },
+      "expected": {
+        "line": "{\"v\":2,\"id\":\"584c203a0db32c6b\",\"utc\":\"2026-10-20T12:22:51Z\",\"off\":\"+03:00\",\"tsrc\":\"wallclock\",\"src\":\"8414.5 kHz\",\"fmt\":\"individual\",\"cat\":\"safety\",\"from\":\"477231700\",\"to\":\"006452700\",\"tc1\":118,\"eos\":\"req\",\"ecc_rx\":101,\"ecc_cc\":101,\"ecc_ok\":true,\"errs\":0,\"sym\":[120,120,0,64,52,70,0,108,47,72,31,70,0,118,126,126,126,126,126,126,126,117,101]}"
+      },
+      "req": ["STO-02", "TIM-01", "TIM-04", "ENR-05", "CH-07"]
+    },
+    {
+      "id": "wav-source",
+      "source": "synthetic",
+      "description": "Decoded from a WAV: file path, filename time source, SNR.",
+      "input": {
+        "symbols": [120, 120, 0, 27, 11, 0, 10, 108, 35, 20, 3, 67, 50, 118, 126, 126, 126, 126, 126, 126, 126, 117, 54],
+        "parsed": {
+          "format": "individual",
+          "category": "safety",
+          "severity": "safety",
+          "from": {
+            "digits": "352003675",
+            "kind": "ship",
+            "mid": 352
+          },
+          "to": {
+            "digits": "002711001",
+            "kind": "coast",
+            "mid": 271
+          },
+          "distress_mmsi": null,
+          "distress_nature": null,
+          "distress_telecommand": null,
+          "subsequent_comm": null,
+          "position": null,
+          "area": null,
+          "position_refused": false,
+          "event_time": null,
+          "tc1": 118,
+          "tc2": null,
+          "freq_channel": null,
+          "number": null,
+          "duration_s": null,
+          "expansion": null,
+          "eos": "req",
+          "self_cancel": false,
+          "format_unconfirmed": false,
+          "ecc": {
+            "received": 54,
+            "computed": 54,
+            "ok": true
+          },
+          "garbled_count": 0,
+          "content_id": "c8bb2f5a6dad5233"
+        },
+        "schema_version": 2,
+        "utc_epoch": 1792498971,
+        "utc_offset": 10800,
+        "time_source": "filename",
+        "source_label": "8414.5 kHz",
+        "source_file": "/recordings/20261020T152248_audio_8414.5kHz.wav",
+        "snr_db": 12.5,
+        "rx_location": null,
+        "position_dist_km": null,
+        "from_info": null,
+        "to_info": null,
+        "distress_info": null
+      },
+      "expected": {
+        "line": "{\"v\":2,\"id\":\"c8bb2f5a6dad5233\",\"utc\":\"2026-10-20T12:22:51Z\",\"off\":\"+03:00\",\"tsrc\":\"filename\",\"src\":\"8414.5 kHz\",\"file\":\"/recordings/20261020T152248_audio_8414.5kHz.wav\",\"fmt\":\"individual\",\"cat\":\"safety\",\"from\":\"352003675\",\"to\":\"002711001\",\"tc1\":118,\"eos\":\"req\",\"ecc_rx\":54,\"ecc_cc\":54,\"ecc_ok\":true,\"errs\":0,\"snr\":12.5,\"sym\":[120,120,0,27,11,0,10,108,35,20,3,67,50,118,126,126,126,126,126,126,126,117,54]}"
+      },
+      "req": ["STO-02", "TIM-01", "TIM-04", "ENR-05", "CH-07"]
+    },
+    {
+      "id": "enriched",
+      "source": "synthetic",
+      "description": "Schema v2 reception-time enrichment: receiver location, per-MMSI station info, distances.",
+      "input": {
+        "symbols": [120, 120, 0, 21, 91, 0, 0, 100, 22, 6, 12, 0, 0, 109, 126, 55, 5, 23, 50, 1, 43, 117, 21],
+        "parsed": {
+          "format": "individual",
+          "category": "routine",
+          "severity": "routine",
+          "from": {
+            "digits": "220612000",
+            "kind": "ship",
+            "mid": 220
+          },
+          "to": {
+            "digits": "002191000",
+            "kind": "coast",
+            "mid": 219
+          },
+          "distress_mmsi": null,
+          "distress_nature": null,
+          "distress_telecommand": null,
+          "subsequent_comm": null,
+          "position": {
+            "lat": 52.583333333333336,
+            "lon": 1.7166666666666668,
+            "lat_quad": "N",
+            "lon_quad": "E"
+          },
+          "area": null,
+          "position_refused": false,
+          "event_time": null,
+          "tc1": 109,
+          "tc2": null,
+          "freq_channel": null,
+          "number": null,
+          "duration_s": null,
+          "expansion": null,
+          "eos": "req",
+          "self_cancel": false,
+          "format_unconfirmed": false,
+          "ecc": {
+            "received": 21,
+            "computed": 21,
+            "ok": true
+          },
+          "garbled_count": 0,
+          "content_id": "5f5b34546a8fb251"
+        },
+        "schema_version": 2,
+        "utc_epoch": 1792498971,
+        "utc_offset": 7200,
+        "time_source": "wallclock",
+        "source_label": "2187.5 kHz",
+        "source_file": null,
+        "snr_db": null,
+        "rx_location": {
+          "lat": 54.687157,
+          "lon": 25.279652
+        },
+        "position_dist_km": 1567.123456,
+        "from_info": {
+          "name": "TEST VESSEL",
+          "country": "Denmark",
+          "has_pos": true,
+          "lat": 52.58333,
+          "lon": 1.71667,
+          "pos_source": "aprs.fi",
+          "pos_time": 1792498000,
+          "dist_km": 1567.1
+        },
+        "to_info": {
+          "name": "Lyngby Radio",
+          "country": "Denmark",
+          "has_pos": true,
+          "lat": 55.84,
+          "lon": 11.43,
+          "pos_source": "builtin",
+          "pos_time": null,
+          "dist_km": 836.25
+        },
+        "distress_info": null
+      },
+      "expected": {
+        "line": "{\"v\":2,\"id\":\"5f5b34546a8fb251\",\"utc\":\"2026-10-20T12:22:51Z\",\"off\":\"+02:00\",\"tsrc\":\"wallclock\",\"src\":\"2187.5 kHz\",\"fmt\":\"individual\",\"cat\":\"routine\",\"from\":\"220612000\",\"to\":\"002191000\",\"pos\":{\"lat\":52.583333,\"lon\":1.716667,\"lq\":\"N\",\"oq\":\"E\"},\"tc1\":109,\"eos\":\"req\",\"rx\":{\"lat\":54.687157,\"lon\":25.279652},\"pos_km\":1567.123,\"from_st\":{\"name\":\"TEST VESSEL\",\"country\":\"Denmark\",\"lat\":52.583330,\"lon\":1.716670,\"psrc\":\"aprs.fi\",\"ptime\":1792498000,\"km\":1567.100},\"to_st\":{\"name\":\"Lyngby Radio\",\"country\":\"Denmark\",\"lat\":55.840000,\"lon\":11.430000,\"psrc\":\"builtin\",\"km\":836.250},\"ecc_rx\":21,\"ecc_cc\":21,\"ecc_ok\":true,\"errs\":0,\"sym\":[120,120,0,21,91,0,0,100,22,6,12,0,0,109,126,55,5,23,50,1,43,117,21]}"
+      },
+      "req": ["STO-02", "TIM-01", "TIM-04", "ENR-05", "CH-07"]
+    },
+    {
+      "id": "distress-relay",
+      "source": "synthetic",
+      "description": "Distress relay with distress MMSI, nature, position and event time.",
+      "input": {
+        "symbols": [116, 116, 112, 0, 25, 70, 0, 0, 112, 25, 73, 88, 0, 0, 110, 7, 60, 30, 32, 50, 18, 17, 109, 127, 107],
+        "parsed": {
+          "format": "allships",
+          "category": "distress",
+          "severity": "distress",
+          "from": {
+            "digits": "002570000",
+            "kind": "coast",
+            "mid": 257
+          },
+          "to": null,
+          "distress_mmsi": {
+            "digits": "257388000",
+            "kind": "ship",
+            "mid": 257
+          },
+          "distress_nature": 110,
+          "distress_telecommand": 112,
+          "subsequent_comm": 109,
+          "position": {
+            "lat": 76.05,
+            "lon": 32.833333333333336,
+            "lat_quad": "N",
+            "lon_quad": "E"
+          },
+          "area": null,
+          "position_refused": false,
+          "event_time": "18:17",
+          "tc1": null,
+          "tc2": null,
+          "freq_channel": null,
+          "number": null,
+          "duration_s": null,
+          "expansion": null,
+          "eos": "eos",
+          "self_cancel": false,
+          "format_unconfirmed": false,
+          "ecc": {
+            "received": 107,
+            "computed": 107,
+            "ok": true
+          },
+          "garbled_count": 0,
+          "content_id": "3c83d7a1beb6aee9"
+        },
+        "schema_version": 2,
+        "utc_epoch": 1792500000,
+        "utc_offset": 0,
+        "time_source": "wallclock",
+        "source_label": "VHF ch70",
+        "source_file": null,
+        "snr_db": null,
+        "rx_location": null,
+        "position_dist_km": null,
+        "from_info": null,
+        "to_info": null,
+        "distress_info": null
+      },
+      "expected": {
+        "line": "{\"v\":2,\"id\":\"3c83d7a1beb6aee9\",\"utc\":\"2026-10-20T12:40:00Z\",\"off\":\"+00:00\",\"tsrc\":\"wallclock\",\"src\":\"VHF ch70\",\"fmt\":\"allships\",\"cat\":\"distress\",\"from\":\"002570000\",\"dmmsi\":\"257388000\",\"nature\":110,\"dtc\":112,\"subc\":109,\"pos\":{\"lat\":76.050000,\"lon\":32.833333,\"lq\":\"N\",\"oq\":\"E\"},\"etime\":\"18:17\",\"eos\":\"eos\",\"ecc_rx\":107,\"ecc_cc\":107,\"ecc_ok\":true,\"errs\":0,\"sym\":[116,116,112,0,25,70,0,0,112,25,73,88,0,0,110,7,60,30,32,50,18,17,109,127,107]}"
+      },
+      "req": ["STO-02", "TIM-01", "TIM-04", "ENR-05", "CH-07"]
+    },
+    {
+      "id": "area",
+      "source": "synthetic",
+      "description": "Geographic area call.",
+      "input": {
+        "symbols": [102, 102, 6, 0, 3, 8, 14, 108, 0, 21, 91, 0, 0, 109, 126, 1, 75, 80, 2, 10, 20, 127, 45],
+        "parsed": {
+          "format": "area",
+          "category": "safety",
+          "severity": "safety",
+          "from": {
+            "digits": "002191000",
+            "kind": "coast",
+            "mid": 219
+          },
+          "to": null,
+          "distress_mmsi": null,
+          "distress_nature": null,
+          "distress_telecommand": null,
+          "subsequent_comm": null,
+          "position": null,
+          "area": {
+            "corner_lat": 60,
+            "corner_lon": 3,
+            "lat_quad": "N",
+            "lon_quad": "E",
+            "d_lat": 8,
+            "d_lon": 14
+          },
+          "position_refused": false,
+          "event_time": null,
+          "tc1": 109,
+          "tc2": null,
+          "freq_channel": {
+            "rx": {
+              "kind": "freq",
+              "khz": 1758,
+              "seven_digit": false,
+              "channel": null,
+              "vhf_mode": null
+            },
+            "tx": {
+              "kind": "freq",
+              "khz": 2102,
+              "seven_digit": false,
+              "channel": null,
+              "vhf_mode": null
+            }
+          },
+          "number": null,
+          "duration_s": null,
+          "expansion": null,
+          "eos": "eos",
+          "self_cancel": false,
+          "format_unconfirmed": false,
+          "ecc": {
+            "received": 45,
+            "computed": 45,
+            "ok": true
+          },
+          "garbled_count": 0,
+          "content_id": "affe57559e5bd78b"
+        },
+        "schema_version": 2,
+        "utc_epoch": 1792500000,
+        "utc_offset": -18000,
+        "time_source": "wallclock",
+        "source_label": "12577.0 kHz",
+        "source_file": null,
+        "snr_db": null,
+        "rx_location": null,
+        "position_dist_km": null,
+        "from_info": null,
+        "to_info": null,
+        "distress_info": null
+      },
+      "expected": {
+        "line": "{\"v\":2,\"id\":\"affe57559e5bd78b\",\"utc\":\"2026-10-20T12:40:00Z\",\"off\":\"-05:00\",\"tsrc\":\"wallclock\",\"src\":\"12577.0 kHz\",\"fmt\":\"area\",\"cat\":\"safety\",\"from\":\"002191000\",\"area\":{\"lat\":60.000000,\"lon\":3.000000,\"dlat\":8,\"dlon\":14},\"tc1\":109,\"rxe\":{\"k\":\"freq\",\"khz\":1758},\"txe\":{\"k\":\"freq\",\"khz\":2102},\"eos\":\"eos\",\"ecc_rx\":45,\"ecc_cc\":45,\"ecc_ok\":true,\"errs\":0,\"sym\":[102,102,6,0,3,8,14,108,0,21,91,0,0,109,126,1,75,80,2,10,20,127,45]}"
+      },
+      "req": ["STO-02", "TIM-01", "TIM-04", "ENR-05", "CH-07"]
+    },
+    {
+      "id": "self-cancel",
+      "source": "synthetic",
+      "description": "Self-cancel flag: a distress acknowledgement (110) naming its own sender (sec 8.6).",
+      "input": {
+        "symbols": [120, 120, 0, 21, 91, 0, 0, 112, 25, 89, 99, 11, 90, 110, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 127, 120],
+        "parsed": {
+          "format": "individual",
+          "category": "distress",
+          "severity": "distress",
+          "from": {
+            "digits": "258999119",
+            "kind": "ship",
+            "mid": 258
+          },
+          "to": {
+            "digits": "002191000",
+            "kind": "coast",
+            "mid": 219
+          },
+          "distress_mmsi": {
+            "digits": "258999119",
+            "kind": "ship",
+            "mid": 258
+          },
+          "distress_nature": 107,
+          "distress_telecommand": 110,
+          "subsequent_comm": null,
+          "position": {
+            "lat": 62.46666666666667,
+            "lon": 6.216666666666667,
+            "lat_quad": "N",
+            "lon_quad": "E"
+          },
+          "area": null,
+          "position_refused": false,
+          "event_time": "15:00",
+          "tc1": null,
+          "tc2": null,
+          "freq_channel": null,
+          "number": null,
+          "duration_s": null,
+          "expansion": null,
+          "eos": "eos",
+          "self_cancel": true,
+          "format_unconfirmed": false,
+          "ecc": {
+            "received": 120,
+            "computed": 120,
+            "ok": true
+          },
+          "garbled_count": 0,
+          "content_id": "7a317af63a00ebf9"
+        },
+        "schema_version": 2,
+        "utc_epoch": 1792500000,
+        "utc_offset": 0,
+        "time_source": "wallclock",
+        "source_label": "2187.5 kHz",
+        "source_file": null,
+        "snr_db": null,
+        "rx_location": null,
+        "position_dist_km": null,
+        "from_info": null,
+        "to_info": null,
+        "distress_info": null
+      },
+      "expected": {
+        "line": "{\"v\":2,\"id\":\"7a317af63a00ebf9\",\"utc\":\"2026-10-20T12:40:00Z\",\"off\":\"+00:00\",\"tsrc\":\"wallclock\",\"src\":\"2187.5 kHz\",\"fmt\":\"individual\",\"cat\":\"distress\",\"from\":\"258999119\",\"to\":\"002191000\",\"dmmsi\":\"258999119\",\"nature\":107,\"dtc\":110,\"pos\":{\"lat\":62.466667,\"lon\":6.216667,\"lq\":\"N\",\"oq\":\"E\"},\"etime\":\"15:00\",\"eos\":\"eos\",\"selfcancel\":true,\"ecc_rx\":120,\"ecc_cc\":120,\"ecc_ok\":true,\"errs\":0,\"sym\":[120,120,0,21,91,0,0,112,25,89,99,11,90,110,25,89,99,11,90,107,6,22,80,6,13,15,0,127,120]}"
+      },
+      "req": ["STO-02", "TIM-01", "TIM-04", "ENR-05", "CH-07"]
+    },
+    {
+      "id": "escaping",
+      "source": "synthetic",
+      "description": "Source label needing JSON escaping.",
+      "input": {
+        "symbols": [120, 120, 0, 64, 52, 70, 0, 108, 47, 72, 31, 70, 0, 118, 126, 126, 126, 126, 126, 126, 126, 117, 101],
+        "parsed": {
+          "format": "individual",
+          "category": "safety",
+          "severity": "safety",
+          "from": {
+            "digits": "477231700",
+            "kind": "ship",
+            "mid": 477
+          },
+          "to": {
+            "digits": "006452700",
+            "kind": "coast",
+            "mid": 645
+          },
+          "distress_mmsi": null,
+          "distress_nature": null,
+          "distress_telecommand": null,
+          "subsequent_comm": null,
+          "position": null,
+          "area": null,
+          "position_refused": false,
+          "event_time": null,
+          "tc1": 118,
+          "tc2": null,
+          "freq_channel": null,
+          "number": null,
+          "duration_s": null,
+          "expansion": null,
+          "eos": "req",
+          "self_cancel": false,
+          "format_unconfirmed": false,
+          "ecc": {
+            "received": 101,
+            "computed": 101,
+            "ok": true
+          },
+          "garbled_count": 0,
+          "content_id": "584c203a0db32c6b"
+        },
+        "schema_version": 2,
+        "utc_epoch": 1792500000,
+        "utc_offset": 19800,
+        "time_source": "wallclock",
+        "source_label": "label \"quoted\" \\ tab\t",
+        "source_file": null,
+        "snr_db": null,
+        "rx_location": null,
+        "position_dist_km": null,
+        "from_info": null,
+        "to_info": null,
+        "distress_info": null
+      },
+      "expected": {
+        "line": "{\"v\":2,\"id\":\"584c203a0db32c6b\",\"utc\":\"2026-10-20T12:40:00Z\",\"off\":\"+05:30\",\"tsrc\":\"wallclock\",\"src\":\"label \\\"quoted\\\" \\\\ tab\\t\",\"fmt\":\"individual\",\"cat\":\"safety\",\"from\":\"477231700\",\"to\":\"006452700\",\"tc1\":118,\"eos\":\"req\",\"ecc_rx\":101,\"ecc_cc\":101,\"ecc_ok\":true,\"errs\":0,\"sym\":[120,120,0,64,52,70,0,108,47,72,31,70,0,118,126,126,126,126,126,126,126,117,101]}"
+      },
+      "req": ["STO-02", "TIM-01", "TIM-04", "ENR-05", "CH-07"]
+    }
+  ]
+}

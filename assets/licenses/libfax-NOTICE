@@ -1,0 +1,12 @@
+lib/shellsdr/libfax.so.1: the FAX weather fax decoder library (radio_fax_decoder,
+https://github.com/darauble/radio_fax_decoder), used by the FAX VFO type.
+
+Its decoder core (FaxDecoder.cpp/.h) comes from OpenCPN's weatherfax_pi
+(Copyright (C) 2015 by Sean D'Epagnier) via KiwiSDR (Beagle_SDR_GPS) and is
+licensed under the GNU General Public License, version 3 or later; the rest of
+FAX is MIT licensed. The library as a whole is therefore under the GPL v3, and
+so is this binary package as a whole, which includes it. The text of the GPL v3
+is in GPL-3 beside this file. The source of the library is at the address above.
+
+ShellSDR's own source code is MIT licensed. ShellSDR loads libfax.so.1 at run
+time; without it the FAX type is shown as unavailable and everything else works.

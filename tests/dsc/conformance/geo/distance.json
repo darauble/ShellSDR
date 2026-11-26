@@ -1,0 +1,107 @@
+{
+  "suite": "distance",
+  "description": "Great-circle (haversine) distance on a sphere of radius 6371.0088 km; nautical miles = km / 1.852.",
+  "normative": true,
+  "compare": {
+    "method": "Relative tolerance.",
+    "float_rel_tolerance": 1e-09
+  },
+  "cases": [
+    {
+      "id": "same-point",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "lat1": 54.687157,
+        "lon1": 25.279652,
+        "lat2": 54.687157,
+        "lon2": 25.279652
+      },
+      "expected": {
+        "km": 0,
+        "nm": 0
+      },
+      "req": ["ENR-02"]
+    },
+    {
+      "id": "vilnius-klaipeda",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "lat1": 54.687157,
+        "lon1": 25.279652,
+        "lat2": 55.703297,
+        "lon2": 21.144279
+      },
+      "expected": {
+        "km": 285.6940755920142,
+        "nm": 154.26245982290183
+      },
+      "req": ["ENR-02"]
+    },
+    {
+      "id": "across-dateline",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "lat1": 10,
+        "lon1": 179.5,
+        "lat2": 10,
+        "lon2": -179.5
+      },
+      "expected": {
+        "km": 109.50573519924384,
+        "nm": 59.128366738252616
+      },
+      "req": ["ENR-02"]
+    },
+    {
+      "id": "pole-to-pole",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "lat1": 90,
+        "lon1": 0,
+        "lat2": -90,
+        "lon2": 0
+      },
+      "expected": {
+        "km": 20015.114442035923,
+        "nm": 10807.297214922204
+      },
+      "req": ["ENR-02"]
+    },
+    {
+      "id": "antipodal",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "lat1": 0,
+        "lon1": 0,
+        "lat2": 0,
+        "lon2": 180
+      },
+      "expected": {
+        "km": 20015.114442035923,
+        "nm": 10807.297214922204
+      },
+      "req": ["ENR-02"]
+    },
+    {
+      "id": "one-degree-lat",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "lat1": 0,
+        "lon1": 0,
+        "lat2": 1,
+        "lon2": 0
+      },
+      "expected": {
+        "km": 111.1950802335329,
+        "nm": 60.04054008290113
+      },
+      "req": ["ENR-02"]
+    }
+  ]
+}

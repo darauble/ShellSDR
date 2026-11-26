@@ -1,0 +1,63 @@
+[package]
+name = "shellsdr"
+version = "0.4.8"
+edition = "2024"
+description = "A terminal (TUI) SDR receiver and recorder, optimized for Raspberry Pi"
+license = "GPL-3.0-or-later"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+directories = "5"
+ratatui = "0.29"
+crossterm = { version = "0.28", features = ["serde"] }
+num-complex = "0.4"
+serde_json = { version = "1", features = ["float_roundtrip"] }
+soapysdr = { version = "0.5", features = ["log"] }
+log = "0.4"
+cpal = "0.15"
+crossbeam-channel = "0.5.17"
+rustfft = "6"
+libc = "0.2"
+libloading = "0.8"
+jiff = "0.2"
+ureq = "3"
+png = "0.17"
+flate2 = "1"
+# The egui viewer (`--gui`, 0.4.1): optional, so the Pi build has no GUI.
+resvg = { version = "0.50", optional = true, default-features = false }
+eframe = { version = "0.37", optional = true, default-features = false, features = ["glow", "default_fonts", "wayland", "x11"] }
+
+[features]
+# `shellsdr --gui`: a window into a sharing ShellSDR (egui).
+gui = ["dep:eframe", "dep:resvg"]
+
+[dev-dependencies]
+
+# DSC conformance runner (0.2.1, spec 14.1): every case of
+# tests/dsc/conformance, reported by suite and id.
+[[test]]
+name = "dsc_conformance"
+path = "tests/dsc/runner/main.rs"
+harness = false
+
+# The runner's own comparison rules.
+[[test]]
+name = "dsc_runner_selftest"
+path = "tests/dsc/runner/selftest.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+# Everyday optimized builds (`cargo run --profile fast`): the release
+# optimization level, but the crate split into parallel units and no LTO,
+# so a rebuild uses every core. Packages are built with `release`.
+[profile.fast]
+inherits = "release"
+lto = false
+codegen-units = 16
+incremental = true

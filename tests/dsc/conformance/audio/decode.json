@@ -1,0 +1,995 @@
+{
+  "suite": "audio-decode",
+  "description": "End-to-end: WAV file -> decoded messages. Supported formats: integer PCM 8/16/24/32-bit and IEEE float 32/64-bit, plain or WAVE_FORMAT_EXTENSIBLE; unknown chunks are skipped; the first channel is decoded. The WAV file name carries the recording's local start time.",
+  "normative": true,
+  "compare": {
+    "method": "Decode the whole file. message_count and every message's symbols MUST match exactly (hence parsed fields too); the symbols run from the first format specifier through the last ECC, the call's or the expansion's (F-25); utc_epoch within the tolerance (the instant the message starts, from the file-name base time plus sample position).",
+    "utc_epoch_tolerance_s": 1
+  },
+  "cases": [
+    {
+      "id": "real-recording",
+      "source": "real-recording",
+      "description": "Real HF reception, 48 kHz mono 16-bit, DSC at an 800 Hz audio center tone.",
+      "input": {
+        "file": "audio/20261020T152248_audio_8414.5kHz.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 1,
+        "messages": [
+          {
+            "symbols": [120, 120, 0, 27, 11, 0, 10, 108, 35, 20, 3, 67, 50, 118, 126, 126, 126, 126, 126, 126, 126, 117, 54],
+            "parsed": {
+              "format": "individual",
+              "category": "safety",
+              "severity": "safety",
+              "from": {
+                "digits": "352003675",
+                "kind": "ship",
+                "mid": 352
+              },
+              "to": {
+                "digits": "002711001",
+                "kind": "coast",
+                "mid": 271
+              },
+              "distress_mmsi": null,
+              "distress_nature": null,
+              "distress_telecommand": null,
+              "subsequent_comm": null,
+              "position": null,
+              "area": null,
+              "position_refused": false,
+              "event_time": null,
+              "tc1": 118,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "req",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 54,
+                "computed": 54,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "c8bb2f5a6dad5233"
+            },
+            "utc_epoch": 1792498971,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    },
+    {
+      "id": "two-messages",
+      "source": "synthetic",
+      "description": "The recording twice in a row: two messages, the second later by the recording length.",
+      "input": {
+        "file": "audio/20261020T152248_twice.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 2,
+        "messages": [
+          {
+            "symbols": [120, 120, 0, 27, 11, 0, 10, 108, 35, 20, 3, 67, 50, 118, 126, 126, 126, 126, 126, 126, 126, 117, 54],
+            "parsed": {
+              "format": "individual",
+              "category": "safety",
+              "severity": "safety",
+              "from": {
+                "digits": "352003675",
+                "kind": "ship",
+                "mid": 352
+              },
+              "to": {
+                "digits": "002711001",
+                "kind": "coast",
+                "mid": 271
+              },
+              "distress_mmsi": null,
+              "distress_nature": null,
+              "distress_telecommand": null,
+              "subsequent_comm": null,
+              "position": null,
+              "area": null,
+              "position_refused": false,
+              "event_time": null,
+              "tc1": 118,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "req",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 54,
+                "computed": 54,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "c8bb2f5a6dad5233"
+            },
+            "utc_epoch": 1792498971,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          },
+          {
+            "symbols": [120, 120, 0, 27, 11, 0, 10, 108, 35, 20, 3, 67, 50, 118, 126, 126, 126, 126, 126, 126, 126, 117, 54],
+            "parsed": {
+              "format": "individual",
+              "category": "safety",
+              "severity": "safety",
+              "from": {
+                "digits": "352003675",
+                "kind": "ship",
+                "mid": 352
+              },
+              "to": {
+                "digits": "002711001",
+                "kind": "coast",
+                "mid": 271
+              },
+              "distress_mmsi": null,
+              "distress_nature": null,
+              "distress_telecommand": null,
+              "subsequent_comm": null,
+              "position": null,
+              "area": null,
+              "position_refused": false,
+              "event_time": null,
+              "tc1": 118,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "req",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 54,
+                "computed": 54,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "c8bb2f5a6dad5233"
+            },
+            "utc_epoch": 1792498979,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    },
+    {
+      "id": "stereo-first-channel",
+      "source": "synthetic",
+      "description": "Stereo file: left = signal, right = inverted signal. The first channel is decoded (a mix-down would cancel to silence).",
+      "input": {
+        "file": "audio/20261020T152248_stereo_inverted.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 1,
+        "messages": [
+          {
+            "symbols": [120, 120, 0, 27, 11, 0, 10, 108, 35, 20, 3, 67, 50, 118, 126, 126, 126, 126, 126, 126, 126, 117, 54],
+            "parsed": {
+              "format": "individual",
+              "category": "safety",
+              "severity": "safety",
+              "from": {
+                "digits": "352003675",
+                "kind": "ship",
+                "mid": 352
+              },
+              "to": {
+                "digits": "002711001",
+                "kind": "coast",
+                "mid": 271
+              },
+              "distress_mmsi": null,
+              "distress_nature": null,
+              "distress_telecommand": null,
+              "subsequent_comm": null,
+              "position": null,
+              "area": null,
+              "position_refused": false,
+              "event_time": null,
+              "tc1": 118,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "req",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 54,
+                "computed": 54,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "c8bb2f5a6dad5233"
+            },
+            "utc_epoch": 1792498971,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    },
+    {
+      "id": "pcm24-list-chunk",
+      "source": "synthetic",
+      "description": "24-bit PCM with a LIST metadata chunk (odd size, padded) between fmt and data.",
+      "input": {
+        "file": "audio/20261020T152248_pcm24_list.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 1,
+        "messages": [
+          {
+            "symbols": [120, 120, 0, 27, 11, 0, 10, 108, 35, 20, 3, 67, 50, 118, 126, 126, 126, 126, 126, 126, 126, 117, 54],
+            "parsed": {
+              "format": "individual",
+              "category": "safety",
+              "severity": "safety",
+              "from": {
+                "digits": "352003675",
+                "kind": "ship",
+                "mid": 352
+              },
+              "to": {
+                "digits": "002711001",
+                "kind": "coast",
+                "mid": 271
+              },
+              "distress_mmsi": null,
+              "distress_nature": null,
+              "distress_telecommand": null,
+              "subsequent_comm": null,
+              "position": null,
+              "area": null,
+              "position_refused": false,
+              "event_time": null,
+              "tc1": 118,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "req",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 54,
+                "computed": 54,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "c8bb2f5a6dad5233"
+            },
+            "utc_epoch": 1792498971,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    },
+    {
+      "id": "float32-extensible",
+      "source": "synthetic",
+      "description": "32-bit IEEE float in WAVE_FORMAT_EXTENSIBLE (full scale +-1.0).",
+      "input": {
+        "file": "audio/20261020T152248_float32_ext.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 1,
+        "messages": [
+          {
+            "symbols": [120, 120, 0, 27, 11, 0, 10, 108, 35, 20, 3, 67, 50, 118, 126, 126, 126, 126, 126, 126, 126, 117, 54],
+            "parsed": {
+              "format": "individual",
+              "category": "safety",
+              "severity": "safety",
+              "from": {
+                "digits": "352003675",
+                "kind": "ship",
+                "mid": 352
+              },
+              "to": {
+                "digits": "002711001",
+                "kind": "coast",
+                "mid": 271
+              },
+              "distress_mmsi": null,
+              "distress_nature": null,
+              "distress_telecommand": null,
+              "subsequent_comm": null,
+              "position": null,
+              "area": null,
+              "position_refused": false,
+              "event_time": null,
+              "tc1": 118,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "req",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 54,
+                "computed": 54,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "c8bb2f5a6dad5233"
+            },
+            "utc_epoch": 1792498971,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    },
+    {
+      "id": "wrong-tone",
+      "source": "synthetic",
+      "description": "Decoder tuned 900 Hz away from the signal: nothing is decoded.",
+      "input": {
+        "file": "audio/20261020T152248_audio_8414.5kHz.wav",
+        "center_tone_hz": 1700,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 0,
+        "messages": []
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    },
+    {
+      "id": "silence",
+      "source": "synthetic",
+      "description": "Digital silence: no messages, no crash.",
+      "input": {
+        "file": "audio/20261020T120000_silence.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 0,
+        "messages": []
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    },
+    {
+      "id": "noise",
+      "source": "synthetic",
+      "description": "Uniform white noise: no false messages.",
+      "input": {
+        "file": "audio/20261020T120000_noise.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 0,
+        "messages": []
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    },
+    {
+      "id": "synth-1700hz-11025",
+      "source": "synthetic",
+      "description": "Synthetic distress alert at the standard 1700 Hz sub-carrier (sec 1.3), 11025 Hz sample rate (110.25 samples per bit).",
+      "input": {
+        "file": "audio/20261021T100000_synth_1700hz_11025.wav",
+        "center_tone_hz": 1700,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 1,
+        "messages": [
+          {
+            "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63],
+            "parsed": {
+              "format": "distress",
+              "category": "distress",
+              "severity": "distress",
+              "from": {
+                "digits": "258999119",
+                "kind": "ship",
+                "mid": 258
+              },
+              "to": null,
+              "distress_mmsi": null,
+              "distress_nature": 107,
+              "distress_telecommand": null,
+              "subsequent_comm": 109,
+              "position": {
+                "lat": 62.46666666666667,
+                "lon": 6.216666666666667,
+                "lat_quad": "N",
+                "lon_quad": "E"
+              },
+              "area": null,
+              "position_refused": false,
+              "event_time": "15:00",
+              "tc1": null,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "eos",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 63,
+                "computed": 63,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "358bf156812f2867"
+            },
+            "utc_epoch": 1792566003,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    },
+    {
+      "id": "synth-expansion",
+      "source": "synthetic",
+      "description": "Distress alert followed directly by an M.821 expansion sequence (enhanced position): one message, symbols through the expansion's ECC (DEC-04, F-18, F-25).",
+      "input": {
+        "file": "audio/20261021T100000_synth_expansion.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 1,
+        "messages": [
+          {
+            "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63, 100, 5, 72, 59, 33, 127, 76],
+            "parsed": {
+              "format": "distress",
+              "category": "distress",
+              "severity": "distress",
+              "from": {
+                "digits": "258999119",
+                "kind": "ship",
+                "mid": 258
+              },
+              "to": null,
+              "distress_mmsi": null,
+              "distress_nature": 107,
+              "distress_telecommand": null,
+              "subsequent_comm": 109,
+              "position": {
+                "lat": 62.46666666666667,
+                "lon": 6.216666666666667,
+                "lat_quad": "N",
+                "lon_quad": "E"
+              },
+              "area": null,
+              "position_refused": false,
+              "event_time": "15:00",
+              "tc1": null,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": {
+                "lat_extra_min": 0.0572,
+                "lon_extra_min": 0.5933,
+                "precise_position": {
+                  "lat": 62.467620000000004,
+                  "lon": 6.226555
+                },
+                "position_source": null,
+                "hdop": null,
+                "datum": null,
+                "speed_kn": null,
+                "course_deg": null,
+                "station_id": null,
+                "area_lat_extra_min": null,
+                "area_lon_extra_min": null,
+                "area_dlat_extra_min": null,
+                "area_dlon_extra_min": null,
+                "area_speed_kn": null,
+                "area_course_deg": null,
+                "persons_on_board": null,
+                "requested": [],
+                "unavailable": [],
+                "eos": "eos",
+                "ecc": {
+                  "received": 76,
+                  "computed": 76,
+                  "ok": true
+                }
+              },
+              "eos": "eos",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 63,
+                "computed": 63,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "60fc638bd661fe67"
+            },
+            "utc_epoch": 1792566003,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01", "DEC-04"]
+    },
+    {
+      "id": "synth-expansion-fillers",
+      "source": "synthetic",
+      "description": "As synth-expansion, but the call's closing EOS EOS are sent first and the first two RX positions of the expansion carry 126 (M.821 sec 2.2.1).",
+      "input": {
+        "file": "audio/20261021T100000_synth_expansion_fillers.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 1,
+        "messages": [
+          {
+            "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63, 126, 126, 100, 5, 72, 59, 33, 127, 76],
+            "parsed": {
+              "format": "distress",
+              "category": "distress",
+              "severity": "distress",
+              "from": {
+                "digits": "258999119",
+                "kind": "ship",
+                "mid": 258
+              },
+              "to": null,
+              "distress_mmsi": null,
+              "distress_nature": 107,
+              "distress_telecommand": null,
+              "subsequent_comm": 109,
+              "position": {
+                "lat": 62.46666666666667,
+                "lon": 6.216666666666667,
+                "lat_quad": "N",
+                "lon_quad": "E"
+              },
+              "area": null,
+              "position_refused": false,
+              "event_time": "15:00",
+              "tc1": null,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": {
+                "lat_extra_min": 0.0572,
+                "lon_extra_min": 0.5933,
+                "precise_position": {
+                  "lat": 62.467620000000004,
+                  "lon": 6.226555
+                },
+                "position_source": null,
+                "hdop": null,
+                "datum": null,
+                "speed_kn": null,
+                "course_deg": null,
+                "station_id": null,
+                "area_lat_extra_min": null,
+                "area_lon_extra_min": null,
+                "area_dlat_extra_min": null,
+                "area_dlon_extra_min": null,
+                "area_speed_kn": null,
+                "area_course_deg": null,
+                "persons_on_board": null,
+                "requested": [],
+                "unavailable": [],
+                "eos": "eos",
+                "ecc": {
+                  "received": 76,
+                  "computed": 76,
+                  "ok": true
+                }
+              },
+              "eos": "eos",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 63,
+                "computed": 63,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "c4c7f7f48991350f"
+            },
+            "utc_epoch": 1792566003,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01", "DEC-04"]
+    },
+    {
+      "id": "synth-back-to-back",
+      "source": "synthetic",
+      "description": "Two distress alerts, the second right after the first's closing EOS with a 20-bit dot pattern: two messages (DEC-05, F-24).",
+      "input": {
+        "file": "audio/20261021T100000_synth_back_to_back.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 2,
+        "messages": [
+          {
+            "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63],
+            "parsed": {
+              "format": "distress",
+              "category": "distress",
+              "severity": "distress",
+              "from": {
+                "digits": "258999119",
+                "kind": "ship",
+                "mid": 258
+              },
+              "to": null,
+              "distress_mmsi": null,
+              "distress_nature": 107,
+              "distress_telecommand": null,
+              "subsequent_comm": 109,
+              "position": {
+                "lat": 62.46666666666667,
+                "lon": 6.216666666666667,
+                "lat_quad": "N",
+                "lon_quad": "E"
+              },
+              "area": null,
+              "position_refused": false,
+              "event_time": "15:00",
+              "tc1": null,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "eos",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 63,
+                "computed": 63,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "358bf156812f2867"
+            },
+            "utc_epoch": 1792566003,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          },
+          {
+            "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63],
+            "parsed": {
+              "format": "distress",
+              "category": "distress",
+              "severity": "distress",
+              "from": {
+                "digits": "258999119",
+                "kind": "ship",
+                "mid": 258
+              },
+              "to": null,
+              "distress_mmsi": null,
+              "distress_nature": 107,
+              "distress_telecommand": null,
+              "subsequent_comm": 109,
+              "position": {
+                "lat": 62.46666666666667,
+                "lon": 6.216666666666667,
+                "lat_quad": "N",
+                "lon_quad": "E"
+              },
+              "area": null,
+              "position_refused": false,
+              "event_time": "15:00",
+              "tc1": null,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "eos",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 63,
+                "computed": 63,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "358bf156812f2867"
+            },
+            "utc_epoch": 1792566009,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01", "DEC-05"]
+    },
+    {
+      "id": "synth-lost-call",
+      "source": "synthetic",
+      "description": "A call cut off after six slots, directly followed by a complete call: only the complete call (DEC-05, F-26).",
+      "input": {
+        "file": "audio/20261021T100000_synth_lost_call.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 1,
+        "messages": [
+          {
+            "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63],
+            "parsed": {
+              "format": "distress",
+              "category": "distress",
+              "severity": "distress",
+              "from": {
+                "digits": "258999119",
+                "kind": "ship",
+                "mid": 258
+              },
+              "to": null,
+              "distress_mmsi": null,
+              "distress_nature": 107,
+              "distress_telecommand": null,
+              "subsequent_comm": 109,
+              "position": {
+                "lat": 62.46666666666667,
+                "lon": 6.216666666666667,
+                "lat_quad": "N",
+                "lon_quad": "E"
+              },
+              "area": null,
+              "position_refused": false,
+              "event_time": "15:00",
+              "tc1": null,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "eos",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 63,
+                "computed": 63,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "358bf156812f2867"
+            },
+            "utc_epoch": 1792566008,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01", "DEC-05"]
+    },
+    {
+      "id": "synth-lost-call-2s",
+      "source": "synthetic",
+      "description": "As synth-lost-call with 2 s of random bits between: only the complete call (DEC-05, F-26).",
+      "input": {
+        "file": "audio/20261021T100000_synth_lost_call_2s.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 1,
+        "messages": [
+          {
+            "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63],
+            "parsed": {
+              "format": "distress",
+              "category": "distress",
+              "severity": "distress",
+              "from": {
+                "digits": "258999119",
+                "kind": "ship",
+                "mid": 258
+              },
+              "to": null,
+              "distress_mmsi": null,
+              "distress_nature": 107,
+              "distress_telecommand": null,
+              "subsequent_comm": 109,
+              "position": {
+                "lat": 62.46666666666667,
+                "lon": 6.216666666666667,
+                "lat_quad": "N",
+                "lon_quad": "E"
+              },
+              "area": null,
+              "position_refused": false,
+              "event_time": "15:00",
+              "tc1": null,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "eos",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 63,
+                "computed": 63,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "358bf156812f2867"
+            },
+            "utc_epoch": 1792566010,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01", "DEC-05"]
+    },
+    {
+      "id": "synth-lost-call-3s",
+      "source": "synthetic",
+      "description": "As synth-lost-call with 3 s of random bits: the receiver gives up on the lost call at its character limit and records it (no EOS, no alert, F-27), then decodes the complete call. Informative as a whole, because the cut call's symbols depend on the demodulator; synth-lost-call and synth-lost-call-2s are the normative cases.",
+      "normative": false,
+      "input": {
+        "file": "audio/20261021T100000_synth_lost_call_3s.wav",
+        "center_tone_hz": 800,
+        "time_zone": "Europe/Vilnius",
+        "source_label": "8414.5 kHz"
+      },
+      "expected": {
+        "message_count": 2,
+        "messages": [
+          {
+            "symbols": [112, 112, 25, 89, 99, 11, 255, 255, 86, 255, 255, 255, 55, 255, 50, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 111, 110, 109, 108, 107],
+            "parsed": {
+              "format": "distress",
+              "category": "distress",
+              "severity": "distress",
+              "from": null,
+              "to": null,
+              "distress_mmsi": null,
+              "distress_nature": null,
+              "distress_telecommand": null,
+              "subsequent_comm": null,
+              "position": null,
+              "area": null,
+              "position_refused": false,
+              "event_time": null,
+              "tc1": null,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": null,
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": null,
+                "computed": null,
+                "ok": false
+              },
+              "garbled_count": 20,
+              "content_id": "ad13cf85a06d310b"
+            },
+            "utc_epoch": 1792566003,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          },
+          {
+            "symbols": [112, 112, 25, 89, 99, 11, 90, 107, 6, 22, 80, 6, 13, 15, 0, 109, 127, 63],
+            "parsed": {
+              "format": "distress",
+              "category": "distress",
+              "severity": "distress",
+              "from": {
+                "digits": "258999119",
+                "kind": "ship",
+                "mid": 258
+              },
+              "to": null,
+              "distress_mmsi": null,
+              "distress_nature": 107,
+              "distress_telecommand": null,
+              "subsequent_comm": 109,
+              "position": {
+                "lat": 62.46666666666667,
+                "lon": 6.216666666666667,
+                "lat_quad": "N",
+                "lon_quad": "E"
+              },
+              "area": null,
+              "position_refused": false,
+              "event_time": "15:00",
+              "tc1": null,
+              "tc2": null,
+              "freq_channel": null,
+              "number": null,
+              "duration_s": null,
+              "expansion": null,
+              "eos": "eos",
+              "self_cancel": false,
+              "format_unconfirmed": false,
+              "ecc": {
+                "received": 63,
+                "computed": 63,
+                "ok": true
+              },
+              "garbled_count": 0,
+              "content_id": "358bf156812f2867"
+            },
+            "utc_epoch": 1792566011,
+            "utc_offset": 10800,
+            "time_source": "filename"
+          }
+        ]
+      },
+      "req": ["DEC-01", "DEC-02", "DEC-06", "DEC-07", "DEC-08", "STO-01"]
+    }
+  ]
+}

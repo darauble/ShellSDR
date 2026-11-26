@@ -1,0 +1,852 @@
+{
+  "suite": "config-merge",
+  "description": "Three-way merge of settings when saving, so several running instances never clobber each other: per setting, keep mine if it differs from base, else take disk. Location and the channel list are single units.",
+  "normative": true,
+  "compare": {
+    "method": "Exact (floats exact)."
+  },
+  "cases": [
+    {
+      "id": "nothing-changed",
+      "source": "synthetic",
+      "description": "No changes anywhere.",
+      "input": {
+        "base": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "mine": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "disk": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        }
+      },
+      "expected": {
+        "ndjson_dir": "/home/u/.local/share/app",
+        "save_dir": "",
+        "default_tone": 800,
+        "online_lookup": false,
+        "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+        "lookup_apikey": "KEY-A",
+        "alert_bell": true,
+        "location": {
+          "set": true,
+          "lat": 54.68,
+          "lon": 25.28
+        },
+        "channels": [
+          {
+            "label": "2187.5 kHz",
+            "device": "sink.monitor",
+            "tone": 800
+          }
+        ]
+      },
+      "req": ["CFG-02"]
+    },
+    {
+      "id": "disjoint-changes",
+      "source": "synthetic",
+      "description": "Each side changed a different setting: both survive.",
+      "input": {
+        "base": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "mine": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-MINE",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "disk": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": false,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        }
+      },
+      "expected": {
+        "ndjson_dir": "/home/u/.local/share/app",
+        "save_dir": "",
+        "default_tone": 800,
+        "online_lookup": false,
+        "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+        "lookup_apikey": "KEY-MINE",
+        "alert_bell": false,
+        "location": {
+          "set": true,
+          "lat": 54.68,
+          "lon": 25.28
+        },
+        "channels": [
+          {
+            "label": "2187.5 kHz",
+            "device": "sink.monitor",
+            "tone": 800
+          }
+        ]
+      },
+      "req": ["CFG-02"]
+    },
+    {
+      "id": "both-changed-same",
+      "source": "synthetic",
+      "description": "Both changed the same setting: mine wins.",
+      "input": {
+        "base": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "mine": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-MINE",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "disk": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-DISK",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        }
+      },
+      "expected": {
+        "ndjson_dir": "/home/u/.local/share/app",
+        "save_dir": "",
+        "default_tone": 800,
+        "online_lookup": false,
+        "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+        "lookup_apikey": "KEY-MINE",
+        "alert_bell": true,
+        "location": {
+          "set": true,
+          "lat": 54.68,
+          "lon": 25.28
+        },
+        "channels": [
+          {
+            "label": "2187.5 kHz",
+            "device": "sink.monitor",
+            "tone": 800
+          }
+        ]
+      },
+      "req": ["CFG-02"]
+    },
+    {
+      "id": "only-disk-changed",
+      "source": "synthetic",
+      "description": "Only the file changed: adopt it.",
+      "input": {
+        "base": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "mine": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "disk": {
+          "ndjson_dir": "/data/app",
+          "save_dir": "",
+          "default_tone": 1500,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        }
+      },
+      "expected": {
+        "ndjson_dir": "/data/app",
+        "save_dir": "",
+        "default_tone": 1500,
+        "online_lookup": false,
+        "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+        "lookup_apikey": "KEY-A",
+        "alert_bell": true,
+        "location": {
+          "set": true,
+          "lat": 54.68,
+          "lon": 25.28
+        },
+        "channels": [
+          {
+            "label": "2187.5 kHz",
+            "device": "sink.monitor",
+            "tone": 800
+          }
+        ]
+      },
+      "req": ["CFG-02"]
+    },
+    {
+      "id": "location-is-one-unit",
+      "source": "synthetic",
+      "description": "Mine changed lat, disk changed lon: the location is merged as a unit, so mine (whole) wins.",
+      "input": {
+        "base": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "mine": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 10,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "disk": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 20
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        }
+      },
+      "expected": {
+        "ndjson_dir": "/home/u/.local/share/app",
+        "save_dir": "",
+        "default_tone": 800,
+        "online_lookup": false,
+        "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+        "lookup_apikey": "KEY-A",
+        "alert_bell": true,
+        "location": {
+          "set": true,
+          "lat": 10,
+          "lon": 25.28
+        },
+        "channels": [
+          {
+            "label": "2187.5 kHz",
+            "device": "sink.monitor",
+            "tone": 800
+          }
+        ]
+      },
+      "req": ["CFG-02"]
+    },
+    {
+      "id": "location-cleared-elsewhere",
+      "source": "synthetic",
+      "description": "Location cleared in the file, unchanged here: cleared.",
+      "input": {
+        "base": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "mine": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "disk": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": false,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        }
+      },
+      "expected": {
+        "ndjson_dir": "/home/u/.local/share/app",
+        "save_dir": "",
+        "default_tone": 800,
+        "online_lookup": false,
+        "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+        "lookup_apikey": "KEY-A",
+        "alert_bell": true,
+        "location": {
+          "set": false,
+          "lat": 54.68,
+          "lon": 25.28
+        },
+        "channels": [
+          {
+            "label": "2187.5 kHz",
+            "device": "sink.monitor",
+            "tone": 800
+          }
+        ]
+      },
+      "req": ["CFG-02"]
+    },
+    {
+      "id": "channels-mine",
+      "source": "synthetic",
+      "description": "Channel list changed on both sides: mine (whole list) wins.",
+      "input": {
+        "base": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "mine": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            },
+            {
+              "label": "8414.5 kHz",
+              "device": "sink.monitor",
+              "tone": 1100
+            }
+          ]
+        },
+        "disk": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": []
+        }
+      },
+      "expected": {
+        "ndjson_dir": "/home/u/.local/share/app",
+        "save_dir": "",
+        "default_tone": 800,
+        "online_lookup": false,
+        "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+        "lookup_apikey": "KEY-A",
+        "alert_bell": true,
+        "location": {
+          "set": true,
+          "lat": 54.68,
+          "lon": 25.28
+        },
+        "channels": [
+          {
+            "label": "2187.5 kHz",
+            "device": "sink.monitor",
+            "tone": 800
+          },
+          {
+            "label": "8414.5 kHz",
+            "device": "sink.monitor",
+            "tone": 1100
+          }
+        ]
+      },
+      "req": ["CFG-02"]
+    },
+    {
+      "id": "channels-disk",
+      "source": "synthetic",
+      "description": "Channel list changed only in the file: adopt it.",
+      "input": {
+        "base": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "mine": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "disk": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            },
+            {
+              "label": "4207.5 kHz",
+              "device": "usb.mic",
+              "tone": 900
+            }
+          ]
+        }
+      },
+      "expected": {
+        "ndjson_dir": "/home/u/.local/share/app",
+        "save_dir": "",
+        "default_tone": 800,
+        "online_lookup": false,
+        "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+        "lookup_apikey": "KEY-A",
+        "alert_bell": true,
+        "location": {
+          "set": true,
+          "lat": 54.68,
+          "lon": 25.28
+        },
+        "channels": [
+          {
+            "label": "2187.5 kHz",
+            "device": "sink.monitor",
+            "tone": 800
+          },
+          {
+            "label": "4207.5 kHz",
+            "device": "usb.mic",
+            "tone": 900
+          }
+        ]
+      },
+      "req": ["CFG-02"]
+    },
+    {
+      "id": "changed-back",
+      "source": "synthetic",
+      "description": "Mine equals base again (changed and changed back): counts as unchanged, so the file wins.",
+      "input": {
+        "base": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "mine": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": false,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        },
+        "disk": {
+          "ndjson_dir": "/home/u/.local/share/app",
+          "save_dir": "",
+          "default_tone": 800,
+          "online_lookup": true,
+          "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+          "lookup_apikey": "KEY-A",
+          "alert_bell": true,
+          "location": {
+            "set": true,
+            "lat": 54.68,
+            "lon": 25.28
+          },
+          "channels": [
+            {
+              "label": "2187.5 kHz",
+              "device": "sink.monitor",
+              "tone": 800
+            }
+          ]
+        }
+      },
+      "expected": {
+        "ndjson_dir": "/home/u/.local/share/app",
+        "save_dir": "",
+        "default_tone": 800,
+        "online_lookup": true,
+        "lookup_endpoint": "https://api.aprs.fi/api/get?name={mmsi}&what=loc&apikey={apikey}&format=json",
+        "lookup_apikey": "KEY-A",
+        "alert_bell": true,
+        "location": {
+          "set": true,
+          "lat": 54.68,
+          "lon": 25.28
+        },
+        "channels": [
+          {
+            "label": "2187.5 kHz",
+            "device": "sink.monitor",
+            "tone": 800
+          }
+        ]
+      },
+      "req": ["CFG-02"]
+    }
+  ]
+}

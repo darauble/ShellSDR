@@ -1,0 +1,249 @@
+{
+  "suite": "parse-location",
+  "description": "User location entry: exactly two signed decimal numbers (lat, lon) separated by whitespace and/or a comma, nothing else; lat in [-90,90], lon in [-180,180].",
+  "normative": true,
+  "compare": {
+    "method": "valid exact; lat/lon absolute tolerance.",
+    "float_abs_tolerance": 1e-09
+  },
+  "cases": [
+    {
+      "id": "space",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54.687157 25.279652"
+      },
+      "expected": {
+        "valid": true,
+        "lat": 54.687157,
+        "lon": 25.279652
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "comma",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54.687157,25.279652"
+      },
+      "expected": {
+        "valid": true,
+        "lat": 54.687157,
+        "lon": 25.279652
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "comma-space",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54.687157, 25.279652"
+      },
+      "expected": {
+        "valid": true,
+        "lat": 54.687157,
+        "lon": 25.279652
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "signs",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "+54.5 -18.25"
+      },
+      "expected": {
+        "valid": true,
+        "lat": 54.5,
+        "lon": -18.25
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "south-west",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "-33.8688 -151.2093"
+      },
+      "expected": {
+        "valid": true,
+        "lat": -33.8688,
+        "lon": -151.2093
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "integers",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54 25"
+      },
+      "expected": {
+        "valid": true,
+        "lat": 54,
+        "lon": 25
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "lat-out-of-range",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "91 25"
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "lon-out-of-range",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54 181"
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "single-number",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54.5"
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "empty",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": ""
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "letters",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "north east"
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "hemisphere-letters",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54.5N 25.2E"
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "limits",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "-90 180"
+      },
+      "expected": {
+        "valid": true,
+        "lat": -90,
+        "lon": 180
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "trailing-garbage",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54.5 25.2 xyz"
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "three-numbers",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54.5 25.2 10"
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "not-a-number",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "nan 25"
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    },
+    {
+      "id": "infinity",
+      "source": "synthetic",
+      "description": "",
+      "input": {
+        "text": "54 inf"
+      },
+      "expected": {
+        "valid": false,
+        "lat": null,
+        "lon": null
+      },
+      "req": ["ENR-01"]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+mmsi,name,callsign,country,type,lat,lon,pos_source,pos_time
+002191000,Lyngby Radio,,,coast,55.84,11.43,builtin,
+002371000,Olympia Radio,,,coast,37.9838,23.7275,builtin,
+002570000,Rogaland Radio,,,coast,58.66,5.66,builtin,
+002711001,Antalya Turk Radio,,,coast,36.8969,30.7133,builtin,
